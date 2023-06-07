@@ -2,8 +2,30 @@
 #include <locale> // Para usar caracteres especiales
 using namespace std;
 
-
-
+// Estructuras
+struct Venta {
+    string nombre_producto;
+    float precio_producto;
+    float cantidad_producto;
+    float monto_producto;
+};
+struct Boleta {
+    Venta productos[10];
+    float monto_total;    
+};
+struct Clientes {
+    string nombre;
+    string DNI;
+    Boleta historial[10];
+};
+struct Productos {
+    string nombre;
+    string codigo;
+    string tipo;
+    float precio;
+    float stock;
+    
+};
 //Prototipos
 
 char menuMediosPago();
