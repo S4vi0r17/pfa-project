@@ -48,6 +48,68 @@ int main() {
 
 
 
+//menu principal
+
+
+
+
+
+
+
+
+
+//Cliente
+
+
+
+
+
+
+
+
+//Menu cliente registrado
+
+
+
+
+
+
+
+//Revisar carrito de compras
+
+
+
+
+
+
+//Realizar compra
+
+
+
+
+
+
+//Menu Administrador
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Funcion de medios de pago
 
 char menuMediosPago() {
