@@ -9,15 +9,18 @@ struct Venta {
     float cantidad_producto;
     float monto_producto;
 };
+
 struct Boleta {
     Venta productos[10];
     float monto_total;    
 };
+
 struct Clientes {
     string nombre;
     string DNI;
     Boleta historial[10];
 };
+
 struct Productos {
     string nombre;
     string codigo;
@@ -26,6 +29,7 @@ struct Productos {
     float stock;
     
 };
+
 //Prototipos
 
 char menuMediosPago();
@@ -36,11 +40,9 @@ char menuMediosPago();
 
 int main() {
     
-    char opcionSeleccionada = menuMediosPago();
-    cout << "Opción seleccionada: " << opcionSeleccionada << endl;
+    
     
 
-    return 0;
 }
 
 
