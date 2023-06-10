@@ -8,7 +8,7 @@ struct Venta {
     float precio_producto;
     float cantidad_producto;
     float monto_producto;
-}venta[50];
+};
 
 struct Boleta {
     Venta productos[10];
@@ -29,13 +29,19 @@ struct Productos {
     float stock;
     
 };
-
+struct Global{
+	
+	Venta venta[100];
+	Boleta boleta[100];
+	Clientes cliente[100];
+	Productos producto[100];
+}g;
 
 
 //Prototipos
 
 char menuMediosPago();
-void revisarCarritoDeCompras(Venta vector[]);
+void revisarCarritoDeCompras(Global global);
 
 
 //Funcion principal
@@ -45,12 +51,12 @@ int main() {
     /*
     Producto de Prueba
     */
-    venta[0].nombre_producto = "Papas";
-    venta[0].precio_producto = 8;
-    venta[0].cantidad_producto = 2;
+    g.venta[0].nombre_producto = "Papas";
+    g.venta[0].precio_producto = 8;
+    g.venta[0].cantidad_producto = 2;
     
 
-    revisarCarritoDeCompras(venta);
+    revisarCarritoDeCompras(g);
 
 }
 
@@ -86,15 +92,15 @@ int main() {
 
 //Revisar carrito de compras
 
-void revisarCarritoDeCompras(Venta vector[]){
+void revisarCarritoDeCompras(Global global){
     cout << "Carrito de compras" << endl;
     cout << "------------------" << endl;
     cout << "Producto   " << "Cantidad  " << "Precio    " << endl;
     for (int i = 0; i < 50; i++) {
-        if (vector[i].nombre_producto == "") {
+        if (global.venta[i].nombre_producto == "") {
             break;
         }
-        cout << vector[i].nombre_producto << "      " << vector[i].cantidad_producto << "         " << vector[i].precio_producto << endl;
+        cout << global.venta[i].nombre_producto << "      " << global.venta[i].cantidad_producto << "         " << global.venta[i].precio_producto << endl;
     }
 
 }
@@ -138,15 +144,15 @@ char menuMediosPago() {
     cout << "   a. Efectivo (moneda nacional)" << endl;
     cout << "   b. Moneda extranjera" << endl;
     cout << "2. Tarjetas bancarias:" << endl;
-    cout << "   a. Tarjeta bancaria (crédito o débito)" << endl;
-    cout << "   b. Tarjeta online (pagos electrónicos)" << endl;
+    cout << "   a. Tarjeta bancaria (cr�dito o d�bito)" << endl;
+    cout << "   b. Tarjeta online (pagos electr�nicos)" << endl;
     cout << "3. Vales y tarjetas de beneficios:" << endl;
     cout << "   a. Vale escolar" << endl;
-    cout << "   b. Vale de mercadería" << endl;
+    cout << "   b. Vale de mercader�a" << endl;
     cout << "   c. Vale de alimento" << endl;
 
     char opcion;
-    cout << "Ingrese la opción deseada: ";
+    cout << "Ingrese la opci�n deseada: ";
     cin >> opcion;
 
     return opcion;
