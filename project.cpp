@@ -49,6 +49,7 @@ int main() {
     venta[0].precio_producto = 8;
     venta[0].cantidad_producto = 2;
     
+    cout<<"\n Hola Mundo";
 
     revisarCarritoDeCompras(venta);
 
