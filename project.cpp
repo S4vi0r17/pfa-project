@@ -44,6 +44,21 @@ struct Global{
 
 char menuMediosPago();
 void revisarCarritoDeCompras(Global global);
+void MnClntReg();
+int OpcClntReg(int Opc);
+void MnEscgrProd(Venta* PreProducto, int& PosProd);
+int OpcEscgrProd(int Opc);
+void MnLimp(Venta* PreProducto, int& PosProd);
+int OpcLimp(int Opc);
+void MnTec(Venta* PreProducto, int& PosProd);
+int OpcTec(int Opc);
+void MnHog(Venta* PreProducto, int& PosProd);
+int OpcHog(int Opc);
+void MnVerd(Venta* PreProducto, int& PosProd);
+int OpcVerd(int Opc);
+void MnFrut(Venta* PreProducto, int& PosProd);
+int OpcFrut(int Opc);
+
 
 
 //Funcion principal
@@ -148,7 +163,8 @@ int OpcEscgrProd(int Opc){
 
 void MnEscgrProd(Venta* PreProducto, int& PosProd){
 	
-	int Opc, PosProd=0;
+	int Opc;
+    PosProd=0;
 	
 	do{
 		
