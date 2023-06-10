@@ -53,9 +53,9 @@ int main() {
     /*
     Producto de Prueba
     */
-    g[0].nombre_producto = "Papas";
-    g[0].precio_producto = 8;
-    g[0].cantidad_producto = 2;
+    g.venta[0].nombre_producto = "Papas";
+    g.venta[0].precio_producto = 8;
+    g.venta[0].cantidad_producto = 2;
     
 
     revisarCarritoDeCompras(g);
