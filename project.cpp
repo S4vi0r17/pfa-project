@@ -8,7 +8,7 @@ struct Venta {
     float precio_producto;
     float cantidad_producto;
     float monto_producto;
-};
+}venta[50];
 
 struct Boleta {
     Venta productos[10];
@@ -30,18 +30,27 @@ struct Productos {
     
 };
 
+
+
 //Prototipos
 
 char menuMediosPago();
-
+void revisarCarritoDeCompras(Venta vector[]);
 
 
 //Funcion principal
 
 int main() {
     
+    /*
+    Producto de Prueba
+    */
+    venta[0].nombre_producto = "Papas";
+    venta[0].precio_producto = 8;
+    venta[0].cantidad_producto = 2;
     
-    
+
+    revisarCarritoDeCompras(venta);
 
 }
 
@@ -77,7 +86,18 @@ int main() {
 
 //Revisar carrito de compras
 
+void revisarCarritoDeCompras(Venta vector[]){
+    cout << "Carrito de compras" << endl;
+    cout << "------------------" << endl;
+    cout << "Producto   " << "Cantidad  " << "Precio    " << endl;
+    for (int i = 0; i < 50; i++) {
+        if (vector[i].nombre_producto == "") {
+            break;
+        }
+        cout << vector[i].nombre_producto << "      " << vector[i].cantidad_producto << "         " << vector[i].precio_producto << endl;
+    }
 
+}
 
 
 
