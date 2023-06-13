@@ -45,19 +45,19 @@ struct Global{
 char menuMediosPago();
 void revisarCarritoDeCompras(Global global);
 void MnClntReg();
-int OpcClntReg(int Opc);
+int OpcClntReg();
 void MnEscgrProd(Venta* PreProducto, int& PosProd);
-int OpcEscgrProd(int Opc);
+int OpcEscgrProd();
 void MnLimp(Venta* PreProducto, int& PosProd);
-int OpcLimp(int Opc);
+int OpcLimp();
 void MnTec(Venta* PreProducto, int& PosProd);
-int OpcTec(int Opc);
+int OpcTec();
 void MnHog(Venta* PreProducto, int& PosProd);
-int OpcHog(int Opc);
+int OpcHog();
 void MnVerd(Venta* PreProducto, int& PosProd);
-int OpcVerd(int Opc);
+int OpcVerd();
 void MnFrut(Venta* PreProducto, int& PosProd);
-int OpcFrut(int Opc);
+int OpcFrut();
 
 
 
@@ -100,8 +100,9 @@ int main() {
 
 
 //Menu cliente registrado
-int OpcClntReg(int Opc){
+int OpcClntReg(){
 	
+	int Opc;
 	cout<<"\n Bienvenido";
 	cout<<"\n ¿Qué desea realizar?";
 	cout<<"\n 1. Escoger productos";
@@ -116,13 +117,12 @@ int OpcClntReg(int Opc){
 
 void MnClntReg(){
 
-	int Opc, PosProd;
+	int Opc,PosProd;
 	
 	Venta PreProducto[10];
 	
 	do{
-		Opc=OpcClntReg(Opc);
-		switch(Opc){
+		switch(OpcClntReg()){
 			case 1:
 				MnEscgrProd(PreProducto, PosProd);	
 				break;
@@ -133,6 +133,7 @@ void MnClntReg(){
 				
 				break;
 			case 4:
+				Opc=4;
 				break;
 			default:
 				cout<<"\n Opción inválida";
@@ -145,8 +146,9 @@ void MnClntReg(){
 
 }
 
-int OpcEscgrProd(int Opc){
+int OpcEscgrProd(){
 	
+	int Opc;
 	cout<<"\n ¿Qué tipo de producto desea comprar?\n";
 	cout<<"\n 1. Articulos de limpieza";
 	cout<<"\n 2. Tecnología";
@@ -167,9 +169,7 @@ void MnEscgrProd(Venta* PreProducto, int& PosProd){
     PosProd=0;
 	
 	do{
-		
-		Opc=OpcEscgrProd(Opc);
-		switch(Opc){
+		switch(OpcEscgrProd()){
 			case 1:
 				MnLimp(PreProducto, PosProd);	
 				break;
@@ -189,6 +189,7 @@ void MnEscgrProd(Venta* PreProducto, int& PosProd){
 						
 				break;
 			case 7:	
+				Opc=7;
 				break;
 			default:
 				cout<<"\n Opción inválida";
@@ -205,8 +206,7 @@ void MnLimp(Venta* PreProducto, int& PosProd){
 	int Opc;
 	
 	do{
-		Opc=OpcLimp(Opc);
-		switch(Opc){
+		switch(OpcLimp()){
 			case 1:
 				PreProducto[PosProd].nombre_producto="Set Escoba";
 				cout<<"\n Ingrese la cantidad que desea de este producto: ";
@@ -250,6 +250,7 @@ void MnLimp(Venta* PreProducto, int& PosProd){
 				PosProd++;
 				break;
 			case 8:
+				Opc=8;
 				break;
 			default:
 				cout<<"\n Opción inválida";
@@ -259,8 +260,8 @@ void MnLimp(Venta* PreProducto, int& PosProd){
 	}while(Opc!=8);
 }
 
-int OpcLimp(int Opc){
-	
+int OpcLimp(){
+	int Opc;
 	cout<<"\n ARTICULOS DE LIMPIEZA";
 	cout<<"\n ¿Qué desea comprar?\n";
 	cout<<"\n 1. Set Escoba";
@@ -282,8 +283,8 @@ void MnTec(Venta* PreProducto, int& PosProd){
 	int Opc;
 	
 	do{
-		Opc=OpcTec(Opc);
-		switch(Opc){
+		
+		switch(OpcTec()){
 			case 1:
 				PreProducto[PosProd].nombre_producto="Laptop Gamer Asus";
 				cout<<"\n Ingrese la cantidad que desea de este producto: ";
@@ -315,6 +316,7 @@ void MnTec(Venta* PreProducto, int& PosProd){
 				PosProd++;		
 				break;
 			case 6:
+				Opc=6;
 				break;
 			default:
 				cout<<"\n Opción inválida";
@@ -325,8 +327,8 @@ void MnTec(Venta* PreProducto, int& PosProd){
 	
 }
 
-int OpcTec(int Opc){
-	
+int OpcTec(){
+	int Opc;
 	cout<<"\n ÁREA DE TECNOLOGÍA";
 	cout<<"\n ¿Qué desea comprar?\n";
 	cout<<"\n 1. Laptop Gamer Asus";
@@ -346,8 +348,8 @@ void MnHog(Venta* PreProducto, int& PosProd){
 	int Opc;
 	
 	do{
-		Opc=OpcHog(Opc);
-		switch(Opc){
+	
+		switch(OpcHog()){
 			case 1:
 				PreProducto[PosProd].nombre_producto="Set Utensilios de Cocina";
 				cout<<"\n Ingrese la cantidad que desea de este producto: ";
@@ -397,6 +399,7 @@ void MnHog(Venta* PreProducto, int& PosProd){
 				PosProd++;
 				break;
 			case 9:
+				Opc=9;
 				break;
 			default:
 				cout<<"\n Opción inválida";
@@ -407,8 +410,8 @@ void MnHog(Venta* PreProducto, int& PosProd){
 	
 }
 
-int OpcHog(int Opc){
-	
+int OpcHog(){
+	int Opc;
 	cout<<"\n ÁREA HOGAR";
 	cout<<"\n ¿Qué desea comprar?\n";
 	cout<<"\n 1. Set Utensilios de Cocina";
@@ -431,8 +434,8 @@ void MnVerd(Venta* PreProducto, int& PosProd){
 	int Opc;
 	
 	do{
-		Opc=OpcVerd(Opc);
-		switch(Opc){
+		
+		switch(OpcVerd()){
 			case 1:
 				PreProducto[PosProd].nombre_producto="1kg Cebolla";
 				cout<<"\n Ingrese la cantidad que desea de este producto: ";
@@ -494,6 +497,7 @@ void MnVerd(Venta* PreProducto, int& PosProd){
 				PosProd++;
 				break;
 			case 11:
+				Opc=11;
 				break;
 			default:
 				cout<<"\n Opción inválida";
@@ -504,8 +508,8 @@ void MnVerd(Venta* PreProducto, int& PosProd){
 	
 }
 
-int OpcVerd(int Opc){
-	
+int OpcVerd(){
+	int Opc;
 	cout<<"\n ÁREA VERDURAS";
 	cout<<"\n ¿Qué desea comprar?\n";
 	cout<<"\n 1. 1kg Cebolla";
@@ -530,8 +534,7 @@ void MnFrut(Venta* PreProducto, int& PosProd){
 	int Opc;
 	
 	do{
-		Opc=OpcFrut(Opc);
-		switch(Opc){
+		switch(OpcFrut()){
 			case 1:
 				PreProducto[PosProd].nombre_producto="Mano de Platanos";
 				cout<<"\n Ingrese la cantidad que desea de este producto: ";
@@ -593,6 +596,7 @@ void MnFrut(Venta* PreProducto, int& PosProd){
 				PosProd++;
 				break;
 			case 11:
+				Opc=11;
 				break;
 			default:
 				cout<<"\n Opción inválida";
@@ -602,8 +606,8 @@ void MnFrut(Venta* PreProducto, int& PosProd){
 	}while(Opc!=11);
 }
 
-int OpcFrut(int Opc){
-	
+int OpcFrut(){
+	int Opc;
 	cout<<"\n ÁREA FRUTAS";
 	cout<<"\n ¿Qué desea comprar?\n";
 	cout<<"\n 1. Mano de Platanos";
