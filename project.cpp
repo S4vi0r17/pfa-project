@@ -71,6 +71,7 @@ void mostrar_boleta(int b, Global G);
 int main()
 {
 
+	setlocale(LC_CTYPE, "Spanish");
 	/*
 	Producto de Prueba
 	*/
@@ -208,7 +209,7 @@ int OpcClntReg()
 	cout << "\n 2. Revisar carrito de compra";
 	cout << "\n 3. Realizar compra";
 	cout << "\n 4. Salir";
-	cout << "\n Digite su elecci�n: ";
+	cout << "\n Digite su elección: ";
 	cin >> Opc;
 
 	return Opc;
@@ -238,7 +239,7 @@ void MnClntReg()
 			Opc = 4;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
+			cout << "\n Opción inválida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -253,13 +254,13 @@ int OpcEscgrProd()
 	int Opc;
 	cout << "\n ¿Qué tipo de producto desea comprar?\n";
 	cout << "\n 1. Articulos de limpieza";
-	cout << "\n 2. Tecnolog�a";
+	cout << "\n 2. Tecnología";
 	cout << "\n 3. Productos para el hogar";
 	cout << "\n 4. Verduras";
 	cout << "\n 5. Frutas";
 	cout << "\n 6. ";
 	cout << "\n 7. Salir";
-	cout << "\n Digite su elecci�n: ";
+	cout << "\n Digite su elección: ";
 	cin >> Opc;
 
 	return Opc;
@@ -297,7 +298,7 @@ void MnEscgrProd(Venta *PreProducto, int &PosProd)
 			Opc = 7;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
+			cout << "\n Opción inválida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -328,13 +329,13 @@ void MnLimp(Venta *PreProducto, int &PosProd)
 			PosProd++;
 			break;
 		case 3:
-			PreProducto[PosProd].nombre_producto = "Pa�os Reutilizables";
+			PreProducto[PosProd].nombre_producto = "Paños Reutilizables";
 			cout << "\n Ingrese la cantidad que desea de este producto: ";
 			cin >> PreProducto[PosProd].cantidad_producto;
 			PosProd++;
 			break;
 		case 4:
-			PreProducto[PosProd].nombre_producto = "Papel Higi�nico";
+			PreProducto[PosProd].nombre_producto = "Papel Higiénico";
 			cout << "\n Ingrese la cantidad que desea de este producto:";
 			cin >> PreProducto[PosProd].cantidad_producto;
 			PosProd++;
@@ -361,7 +362,7 @@ void MnLimp(Venta *PreProducto, int &PosProd)
 			Opc = 8;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
+			cout << "\n Opción inválida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -372,16 +373,16 @@ int OpcLimp()
 {
 	int Opc;
 	cout << "\n ARTICULOS DE LIMPIEZA";
-	cout << "\n �Qu� desea comprar?\n";
+	cout << "\n ¿Qué desea comprar?\n";
 	cout << "\n 1. Set Escoba";
 	cout << "\n 2. Desinfectante 1Lt";
-	cout << "\n 3. Pa�os Reutilizables";
-	cout << "\n 4. Papel Higi�nico";
+	cout << "\n 3. Paños Reutilizables";
+	cout << "\n 4. Papel Higiénico";
 	cout << "\n 5. Papel Toalla";
 	cout << "\n 6. Set Trapeador";
 	cout << "\n 7. Guantes de Latex";
 	cout << "\n 8. Salir";
-	cout << "\n Digite su elecci�n: ";
+	cout << "\n Digite su elección: ";
 	cin >> Opc;
 
 	return Opc;
@@ -431,7 +432,7 @@ void MnTec(Venta *PreProducto, int &PosProd)
 			Opc = 6;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
+			cout << "\n Opción inválida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -449,7 +450,7 @@ int OpcTec()
 	cout << "\n 4. Tablet Samsung";
 	cout << "\n 5. Set Gamer (Teclado, mouse y mousepad)";
 	cout << "\n 6. Salir";
-	cout << "\n Digite su elecci�n: ";
+	cout << "\n Digite su elección: ";
 	cin >> Opc;
 
 	return Opc;
@@ -517,7 +518,7 @@ void MnHog(Venta *PreProducto, int &PosProd)
 			Opc = 9;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
+			cout << "\n Opciónn inválida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -538,7 +539,7 @@ int OpcHog()
 	cout << "\n 7. Cama de 2 plazas";
 	cout << "\n 8. Juego de Sofas";
 	cout << "\n 9. Salir";
-	cout << "\n Digite su elecci�n: ";
+	cout << "\n Digite su elección: ";
 	cin >> Opc;
 
 	return Opc;
@@ -609,7 +610,7 @@ void MnVerd(Venta *PreProducto, int &PosProd)
 			PosProd++;
 			break;
 		case 10:
-			PreProducto[PosProd].nombre_producto = "1kg. Lim�n";
+			PreProducto[PosProd].nombre_producto = "1kg. Limón";
 			cout << "\n Ingrese la cantidad que desea de este producto: ";
 			cin >> PreProducto[PosProd].cantidad_producto;
 			PosProd++;
@@ -618,7 +619,7 @@ void MnVerd(Venta *PreProducto, int &PosProd)
 			Opc = 11;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
+			cout << "\n Opción inválida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -639,9 +640,9 @@ int OpcVerd()
 	cout << "\n 7. Unid. Calabaza";
 	cout << "\n 8. Unid. Pepino";
 	cout << "\n 9. Unid. Pimiento";
-	cout << "\n 10. 1kg. Lim�n";
+	cout << "\n 10. 1kg. Limón";
 	cout << "\n 11. Salir";
-	cout << "\n Digite su elecci�n: ";
+	cout << "\n Digite su elección: ";
 	cin >> Opc;
 
 	return Opc;
@@ -687,7 +688,7 @@ void MnFrut(Venta *PreProducto, int &PosProd)
 			PosProd++;
 			break;
 		case 6:
-			PreProducto[PosProd].nombre_producto = "Unid Sand�a";
+			PreProducto[PosProd].nombre_producto = "Unid Sandía";
 			cout << "\n Ingrese la cantidad que desea de este producto: ";
 			cin >> PreProducto[PosProd].cantidad_producto;
 			PosProd++;
@@ -711,7 +712,7 @@ void MnFrut(Venta *PreProducto, int &PosProd)
 			PosProd++;
 			break;
 		case 10:
-			PreProducto[PosProd].nombre_producto = "Unid. Pi�a";
+			PreProducto[PosProd].nombre_producto = "Unid. Piña";
 			cout << "\n Ingrese la cantidad que desea de este producto: ";
 			cin >> PreProducto[PosProd].cantidad_producto;
 			PosProd++;
@@ -720,7 +721,7 @@ void MnFrut(Venta *PreProducto, int &PosProd)
 			Opc = 11;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
+			cout << "\n Opción inválida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -737,13 +738,13 @@ int OpcFrut()
 	cout << "\n 3. 1kg. Fresas";
 	cout << "\n 4. 1kg. Uva";
 	cout << "\n 5. 1kg. Naranja";
-	cout << "\n 6. Unid Sand�a";
+	cout << "\n 6. Unid Sandía";
 	cout << "\n 7. 1kg. Mango";
 	cout << "\n 8. 1kg. Mandarina";
 	cout << "\n 9. 1kg. Manzana";
-	cout << "\n 10. Unid. Pi�a";
+	cout << "\n 10. Unid. Piña";
 	cout << "\n 11. Salir";
-	cout << "\n Digite su elecci�n: ";
+	cout << "\n Digite su elección: ";
 	cin >> Opc;
 
 	return Opc;
@@ -838,530 +839,599 @@ void mostrar_boleta(int b, Global G)
 	}
 }
 
-int administracion(Global &G){
-	
-	//------------------------------------------------------------------------------------------
-	int opc,y;
-	int c;
- 	opc=menu_adm_1();
-	switch(opc)
-	{
-		case 1:
-			{			
-			int band,valor,opc,a=0,b=0,cond=1,cond_1=1;
-			do{
-			cond=1;
-				do{
-					band=1;
-					system("cls");
-					cout<<"-------------Digite la opcion----------";
-					cout<<"\n\n1.- Boleta por Nombre";
-					cout<<"\n2.- Boleta por DNI";	
-					cout<<"\n3.- Retornar\n\n";
-					cin>>a;
-					if(a>3 or a<1)
-					{
-						cout<<"\n\nOpcion Invalida\n\n";
-						band=0;
-					}
-					}while(band==0);
-			system("cls");
-	
-			switch(a)
-			{
-				case 1:	
-					cout<<"Seleccione el nombre del cliente";
-					for (int i = 0; i < 100; i++) 
-					{
-					if(G.cliente[i].nombre=="")
-					{
-						break;
-					}
-					cout<<"\n\n"<<i+1<<".-"<<G.cliente[i].nombre;	
-					}
-					cout<<"\n\n";	cin>>b;	
-					cout<<"\n\n";	mostrar_boleta(b,G);cout<<"\n\n";
-		
-					do{			
-						cond_1=1;
-						cout<<"\n\n1.- Retornar";
-						cout<<"\n2.- Salir\n\n";	
-						cin>>c;
-						if(c>2 or c<1)
-						{
-							cout<<"\n\nOpcion Invalida\n\n";
-							cond_1=0;
-						}
-						}while(cond_1==0);			
-						system("cls");
-								
-							switch(c)
-							{
-							case 1:
-								
-								return 0;
-								
-								break;
-							
-							case2:
-								
-								exit(0);
-								break;
-							}
-				break;
-				
-				case 2:
-					cout<<"Seleccione el DNI del cliente";
-						for (int j = 0; j < 100; j++) 
-						{
-							if(G.cliente[j].DNI=="")
-							{
-								break;
-							}
-							cout<<"\n\n"<<j+1<<".-"<<G.cliente[j].DNI;		
-						}
-						cin>>b;
-						cout<<"\n\n";
-						mostrar_boleta(b,G);
-						break;
-				
-				case 3:
-					return 0;
-					break;	
-			}	
-			}while(cond==0);		
-		break;}
-//------------------------------------------------------------------------------------------
-		
-		case 2:
-			{			
-			int band,valor,opc,a=0,b=0,cond=1,cond_1=1;
-			system("cls");
-			do{
-			cond=1;
-				do{
-					int t=0;
-					band=1;					
-					cout<<"-------------Seleccione el Producto----------";
-					cout<<"\n\n";
-					for (t; t < 100; t++) 
-					{
-					if(G.producto[t].nombre=="")
-					{
-						break;
-					}
-					cout<<"\n"<<t+1<<".-"<<G.producto[t].nombre;	
-					}
-					cout<<"\n";
-					cin>>a;
-					if(a>t || a<0)
-					{
-						cout<<"\n\nOpcion Invalida\n\n";
-						band=0;
-					}
-					}while(band==0);
-				
-				system("pause");
-				system("cls");
-				cout<<"\n----------------Especificaciones del Producto------------------------ ";	
-				cout<<"\n\n\nNombre de producto: "<<G.producto[a-1].nombre;
-				cout<<"\nCodigo de producto: "<<G.producto[a-1].codigo;
-				cout<<"\nTipo de producto: "<<G.producto[a-1].tipo;
-				cout<<"\nPrecio de producto: "<<G.producto[a-1].precio;
-				cout<<"\nStock del producto: "<<G.producto[a-1].stock;
-				
-				do{
-				cout<<"\n\n\n\n1.-Retornar";
-				cout<<"\n2.-Menu Administrador";
-				cout<<"\n3.-Salir\n\n";
-				cin>>valor;
-			    }while(valor>3&&valor<1);
-				cout<<"\n";
-				if(valor==1){cond=0;}
-				else
-				{if(valor==2){return 0;}
-				 else{exit(0);}}
-				cout<<"\n";
-				system("pause");
-				system("cls");
-					
-		}while(cond==0);
-	
-			
-		
-			break;}
-//------------------------------------------------------------------------------------------
-			
-		case 3:
-			
-		{			
-			int band,valor,opc,z=0,b=0,cond,cond_1;
-			system("cls");
-			do{
-			cond=1;
-				do{
-					int t=0;
-					band=1;					
-					cout<<"-------------Seleccione el Producto a Modificar----------";
-					cout<<"\n\n";
-					for (t; t < 100; t++) 
-					{
-					if(G.producto[t].nombre=="")
-					{
-						break;
-					}
-					cout<<"\n"<<t+1<<".-"<<G.producto[t].nombre;	
-					}
-					cout<<"\n";
-					cin>>z;
-					if(z>t || z<0)
-					{
-						cout<<"\n\nOpcion Invalida\n\n";
-						band=0;
-					}
-					}while(band==0);
-				
-				system("pause");
-				system("cls");
-				do{	
-				cout<<"\n----------------Seleccione que modificar del Producto------------------------ ";
-				cout<<"\n\n\n1.-Nombre de producto: "<<G.producto[z-1].nombre;
-				cout<<"\n2.-Codigo de producto: "<<G.producto[z-1].codigo;
-				cout<<"\n3.-Tipo de producto: "<<G.producto[z-1].tipo;
-				cout<<"\n4.-Precio de producto: "<<G.producto[z-1].precio;
-				cout<<"\n5.-Stock del producto: "<<G.producto[z-1].stock;
-				cout<<"\n6.Cancelar";
-				cout<<"\n7.Menu Administrador"<<"\n\n";
-				cin>>cond_1;
-				}while(cond_1>7&&cond_1<1);
-				
-				if(cond_1==6 or cond_1==7)
-				{
-					if(cond_1==6){cond=0;}	
-					else{return 0;
-					}
-				}
-				else
-				{
-				switch(cond_1)
-					{
-						case 1:{
-						
-						    string palabra;
-						    fflush(stdin);
-						    cout<<"\n-----------------Modificando el nombre del Producto-------------\n\n";
-						    cout<<"Escriba el nuevo nombre del Producto: ";
-						    getline(cin,palabra);
-						    G.producto[z-1].nombre=palabra;
-						    
-							break;
-						}
-						case 2:
-							{
-						
-						    string cod;
-						    fflush(stdin);
-						    cout<<"\n-----------------Modificando el codigo del producto-------------\n\n";
-						    cout<<"Escriba el nuevo codigo del Producto: ";
-						    getline(cin,cod);
-						    G.producto[z-1].codigo=cod;
-							break;
-						}
-							
-						case 3:
-							{
-						
-						    string tip;
-						    fflush(stdin);
-						    cout<<"\n-----------------Modificando el tipo del producto-------------\n\n";
-						    cout<<"Escriba el nuevo tipo del Producto: ";
-						    getline(cin,tip);
-						    G.producto[z-1].tipo=tip;
-							break;
-						}
-						case 4:
-							{
-						    float precio_1;
-						    cout<<"\n-----------------Modificando el precio del producto-------------\n\n";
-						    cout<<"Escriba el nuevo precio del Producto: ";
-						    cin>>precio_1;
-						    G.producto[z-1].precio=precio_1;
-							break;
-						}
-						case 5:
-							{
-						    float stock_1;
-						    cout<<"\n-----------------Modificando el stock del producto-------------\n\n";
-						    cout<<"Escriba el nuevo stock del Producto: ";
-						    cin>>stock_1;
-						    G.producto[z-1].stock=stock_1;
-							break;
-						}						
-					}
-			cout<<"\n\n-Especificaciones del producto modificado-------------\n\n\n";
-						    cout<<"\n\n\nNombre de producto: "<<G.producto[z-1].nombre;
-							cout<<"\nCodigo de producto: "<<G.producto[z-1].codigo;
-							cout<<"\nTipo de producto: "<<G.producto[z-1].tipo;
-							cout<<"\nPrecio de producto: "<<G.producto[z-1].precio;
-							cout<<"\nStock del producto: "<<G.producto[z-1].stock;
-							cout<<"\n\n";	
-							system("pause");			
-			}
-				
-			cout<<"\ncond: "<<cond<<"\n";		
-			if(cond==1)
-			{
-				do{
-				cout<<"\n\n\n\n1.-Retornar";
-				cout<<"\n2.-Menu Administrador";
-				cout<<"\n3.-Salir\n\n";
-				cin>>valor;
-			    }while(valor>3&&valor<1);
-				cout<<"\n";
-				
-				if(valor==1)
-					{cond=0;}
-				else
-					{if(valor==2)
-						{return 0;}
-					else
-					{exit(0);}}
-				cout<<"\n";
-				system("pause");
-				system("cls");
-					}
-			else{
-				system("cls");
-			}		
-						
-					
-							
-					
-		}while(cond==0);
+int administracion(Global &G)
+{
 
-			
-		
-			break;}
-//------------------------------------------------------------------------------------------
-		case 4:
-			{			
-			int band,valor,opc,z=0,b=0,cond,cond_1=1,t;
+	int opc, y;
+	int c;
+	opc = menu_adm_1();
+	switch (opc)
+	{
+	case 1:
+	{
+		int band, valor, opc, a = 0, b = 0, cond = 1, cond_1 = 1;
+		do
+		{
+			cond = 1;
+			do
+			{
+				band = 1;
+				system("cls");
+				cout << "-------------Digite la opcion----------";
+				cout << "\n\n1.- Boleta por Nombre";
+				cout << "\n2.- Boleta por DNI";
+				cout << "\n3.- Retornar\n\n";
+				cin >> a;
+				if (a > 3 or a < 1)
+				{
+					cout << "\n\nOpcion Invalida\n\n";
+					band = 0;
+				}
+			} while (band == 0);
 			system("cls");
-			do{
-			cond=1;
-				do{
-					t=0;
-					band=1;	
-					cout<<"\n\n";
-					for (t; t < 100; t++) 
-					{
-					if(G.producto[t].nombre=="")
+
+			switch (a)
+			{
+			case 1:
+				cout << "Seleccione el nombre del cliente";
+				for (int i = 0; i < 100; i++)
+				{
+					if (G.cliente[i].nombre == "")
 					{
 						break;
-					}	
 					}
-					}while(band==0);
-				
+					cout << "\n\n"
+						 << i + 1 << ".-" << G.cliente[i].nombre;
+				}
+				cout << "\n\n";
+				cin >> b;
+				cout << "\n\n";
+				mostrar_boleta(b, G);
+				cout << "\n\n";
+
+				do
+				{
+					cond_1 = 1;
+					cout << "\n\n1.- Retornar";
+					cout << "\n2.- Salir\n\n";
+					cin >> c;
+					if (c > 2 or c < 1)
+					{
+						cout << "\n\nOpcion Invalida\n\n";
+						cond_1 = 0;
+					}
+				} while (cond_1 == 0);
 				system("cls");
-				do{	
-				cout<<"\n--------------------------------------------- \n\n\n";
-				cout<<"\nSeleccione";
-				cout<<"\n\n\n1.-Ingresar datos del nuevo producto ";
-				cout<<"\n2.Menu Administrador"<<"\n\n";
-				cin>>cond_1;
-				}while(cond_1>2&&cond_1<1);
-				
-				if(cond_1==2)
+
+				switch (c)
+				{
+				case 1:
+
+					return 0;
+
+					break;
+
+				case 2:
+
+					exit(0);
+					break;
+				}
+				break;
+
+			case 2:
+				cout << "Seleccione el DNI del cliente";
+				for (int j = 0; j < 100; j++)
+				{
+					if (G.cliente[j].DNI == "")
+					{
+						break;
+					}
+					cout << "\n\n"
+						 << j + 1 << ".-" << G.cliente[j].DNI;
+				}
+				cin >> b;
+				cout << "\n\n";
+				mostrar_boleta(b, G);
+				break;
+
+			case 3:
+				return 0;
+				break;
+			}
+		} while (cond == 0);
+		break;
+	}
+
+	case 2:
+	{
+		int band, valor, a = 0, b = 0, cond = 1, cond_1 = 1;
+		system("cls");
+		do
+		{
+			cond = 1;
+			do
+			{
+				int t = 0;
+				band = 1;
+				cout << "-------------Seleccione el Producto----------";
+				cout << "\n\n";
+				for (int t = 0; t < 100; t++)
+				{
+					if (G.producto[t].nombre == "")
+					{
+						break;
+					}
+					cout << "\n"
+						 << t + 1 << ".-" << G.producto[t].nombre;
+				}
+				cout << "\n";
+				cin >> a;
+				if (a > t || a < 0)
+				{
+					cout << "\n\nOpcion Invalida\n\n";
+					band = 0;
+				}
+			} while (band == 0);
+
+			system("pause");
+			system("cls");
+			cout << "\n----------------Especificaciones del Producto------------------------ ";
+			cout << "\n\n\nNombre de producto: " << G.producto[a - 1].nombre;
+			cout << "\nCodigo de producto: " << G.producto[a - 1].codigo;
+			cout << "\nTipo de producto: " << G.producto[a - 1].tipo;
+			cout << "\nPrecio de producto: " << G.producto[a - 1].precio;
+			cout << "\nStock del producto: " << G.producto[a - 1].stock;
+
+			do
+			{
+				cout << "\n\n\n\n1.-Retornar";
+				cout << "\n2.-Menu Administrador";
+				cout << "\n3.-Salir\n\n";
+				cin >> valor;
+			} while (valor > 3 && valor < 1);
+			cout << "\n";
+			if (valor == 1)
+			{
+				cond = 0;
+			}
+			else
+			{
+				if (valor == 2)
 				{
 					return 0;
 				}
 				else
 				{
-				
-						    string pal,tipo_1,cod_1;
-						    float precio_2,stock_2;
-						    
-						   
-						    
-						    fflush(stdin);
-						    cout<<"\n-----------------Nombre del Producto-------------\n\n";
-						    cout<<"Escriba el nuevo nombre del Producto: ";
-						    getline(cin,pal);
-						    G.producto[t-1].nombre=pal;
-						 	
-						 	 fflush(stdin);
-						 	cout<<"\n-----------------Codigo del producto-------------\n\n";
-						    cout<<"Escriba el nuevo codigo del Producto: ";
-						    getline(cin,cod_1);
-						    G.producto[t-1].codigo=cod_1;
-						 
-						 	fflush(stdin);
-						    cout<<"\n-----------------Tipo del producto-------------\n\n";
-						    cout<<"Escriba el nuevo tipo del Producto: ";
-						    getline(cin,tipo_1);
-						    G.producto[t-1].tipo=tipo_1;
-						 
-						 	fflush(stdin);
-						    cout<<"\n-----------------Precio del producto-------------\n\n";
-						    cout<<"Escriba el nuevo precio del Producto: ";
-						    cin>>precio_2;
-						    G.producto[t-1].precio=precio_2;
-						    
-							fflush(stdin);
-						    cout<<"\n-----------------Stock del producto-------------\n\n";
-						    cout<<"Escriba el nuevo stock del Producto: ";
-						    cin>>stock_2;
-						    G.producto[t-1].stock=stock_2;
-						    
-						    cout<<"\n\n";
-				system("pause");
-				system("cls");
-				cout<<"\n\n-Nuevo producto-------------\n\n\n";
-						    cout<<"\n\n\nNombre de producto: "<<G.producto[t-1].nombre;
-							cout<<"\nCodigo de producto: "<<G.producto[t-1].codigo;
-							cout<<"\nTipo de producto: "<<G.producto[t-1].tipo;
-							cout<<"\nPrecio de producto: "<<G.producto[t-1].precio;
-							cout<<"\nStock del producto: "<<G.producto[t-1].stock;
-							cout<<"\n\n";												
-					}	
-					
-					
-				if(cond==1)
-				{
-					do{
-				cout<<"\n\n\n\n1.-Retornar";
-				cout<<"\n2.-Menu Administrador";
-				cout<<"\n3.-Salir\n\n";
-				cin>>valor;
-			    }while(valor>3&&valor<1);
-				cout<<"\n";
-				
-				if(valor==1)
-					{cond=0;}
-				else
-					{if(valor==2)
-						{return 0;}
-					else
-					{exit(0);}}
-				cout<<"\n";
-				system("pause");
-				system("cls");
-					}	
-				else
-				{system("cls");}		
-					
-				}while(cond==0);
-		
-			break;}
-//------------------------------------------------------------------------------------------
-		case 5:
-		{			
-			int band,valor,opc,a,b=0,cond,cond_1=1,t;
+					exit(0);
+				}
+			}
+			cout << "\n";
+			system("pause");
 			system("cls");
-			do{
-			cond=1;
-				do{
-					t=0;
-					band=1;					
-					cout<<"-------------Seleccione el Producto a eliminar----------";
-					cout<<"\n\n";
-					for (t; t < 100; t++) 
-					{
-					if(G.producto[t].nombre=="")
+
+		} while (cond == 0);
+
+		break;
+	}
+		//------------------------------------------------------------------------------------------
+
+	case 3:
+
+	{
+		int band, valor, opc, z = 0, b = 0, cond, cond_1;
+		system("cls");
+		do
+		{
+			cond = 1;
+			do
+			{
+				int t = 0;
+				band = 1;
+				cout << "-------------Seleccione el Producto a Modificar----------";
+				cout << "\n\n";
+				for (int t = 0; t < 100; t++)
+				{
+					if (G.producto[t].nombre == "")
 					{
 						break;
 					}
-					cout<<"\n"<<t+1<<".-"<<G.producto[t].nombre;	
-					}
-					cout<<"\n";
-					cin>>a;
-					if(a>t || a<0)
-					{
-						cout<<"\n\nOpcion Invalida\n\n";
-						band=0;
-					}
-					}while(band==0);
-				t=a;
-				system("cls");
-				do{	
-					cout<<"\n--------------------------------------------- \n\n\n";
-					cout<<"\nSeleccione";
-					cout<<"\n\n\n1.-Eliminar ";
-					cout<<"\n2.Cancelar";
-					cout<<"\n3.Menu Administrador"<<"\n\n";
-					cin>>cond_1;
-					}while(cond_1>3&&cond_1<1);
-				
-				
-				
-				if(cond_1!=1)
+					cout << "\n"
+						 << t + 1 << ".-" << G.producto[t].nombre;
+				}
+				cout << "\n";
+				cin >> z;
+				if (z > t || z < 0)
 				{
-					if(cond_1==2){cond=0;}	
-					else{return 0;
-					}
+					cout << "\n\nOpcion Invalida\n\n";
+					band = 0;
+				}
+			} while (band == 0);
+
+			system("pause");
+			system("cls");
+			do
+			{
+				cout << "\n----------------Seleccione que modificar del Producto------------------------ ";
+				cout << "\n\n\n1.-Nombre de producto: " << G.producto[z - 1].nombre;
+				cout << "\n2.-Codigo de producto: " << G.producto[z - 1].codigo;
+				cout << "\n3.-Tipo de producto: " << G.producto[z - 1].tipo;
+				cout << "\n4.-Precio de producto: " << G.producto[z - 1].precio;
+				cout << "\n5.-Stock del producto: " << G.producto[z - 1].stock;
+				cout << "\n6.Cancelar";
+				cout << "\n7.Menu Administrador"
+					 << "\n\n";
+				cin >> cond_1;
+			} while (cond_1 > 7 && cond_1 < 1);
+
+			if (cond_1 == 6 or cond_1 == 7)
+			{
+				if (cond_1 == 6)
+				{
+					cond = 0;
 				}
 				else
-				{		for(t;t<99;t++)
-						{  G.producto[t-1].nombre=G.producto[t].nombre;						 							 	
-						    G.producto[t-1].codigo=G.producto[t].codigo;												 	
-						    G.producto[t-1].tipo=G.producto[t].tipo;						 	
-						    G.producto[t-1].precio= G.producto[t].precio;
-						    G.producto[t-1].stock=G.producto[t].stock;
-					    }
-					    system("cls");
-					    cout<<"---------------Producto eliminado---------------";
-						    cout<<"\n\n\n";
-																
-					}	
-					
-				if(cond==1)
 				{
-						do{
-							
-							cout<<"Que se hara acontinuacion?";
-							cout<<"\n\n\n1.-Seleccionar nuevo producto a eliminar";
-							cout<<"\n2.-Menu Administrador";
-							cout<<"\n3.-Salir\n\n";
-							cin>>valor;
-						    }while(valor>3&&valor<1);
-						cout<<"\n";
-					
-					if(valor==1)
-						{cond=0;}
-					else
-						{if(valor==2)
-							{return 0;}
-						else
-						{exit(0);}}
-					cout<<"\n";
-					system("pause");
-					system("cls");
-					}	
+					return 0;
+				}
+			}
+			else
+			{
+				switch (cond_1)
+				{
+				case 1:
+				{
+
+					string palabra;
+					fflush(stdin);
+					cout << "\n-----------------Modificando el nombre del Producto-------------\n\n";
+					cout << "Escriba el nuevo nombre del Producto: ";
+					getline(cin, palabra);
+					G.producto[z - 1].nombre = palabra;
+
+					break;
+				}
+				case 2:
+				{
+
+					string cod;
+					fflush(stdin);
+					cout << "\n-----------------Modificando el codigo del producto-------------\n\n";
+					cout << "Escriba el nuevo codigo del Producto: ";
+					getline(cin, cod);
+					G.producto[z - 1].codigo = cod;
+					break;
+				}
+
+				case 3:
+				{
+
+					string tip;
+					fflush(stdin);
+					cout << "\n-----------------Modificando el tipo del producto-------------\n\n";
+					cout << "Escriba el nuevo tipo del Producto: ";
+					getline(cin, tip);
+					G.producto[z - 1].tipo = tip;
+					break;
+				}
+				case 4:
+				{
+					float precio_1;
+					cout << "\n-----------------Modificando el precio del producto-------------\n\n";
+					cout << "Escriba el nuevo precio del Producto: ";
+					cin >> precio_1;
+					G.producto[z - 1].precio = precio_1;
+					break;
+				}
+				case 5:
+				{
+					float stock_1;
+					cout << "\n-----------------Modificando el stock del producto-------------\n\n";
+					cout << "Escriba el nuevo stock del Producto: ";
+					cin >> stock_1;
+					G.producto[z - 1].stock = stock_1;
+					break;
+				}
+				}
+				cout << "\n\n-Especificaciones del producto modificado-------------\n\n\n";
+				cout << "\n\n\nNombre de producto: " << G.producto[z - 1].nombre;
+				cout << "\nCodigo de producto: " << G.producto[z - 1].codigo;
+				cout << "\nTipo de producto: " << G.producto[z - 1].tipo;
+				cout << "\nPrecio de producto: " << G.producto[z - 1].precio;
+				cout << "\nStock del producto: " << G.producto[z - 1].stock;
+				cout << "\n\n";
+				system("pause");
+			}
+
+			cout << "\ncond: " << cond << "\n";
+			if (cond == 1)
+			{
+				do
+				{
+					cout << "\n\n\n\n1.-Retornar";
+					cout << "\n2.-Menu Administrador";
+					cout << "\n3.-Salir\n\n";
+					cin >> valor;
+				} while (valor > 3 && valor < 1);
+				cout << "\n";
+
+				if (valor == 1)
+				{
+					cond = 0;
+				}
 				else
-				{system("cls");}		
-					
-				}while(cond==0);
-		
-			break;}
-//------------------------------------------------------------------------------------------
-		case 6:
+				{
+					if (valor == 2)
+					{
+						return 0;
+					}
+					else
+					{
+						exit(0);
+					}
+				}
+				cout << "\n";
+				system("pause");
+				system("cls");
+			}
+			else
+			{
+				system("cls");
+			}
+
+		} while (cond == 0);
+
+		break;
+	}
+		//------------------------------------------------------------------------------------------
+	case 4:
+	{
+		int band, valor, opc, z = 0, b = 0, cond, cond_1 = 1, t;
+		system("cls");
+		do
 		{
+			cond = 1;
+			do
+			{
+				t = 0;
+				band = 1;
+				cout << "\n\n";
+				for (int t = 0; t < 100; t++)
+				{
+					if (G.producto[t].nombre == "")
+					{
+						break;
+					}
+				}
+			} while (band == 0);
+
+			system("cls");
+			do
+			{
+				cout << "\n--------------------------------------------- \n\n\n";
+				cout << "\nSeleccione";
+				cout << "\n\n\n1.-Ingresar datos del nuevo producto ";
+				cout << "\n2.Menu Administrador"
+					 << "\n\n";
+				cin >> cond_1;
+			} while (cond_1 > 2 && cond_1 < 1);
+
+			if (cond_1 == 2)
+			{
+				return 0;
+			}
+			else
+			{
+
+				string pal, tipo_1, cod_1;
+				float precio_2, stock_2;
+
+				fflush(stdin);
+				cout << "\n-----------------Nombre del Producto-------------\n\n";
+				cout << "Escriba el nuevo nombre del Producto: ";
+				getline(cin, pal);
+				G.producto[t - 1].nombre = pal;
+
+				fflush(stdin);
+				cout << "\n-----------------Codigo del producto-------------\n\n";
+				cout << "Escriba el nuevo codigo del Producto: ";
+				getline(cin, cod_1);
+				G.producto[t - 1].codigo = cod_1;
+
+				fflush(stdin);
+				cout << "\n-----------------Tipo del producto-------------\n\n";
+				cout << "Escriba el nuevo tipo del Producto: ";
+				getline(cin, tipo_1);
+				G.producto[t - 1].tipo = tipo_1;
+
+				fflush(stdin);
+				cout << "\n-----------------Precio del producto-------------\n\n";
+				cout << "Escriba el nuevo precio del Producto: ";
+				cin >> precio_2;
+				G.producto[t - 1].precio = precio_2;
+
+				fflush(stdin);
+				cout << "\n-----------------Stock del producto-------------\n\n";
+				cout << "Escriba el nuevo stock del Producto: ";
+				cin >> stock_2;
+				G.producto[t - 1].stock = stock_2;
+
+				cout << "\n\n";
+				system("pause");
+				system("cls");
+				cout << "\n\n-Nuevo producto-------------\n\n\n";
+				cout << "\n\n\nNombre de producto: " << G.producto[t - 1].nombre;
+				cout << "\nCodigo de producto: " << G.producto[t - 1].codigo;
+				cout << "\nTipo de producto: " << G.producto[t - 1].tipo;
+				cout << "\nPrecio de producto: " << G.producto[t - 1].precio;
+				cout << "\nStock del producto: " << G.producto[t - 1].stock;
+				cout << "\n\n";
+			}
+
+			if (cond == 1)
+			{
+				do
+				{
+					cout << "\n\n\n\n1.-Retornar";
+					cout << "\n2.-Menu Administrador";
+					cout << "\n3.-Salir\n\n";
+					cin >> valor;
+				} while (valor > 3 && valor < 1);
+				cout << "\n";
+
+				if (valor == 1)
+				{
+					cond = 0;
+				}
+				else
+				{
+					if (valor == 2)
+					{
+						return 0;
+					}
+					else
+					{
+						exit(0);
+					}
+				}
+				cout << "\n";
+				system("pause");
+				system("cls");
+			}
+			else
+			{
+				system("cls");
+			}
+
+		} while (cond == 0);
+
+		break;
+	}
+		//------------------------------------------------------------------------------------------
+	case 5:
+	{
+		int band, valor, opc, a, b = 0, cond, cond_1 = 1, t;
+		system("cls");
+		do
+		{
+			cond = 1;
+			do
+			{
+				t = 0;
+				band = 1;
+				cout << "-------------Seleccione el Producto a eliminar----------";
+				cout << "\n\n";
+				for (int t = 0; t < 100; t++)
+				{
+					if (G.producto[t].nombre == "")
+					{
+						break;
+					}
+					cout << "\n"
+						 << t + 1 << ".-" << G.producto[t].nombre;
+				}
+				cout << "\n";
+				cin >> a;
+				if (a > t || a < 0)
+				{
+					cout << "\n\nOpcion Invalida\n\n";
+					band = 0;
+				}
+			} while (band == 0);
+			t = a;
+			system("cls");
+			do
+			{
+				cout << "\n--------------------------------------------- \n\n\n";
+				cout << "\nSeleccione";
+				cout << "\n\n\n1.-Eliminar ";
+				cout << "\n2.Cancelar";
+				cout << "\n3.Menu Administrador"
+					 << "\n\n";
+				cin >> cond_1;
+			} while (cond_1 > 3 && cond_1 < 1);
+
+			if (cond_1 != 1)
+			{
+				if (cond_1 == 2)
+				{
+					cond = 0;
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			else
+			{
+				for (t; t < 99; t++)
+				{
+					G.producto[t - 1].nombre = G.producto[t].nombre;
+					G.producto[t - 1].codigo = G.producto[t].codigo;
+					G.producto[t - 1].tipo = G.producto[t].tipo;
+					G.producto[t - 1].precio = G.producto[t].precio;
+					G.producto[t - 1].stock = G.producto[t].stock;
+				}
+				system("cls");
+				cout << "---------------Producto eliminado---------------";
+				cout << "\n\n\n";
+			}
+
+			if (cond == 1)
+			{
+				do
+				{
+
+					cout << "Que se hara acontinuacion?";
+					cout << "\n\n\n1.-Seleccionar nuevo producto a eliminar";
+					cout << "\n2.-Menu Administrador";
+					cout << "\n3.-Salir\n\n";
+					cin >> valor;
+				} while (valor > 3 && valor < 1);
+				cout << "\n";
+
+				if (valor == 1)
+				{
+					cond = 0;
+				}
+				else
+				{
+					if (valor == 2)
+					{
+						return 0;
+					}
+					else
+					{
+						exit(0);
+					}
+				}
+				cout << "\n";
+				system("pause");
+				system("cls");
+			}
+			else
+			{
+				system("cls");
+			}
+
+		} while (cond == 0);
+
+		break;
+	}
+	case 6:
+	{
 		system("cls");
 		return 1;
-		break;}
-		
-		case 7:
-		{
-		exit(0);
-		break;}
-		
+		break;
 	}
-	
+
+	case 7:
+	{
+		exit(0);
+		break;
+	}
+	}
 }
-//Funcion Administracion
-
-
-
+// Funcion Administracion
 
 // Funcion de medios de pago
 
