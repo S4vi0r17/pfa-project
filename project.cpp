@@ -64,7 +64,6 @@ void MnFrut(Venta *PreProducto, int &PosProd);
 int OpcFrut();
 
 // Prototipos Menu
-int menu_adm();
 int administracion(Global &G);
 void mostrar_boleta(int b, Global G);
 // Funcion principal
@@ -841,15 +840,14 @@ void mostrar_boleta(int b, Global G)
 int administracion(Global &G)
 {
 
-	//------------------------------------------------------------------------------------------
-	int opc, y;
+	int opc;
 	int c;
 	opc = menu_adm_1();
 	switch (opc)
 	{
 	case 1:
 	{
-		int band, valor, opc, a = 0, b = 0, cond = 1, cond_1 = 1;
+		int band, a = 0, b = 0, cond = 1, cond_1 = 1;
 		do
 		{
 			cond = 1;
@@ -940,11 +938,11 @@ int administracion(Global &G)
 		} while (cond == 0);
 		break;
 	}
-		//------------------------------------------------------------------------------------------
+		
 
 	case 2:
 	{
-		int band, valor, opc, a = 0, b = 0, cond = 1, cond_1 = 1;
+		int band, valor, a = 0, cond = 1;
 		system("cls");
 		do
 		{
@@ -955,7 +953,7 @@ int administracion(Global &G)
 				band = 1;
 				cout << "-------------Seleccione el Producto----------";
 				cout << "\n\n";
-				for (t; t < 100; t++)
+				for (int t = 0; t < 100; t++)
 				{
 					if (G.producto[t].nombre == "")
 					{
@@ -1018,7 +1016,7 @@ int administracion(Global &G)
 	case 3:
 
 	{
-		int band, valor, opc, z = 0, b = 0, cond, cond_1;
+		int band, valor, z = 0, cond, cond_1;
 		system("cls");
 		do
 		{
@@ -1029,7 +1027,7 @@ int administracion(Global &G)
 				band = 1;
 				cout << "-------------Seleccione el Producto a Modificar----------";
 				cout << "\n\n";
-				for (t; t < 100; t++)
+				for (int t = 0; t < 100; t++)
 				{
 					if (G.producto[t].nombre == "")
 					{
@@ -1185,7 +1183,7 @@ int administracion(Global &G)
 		//------------------------------------------------------------------------------------------
 	case 4:
 	{
-		int band, valor, opc, z = 0, b = 0, cond, cond_1 = 1, t;
+		int band, valor, cond, cond_1 = 1, t;
 		system("cls");
 		do
 		{
@@ -1195,7 +1193,7 @@ int administracion(Global &G)
 				t = 0;
 				band = 1;
 				cout << "\n\n";
-				for (t; t < 100; t++)
+				for (int t = 0; t < 100; t++)
 				{
 					if (G.producto[t].nombre == "")
 					{
@@ -1309,7 +1307,7 @@ int administracion(Global &G)
 		//------------------------------------------------------------------------------------------
 	case 5:
 	{
-		int band, valor, opc, a, b = 0, cond, cond_1 = 1, t;
+		int band, valor, a, cond, cond_1 = 1, t;
 		system("cls");
 		do
 		{
@@ -1320,7 +1318,7 @@ int administracion(Global &G)
 				band = 1;
 				cout << "-------------Seleccione el Producto a eliminar----------";
 				cout << "\n\n";
-				for (t; t < 100; t++)
+				for (int t = 0; t < 100; t++)
 				{
 					if (G.producto[t].nombre == "")
 					{
@@ -1363,7 +1361,7 @@ int administracion(Global &G)
 			}
 			else
 			{
-				for (t; t < 99; t++)
+				for (int t = 0; t < 100; t++)
 				{
 					G.producto[t - 1].nombre = G.producto[t].nombre;
 					G.producto[t - 1].codigo = G.producto[t].codigo;
@@ -1432,7 +1430,6 @@ int administracion(Global &G)
 	}
 	}
 }
-
 // Funcion de medios de pago
 
 char menuMediosPago()
