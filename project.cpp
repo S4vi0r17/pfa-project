@@ -5,8 +5,8 @@
 #include <locale> // Para usar caracteres especiales
 using namespace std;
 
-//Variable global
-int CanClien=0;
+// Variable global
+int CanClien = 0;
 
 // Estructuras
 struct Venta
@@ -51,7 +51,7 @@ struct Global
 
 void DsplMenuPrincipal();
 int MenClientes();
-void IngresarDNI(struct Clientes[],int& CanClien);
+void IngresarDNI(struct Clientes[], int &CanClien);
 char menuMediosPago();
 void revisarCarritoDeCompras(Global global);
 void MnClntReg();
@@ -81,9 +81,9 @@ int main()
 	/*
 	Producto de Prueba
 	*/
-	//Defino variables
+	// Defino variables
 	struct Clientes C[100];
-	int i=0, opc=0, Opc=0;
+	int i = 0, opc = 0, Opc = 0;
 	DsplMenuPrincipal();
 
 	g.cliente[0].nombre = "jack zavaleta";
@@ -199,98 +199,107 @@ int main()
 }
 
 // menu principal
-void DsplMenuPrincipal(){
+void DsplMenuPrincipal()
+{
 	int opc;
-	
-	do{
+
+	do
+	{
 		system("cls");
-		cout<<"====== Bienvenido a Self-Service ======";
-		cout<<"\nIngrese su estado: ";
-		cout<<"\n 1. Administrador";
-		cout<<"\n 2. Clientes";
-		cout<<"\n 3. Salir \n";
+		cout << "====== Bienvenido a Self-Service ======";
+		cout << "\nIngrese su estado: ";
+		cout << "\n 1. Administrador";
+		cout << "\n 2. Clientes";
+		cout << "\n 3. Salir \n";
 		fflush(stdin);
-		cin>>opc;	
-		switch(opc){
+		cin >> opc;
+		switch (opc)
+		{
 			fflush(stdin);
-			case 1:
-				//Administrador;
-				break;
-			case 2:
-				fflush(stdin);
-				MenClientes();
-				break;
-			case 3:
-				opc=3;
-				cout<<"===== Muchas Gracias por usar el Self-Service =====";
-				break;
-			default:
-	            cout << "\n La opcion digita es invalida";
-	            cout << "\n Vuelva a intentarlo";
-	            system("PAUSE");
-	            //main();
-	            break;
+		case 1:
+			// Administrador;
+			break;
+		case 2:
+			fflush(stdin);
+			MenClientes();
+			break;
+		case 3:
+			opc = 3;
+			cout << "===== Muchas Gracias por usar el Self-Service =====";
+			break;
+		default:
+			cout << "\n La opcion digita es invalida";
+			cout << "\n Vuelva a intentarlo";
+			system("PAUSE");
+			// main();
+			break;
 		}
-	}while(opc!=3);
+	} while (opc != 3);
 }
 
 // Menu Cliente
 
-int MenClientes(){ 
-	int i=0, Opc=0;
+int MenClientes()
+{
+	int i = 0, Opc = 0;
 	struct Clientes C[100];
 	fflush(stdin);
 	system("cls");
-	do{
-		cout<<"===== MENU CLIENTE =====";
-		cout<<"\n1. Ingresar DNI";
-		cout<<"\n2. Retornar \n";
-		cin>>Opc;
+	do
+	{
+		cout << "===== MENU CLIENTE =====";
+		cout << "\n1. Ingresar DNI";
+		cout << "\n2. Retornar \n";
+		cin >> Opc;
 		fflush(stdin);
-		switch(Opc){
-			case 1:
-				IngresarDNI(C, CanClien);
-				break;
-			case 2: 				
-				break;
-			default:
-				cout<<"\n La opci�n ingresada es inv�lida";
-				cout<<"\n Vuevla a ingresarlo";
-				break;
-		}	
-	}while(Opc!=2);
+		switch (Opc)
+		{
+		case 1:
+			IngresarDNI(C, CanClien);
+			break;
+		case 2:
+			break;
+		default:
+			cout << "\n La opci�n ingresada es inv�lida";
+			cout << "\n Vuevla a ingresarlo";
+			break;
+		}
+	} while (Opc != 2);
 }
 
-//Ingresar DNI Cliente
+// Ingresar DNI Cliente
 
-void IngresarDNI(struct Clientes C[], int& CanClien){
+void IngresarDNI(struct Clientes C[], int &CanClien)
+{
 	string Dni;
-	cout<<"DNI: ";
+	cout << "DNI: ";
 	fflush(stdin);
 	getline(cin, Dni);
 	fflush(stdin);
-	for(int i=0; i<=100; i++){
-		if(C[i].DNI==Dni){
-			cout<<"Bienvenido "<<C[i].nombre<<endl;
+	for (int i = 0; i <= 100; i++)
+	{
+		if (C[i].DNI == Dni)
+		{
+			cout << "Bienvenido " << C[i].nombre << endl;
 			system("PAUSE");
 			break;
-			//if(DNI!=DNI[i] en archivos) se puede añadir;
+			// if(DNI!=DNI[i] en archivos) se puede añadir;
 		}
-		else{
-			
-				system("cls");
-				C[i].DNI=Dni;
-				cout<<"=====Usted no se encuentra registrado=====";
-				cout<<"\n Ingrese su nombre completo: ";
-				getline(cin, C[i].nombre);
-				CanClien++;
-				cout<<"===== !!!Felicidades!!!, ya se ha registrado====="<<endl;
-				system("PAUSE");
-				break;
-				
+		else
+		{
+
+			system("cls");
+			C[i].DNI = Dni;
+			cout << "=====Usted no se encuentra registrado=====";
+			cout << "\n Ingrese su nombre completo: ";
+			getline(cin, C[i].nombre);
+			CanClien++;
+			cout << "===== !!!Felicidades!!!, ya se ha registrado=====" << endl;
+			system("PAUSE");
+			break;
 		}
 	}
-	//MenuCliente Registrado;
+	// MenuCliente Registrado;
 }
 
 // Menu cliente registrado
@@ -871,11 +880,10 @@ void revisarCarritoDeCompras(Global global)
 int menu_adm_1()
 {
 
-	int a = 1, opc;
+	int opc;
 
 	do
 	{
-		a = 1;
 		cout << "-------------Digite la opcion----------";
 		cout << "\n\n1.- Reporte de Boletas";
 		cout << "\n2.- Reporte de Producto";
@@ -883,17 +891,21 @@ int menu_adm_1()
 		cout << "\n4.- Agregar Producto";
 		cout << "\n5.- Eliminar Producto";
 		cout << "\n6.- Retornar Menu Principal";
-		cout << "\n7.- Salir del programa\n\n";
+		cout << "\n7.- Salir del programa\n";
+		cout <<"Digite una opcion:";
 
 		cin >> opc;
 
 		if (opc > 7 or opc < 1)
 		{
-			a = 0;
-			cout << "Opcion Invalidad\n\n";
+			cout << "\nOpcion Invalidad\n";
+		}
+		else
+		{
+			break;
 		}
 
-	} while (a == 0);
+	} while (true);
 
 	return opc;
 }
