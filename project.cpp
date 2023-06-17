@@ -75,13 +75,7 @@ int main()
 	/*
 	Producto de Prueba
 	*/
-	cout << "\nPrueba Nacho\n";
-
-	g.venta[0].nombre_producto = "Papas";
-	g.venta[0].precio_producto = 8;
-	g.venta[0].cantidad_producto = 2;
-
-	revisarCarritoDeCompras(g);
+	
 	g.cliente[0].nombre = "jack zavaleta";
 	g.cliente[1].nombre = "luis miguel";
 	g.cliente[0].DNI = "71157781";
@@ -230,7 +224,7 @@ void MnClntReg()
 			MnEscgrProd(PreProducto, PosProd);
 			break;
 		case 2:
-
+			revisarCarritoDeCompras(g);
 			break;
 		case 3:
 
