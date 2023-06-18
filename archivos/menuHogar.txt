@@ -1,0 +1,12 @@
+ÁREA HOGAR
+¿Qué desea comprar?
+
+1. Set Utensilios de Cocina
+2. Set Ventiladores de Techo
+3. Silla Escritorio
+4. Repisa de madera
+5. Juego de Comedor (4 sillas 1 mesa)
+6. Ropero
+7. Cama de 2 plazas
+8. Juego de Sofas
+9. Salir

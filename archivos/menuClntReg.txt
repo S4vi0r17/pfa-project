@@ -1,0 +1,7 @@
+Bienvenido
+¿Qué desea realizar?
+
+1. Escoger productos
+2. Revisar carrito de compra
+3. Realizar compra
+4. Salir

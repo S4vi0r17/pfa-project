@@ -1,0 +1,14 @@
+ÁREA VERDURAS
+¿Qué desea comprar?
+
+1. 1kg Cebolla
+2. Unid. Lechuga
+3. 1kg. Tomate
+4. Unid. Aguacate
+5. 1kg. Papa
+6. 1kg. Zanahoria
+7. Unid. Calabaza
+8. Unid. Pepino
+9. Unid. Pimiento
+10. 1kg. Limón
+11. Salir
