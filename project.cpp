@@ -7,8 +7,6 @@
 #include <filesystem> //agregado por problemas de rutas
 using namespace std;
 
-// Variable global
-int CanClien = 0;
 
 // Estructuras
 struct Venta
@@ -42,7 +40,6 @@ struct Productos
 };
 struct Global
 {
-
 	Venta venta[100];
 	Boleta boleta[100];
 	Clientes cliente[100];
@@ -53,23 +50,16 @@ struct Global
 
 
 int mostrarMenu(const string& archivo);
-
+int solicitarCantidad();
 char menuMediosPago();
 void revisarCarritoDeCompras(Global global);
 void MnClntReg();
-int OpcClntReg();
 void MnEscgrProd(Venta *PreProducto, int &PosProd);
-int OpcEscgrProd();
 void MnLimp(Venta *PreProducto, int &PosProd);
-int OpcLimp();
 void MnTec(Venta *PreProducto, int &PosProd);
-int OpcTec();
 void MnHog(Venta *PreProducto, int &PosProd);
-int OpcHog();
 void MnVerd(Venta *PreProducto, int &PosProd);
-int OpcVerd();
 void MnFrut(Venta *PreProducto, int &PosProd);
-int OpcFrut();
 
 // Prototipos Menu
 //int administracion(Global &G);
@@ -231,6 +221,21 @@ void MnClntReg()
 	} while (Opc != 4);
 }
 
+int solicitarCantidad()
+{
+    int cantidad;
+    cout << "\n Ingrese la cantidad que desea de este producto: ";
+    cin >> cantidad;
+    return cantidad;
+}
+
+
+void escogerProducto(Global g, string archivo, int& varCliente){
+
+	g.venta[0].nombre_producto = "atun";
+	g.venta[0].cantidad_producto = 12;
+
+}
 
 void MnEscgrProd(Venta *PreProducto, int &PosProd)
 {
