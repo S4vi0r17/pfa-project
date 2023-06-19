@@ -2,7 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <locale.h>
-#include <locale> // Para usar caracteres especiales
+#include <locale>
+#include <windows.h>// Para usar caracteres especiales
+#include <clocale> // Para usar caracteres especiales
 #include <fstream>
 #include <filesystem> //agregado por problemas de rutas
 using namespace std;
@@ -71,7 +73,10 @@ int menu_adm_1();
 int main()
 {
 
-	setlocale(LC_CTYPE, "Spanish");
+	SetConsoleOutputCP(CP_UTF8);
+    locale::global(locale(""));
+
+    wcout.imbue(locale());
 
 
 
