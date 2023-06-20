@@ -45,6 +45,8 @@ struct Productos
 
 // Prototipos
 string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrings);
+//Prototipo del inventario productos
+Productos *infoProductos(const string &nombreArchivo, int cantidadProductos);
 
 void cargarProductos();
 void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i);
@@ -407,9 +409,19 @@ void cargarProductos()
 	string *stringsEnumeradosVerduras = obtenerStringsEnumerados("../archivos/menuVerduras.txt", cantidadStringsVerduras);
 	string *stringsEnumeradosFrutas = obtenerStringsEnumerados("../archivos/menuFrutas.txt", cantidadStringsFrutas);
 
+	Productos *productosLimpieza = infoProductos("../archivos/productosLimpieza.txt", cantidadStringsLimpieza);
+	Productos *productosTecnologia = infoProductos("../archivos/productosTecnologia.txt", cantidadStringsTecnologia);
+	Productos *productosHogar = infoProductos("../archivos/productosHogar.txt", cantidadStringsHogar);
+	Productos *productosVerduras = infoProductos("../archivos/productosVerduras.txt", cantidadStringsVerduras);
+	Productos *productosFrutas = infoProductos("../archivos/productosFrutas.txt", cantidadStringsFrutas);
+
 	for (int i = 0; i < cantidadStringsLimpieza; i++)
 	{
 		limpieza[i].nombre = stringsEnumeradosLimpieza[i];
+		limpieza[i].codigo = productosLimpieza[i].codigo;
+		limpieza[i].tipo = productosLimpieza[i].tipo;
+		limpieza[i].precio = productosLimpieza[i].precio;
+		limpieza[i].stock = productosLimpieza[i].stock;
 	}
 	for (int i = 0; i < cantidadStringsTecnologia; i++)
 	{
@@ -433,6 +445,8 @@ void cargarProductos()
 	delete[] stringsEnumeradosHogar;
 	delete[] stringsEnumeradosVerduras;
 	delete[] stringsEnumeradosFrutas;
+
+	delete[] productosLimpieza;
 }
 
 // Obtiene un arreglo de strings a partir de un archivo de texto y los armacena en una posicion contigua de memoria
@@ -541,4 +555,51 @@ void menuMediosPago()
 	
 	generarBoletaVenta(compra, posicionDelProducto, clientes[posicionDelCliente].nombre, 0, "../archivos/boleta.txt");
 	
+}
+
+//Obtendre un struct con la informacion de los productos
+Productos *infoProductos(const string &nombreArchivo, int cantidadProductos){
+
+	ifstream archivo(nombreArchivo);
+
+	if (!archivo)
+	{
+		cerr << "No se pudo abrir el archivo: " << nombreArchivo << endl;
+		return nullptr;
+	}
+
+	string linea;
+
+	Productos* listaProductos = new Productos[cantidadProductos]; 
+
+	int index = 0, int contador = 0 ; 
+
+	while (getline(archivo, linea))
+	{
+		switch(contador % 4){
+			case 0:
+				listaProductos[index].codigo = linea;
+				break;
+			case 1:
+				listaProductos[index].tipo = linea;
+				break;
+			case 2:
+				listaProductos[index].precio = stof(linea);
+				break;
+			case 3:
+				listaProductos[index].stock = stoi(linea);
+				break;
+		}
+
+		contador++;
+
+		if(contador % 4 == 0){
+			index++;
+		}
+	
+	}
+
+	archivo.close();
+
+	return listaProductos;
 }
