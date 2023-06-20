@@ -1,9 +1,14 @@
 ÁREA DE TECNOLOGÍA
 ¿Qué desea comprar?
 
-1. Laptop Gamer Asus
-2. Celular Android LG
-3. SmartTV Samsung
-4. Tablet Samsung
-5. Set Gamer (Teclado, mouse y mousepad)
-6. Salir
+1. Auriculares inalámbricos Sony
+2. Cámara réflex Nikon
+3. Celular Android LG
+4. Laptop Gamer Asus
+5. Monitor de alta definición Dell
+6. Set Gamer (Teclado, mouse y mousepad)
+7. SmartTV Samsung
+8. Tablet Samsung
+9. Tarjeta gráfica Nvidia GeForce
+10. Unidad de estado sólido (SSD) Samsung
+11. Salir

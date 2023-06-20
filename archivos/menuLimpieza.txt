@@ -1,11 +1,14 @@
-ARTICULOS DE LIMPIEZA
+ÁREA DE LIMPIEZA
 ¿Qué desea comprar?
 
-1. Set Escoba
-2. Desinfectante 1Lt
-3. Paños Reutilizables
-4. Papel Higiénico
-5. Papel Toalla
-6. Set Trapeador
-7. Guantes de Latex
-8. Salir
+1. Bayetas y paños de microfibra
+2. Detergente líquido
+3. Esponjas
+4. Guantes de goma
+5. Limpiador de vidrios
+6. Limpiador multiusos
+7. Papel Higiénico
+8. Quitamanchas
+9. Set escoba
+10. Set trapeador
+11. Salir

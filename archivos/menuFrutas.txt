@@ -1,0 +1,14 @@
+ÁREA DE FRUTAS
+¿Qué desea comprar?
+
+1. 1 kg de manzanas
+2. 1 kg de naranjas
+3. Unidad de plátano
+4. Unidad de fresas
+5. 1 kg de piñas
+6. 1 kg de sandías
+7. Unidad de kiwi
+8. Unidad de mango
+9. Unidad de pera
+10. 1 kg de uvas
+11. Salir

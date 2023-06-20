@@ -1,8 +1,8 @@
 ¿Qué tipo de producto desea comprar?
 
-1. Articulos de limpieza
-2. Tecnología
-3. Productos para el hogar
-4. Verduras
-5. Frutas
-6. Salir
+1. LIMPIEZA
+2. TECNOLOGÍA
+3. HOGAR
+4. VERDURAS
+5. FRUTAS
+6. SALIR
