@@ -9,7 +9,6 @@
 #include <filesystem> //agregado por problemas de rutas
 using namespace std;
 
-
 // Estructuras
 struct Venta
 {
@@ -17,7 +16,7 @@ struct Venta
 	float precio_producto;
 	int cantidad_producto;
 	float monto_producto;
-};
+}compra[50]; int posicionDelProducto=0;
 
 struct Boleta
 {
@@ -86,18 +85,13 @@ string* obtenerStringsEnumerados(const string& nombreArchivo, int& cantidadStrin
 }
 
 void cargarProductos();
-
+void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int& i);
 int mostrarMenu(const string& archivo);
 int solicitarCantidad();
 char menuMediosPago();
 void revisarCarritoDeCompras(Venta *venta);
 void MnClntReg();
-void MnEscgrProd(Venta *PreProducto, int &PosProd);
-void MnLimp(Venta *PreProducto, int &PosProd);
-void MnTec(Venta *PreProducto, int &PosProd);
-void MnHog(Venta *PreProducto, int &PosProd);
-void MnVerd(Venta *PreProducto, int &PosProd);
-void MnFrut(Venta *PreProducto, int &PosProd);
+void MnEscgrProd();
 
 // Prototipos Menu
 //int administracion(Global &G);
@@ -129,6 +123,11 @@ int main()
 		cin >> opc;
 
 	}while(opc > 2 or opc < 1);
+
+	if (opc == 1)
+	{
+		MnClntReg();
+	}
 }
 
 // Menu cliente registrado
@@ -136,19 +135,17 @@ int main()
 void MnClntReg()
 {
 
-	int Opc, PosProd;
-
-	Venta PreProducto[10];
+	int Opc;
 
 	do
 	{
 		switch (mostrarMenu("../archivos/menuClntReg.txt"))
 		{
 		case 1:
-			MnEscgrProd(PreProducto, PosProd);
+			MnEscgrProd();
 			break;
 		case 2:
-			revisarCarritoDeCompras(PreProducto);
+			revisarCarritoDeCompras(compra);
 			break;
 		case 3:
 
@@ -175,35 +172,35 @@ int solicitarCantidad()
 }
 
 
-void MnEscgrProd(Venta *PreProducto, int &PosProd)
+void MnEscgrProd()
 {
 
 	int Opc;
-	PosProd = 0;
 
 	do
 	{
 		switch (mostrarMenu("../archivos/menuEscgrProd.txt"))
 		{
 		case 1:
-			MnLimp(PreProducto, PosProd);
+			menuTipo(compra, "../archivos/menuLimpieza.txt", limpieza, posicionDelProducto);
 			break;
 		case 2:
-
+			menuTipo(compra, "../archivos/menuTecnologia.txt", tecnologia, posicionDelProducto);
 			break;
 		case 3:
-
+			menuTipo(compra, "../archivos/menuHogar.txt", hogar, posicionDelProducto);
 			break;
 		case 4:
-
+			menuTipo(compra, "../archivos/menuVerduras.txt", verduras, posicionDelProducto);
 			break;
 		case 5:
+			menuTipo(compra, "../archivos/menuFrutas.txt", frutas, posicionDelProducto);
 			break;
 		case 6:
 			Opc = 6;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
+			cout << "\n Opcion invalida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -212,344 +209,86 @@ void MnEscgrProd(Venta *PreProducto, int &PosProd)
 	} while (Opc != 6);
 }
 
-void MnLimp(Venta *PreProducto, int &PosProd)
+void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int& i)
 {
-
-	int Opc;
-
+	int opcion;
 	do
 	{
-		switch (mostrarMenu("../archivos/menuLimpieza.txt"))
+		switch (mostrarMenu(archivoMenu))
 		{
 		case 1:
-			PreProducto[PosProd].nombre_producto = "Set Escoba";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[0].nombre;
+			producto[i].precio_producto = vector[0].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 2:
-			PreProducto[PosProd].nombre_producto = "Desinfectante 1Lt";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[1].nombre;
+			producto[i].precio_producto = vector[1].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 3:
-			PreProducto[PosProd].nombre_producto = "Pa�os Reutilizables";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[2].nombre;
+			producto[i].precio_producto = vector[2].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 4:
-			PreProducto[PosProd].nombre_producto = "Papel Higi�nico";
-			cout << "\n Ingrese la cantidad que desea de este producto:";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[3].nombre;
+			producto[i].precio_producto = vector[3].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 5:
-			PreProducto[PosProd].nombre_producto = "Papel Toalla";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[4].nombre;
+			producto[i].precio_producto = vector[4].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 6:
-			PreProducto[PosProd].nombre_producto = "Set Trapeador";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[5].nombre;
+			producto[i].precio_producto = vector[5].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 7:
-			PreProducto[PosProd].nombre_producto = "Guantes de Latex";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[6].nombre;
+			producto[i].precio_producto = vector[6].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 8:
-			Opc = 8;
-			break;
-		default:
-			cout << "\n Opci�n inv�lida";
-			cout << "\n Vuelva a intentarlo\n\n ";
-			break;
-		}
-	} while (Opc != 8);
-}
-
-void MnTec(Venta *PreProducto, int &PosProd)
-{
-	do
-	{
-
-		switch (mostrarMenu("../archivos/menuTecnologia.txt"))
-		{
-		case 1:
-			PreProducto[PosProd].nombre_producto = "Laptop Gamer Asus";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 2:
-			PreProducto[PosProd].nombre_producto = "Celular Android LG";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 3:
-			PreProducto[PosProd].nombre_producto = "SmartTV Samsung";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 4:
-			PreProducto[PosProd].nombre_producto = "Tablet Samsung";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 5:
-			PreProducto[PosProd].nombre_producto = "Set Gamer(Teclado, mouse y mousepad)";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 6:
-			break;
-		default:
-			cout << "\n Opci�n inv�lida";
-			cout << "\n Vuelva a intentarlo\n\n ";
-			break;
-		}
-	} while (true);
-}
-
-void MnHog(Venta *PreProducto, int &PosProd)
-{
-
-	int Opc;
-
-	do
-	{
-
-		switch (mostrarMenu("../archivos/menuHogar.txt"))
-		{
-		case 1:
-			PreProducto[PosProd].nombre_producto = "Set Utensilios de Cocina";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 2:
-			PreProducto[PosProd].nombre_producto = "Set Ventiladores de Techo";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 3:
-			PreProducto[PosProd].nombre_producto = "Silla Escritorio";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 4:
-			PreProducto[PosProd].nombre_producto = "Repisa de madera";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 5:
-			PreProducto[PosProd].nombre_producto = "Juego de Comedor(4 sillas 1 mesa)";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 6:
-			PreProducto[PosProd].nombre_producto = "Ropero";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 7:
-			PreProducto[PosProd].nombre_producto = "Cama de 2 plazas";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 8:
-			PreProducto[PosProd].nombre_producto = "Juego de Sofas";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[7].nombre;
+			producto[i].precio_producto = vector[7].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 9:
-			Opc = 9;
-			break;
-		default:
-			cout << "\n Opci�nn inv�lida";
-			cout << "\n Vuelva a intentarlo\n\n ";
-			break;
-		}
-	} while (Opc != 9);
-}
-
-void MnVerd(Venta *PreProducto, int &PosProd)
-{
-
-	int Opc;
-
-	do
-	{
-
-		switch (mostrarMenu("../archivos/menuVerduras.txt"))
-		{
-		case 1:
-			PreProducto[PosProd].nombre_producto = "1kg Cebolla";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 2:
-			PreProducto[PosProd].nombre_producto = "Unid. Lechuga";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 3:
-			PreProducto[PosProd].nombre_producto = "1kg. Tomate";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 4:
-			PreProducto[PosProd].nombre_producto = "Unid. Aguacate";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 5:
-			PreProducto[PosProd].nombre_producto = "1kg. Papa";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 6:
-			PreProducto[PosProd].nombre_producto = "1kg. Zanahoria";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 7:
-			PreProducto[PosProd].nombre_producto = "Unid. Calabaza";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 8:
-			PreProducto[PosProd].nombre_producto = "Unid. Pepino";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 9:
-			PreProducto[PosProd].nombre_producto = "Unid. Pimiento";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[8].nombre;
+			producto[i].precio_producto = vector[8].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 10:
-			PreProducto[PosProd].nombre_producto = "1kg. Lim�n";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
+			producto[i].nombre_producto = vector[9].nombre;
+			producto[i].precio_producto = vector[9].precio;
+			producto[i].cantidad_producto = solicitarCantidad();
+			i++;
 			break;
 		case 11:
-			Opc = 11;
+			opcion = 11;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
-			cout << "\n Vuelva a intentarlo\n\n ";
+			cout << "\n Opcion invalida, vuelva a intentarlo\n\n ";
 			break;
 		}
-	} while (Opc != 11);
+
+
+	} while (opcion != 11);
+	
 }
 
-void MnFrut(Venta *PreProducto, int &PosProd)
-{
-
-	int Opc;
-
-	do
-	{
-		switch (mostrarMenu("../archivos/menuFrutas.txt"))
-		{
-		case 1:
-			PreProducto[PosProd].nombre_producto = "Mano de Platanos";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 2:
-			PreProducto[PosProd].nombre_producto = "1kg. Manzana";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 3:
-			PreProducto[PosProd].nombre_producto = "1kg. Fresas";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 4:
-			PreProducto[PosProd].nombre_producto = "1kg. Uva";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 5:
-			PreProducto[PosProd].nombre_producto = "1kg. Naranja";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 6:
-			PreProducto[PosProd].nombre_producto = "Unid Sand�a";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 7:
-			PreProducto[PosProd].nombre_producto = "1kg. Mango";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 8:
-			PreProducto[PosProd].nombre_producto = "1kg. Mandarina";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 9:
-			PreProducto[PosProd].nombre_producto = "1kg. Manzana";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 10:
-			PreProducto[PosProd].nombre_producto = "Unid. Pi�a";
-			cout << "\n Ingrese la cantidad que desea de este producto: ";
-			cin >> PreProducto[PosProd].cantidad_producto;
-			PosProd++;
-			break;
-		case 11:
-			Opc = 11;
-			break;
-		default:
-			cout << "\n Opci�n inv�lida";
-			cout << "\n Vuelva a intentarlo\n\n ";
-			break;
-		}
-	} while (Opc != 11);
-}
 
 // Revisar carrito de compras
 
@@ -557,9 +296,9 @@ void revisarCarritoDeCompras(Venta *venta)
 {
 	cout << "Carrito de compras" << endl;
 	cout << "------------------" << endl;
-	cout << "Producto   "
-		 << "Cantidad  "
-		 << "Precio    " << endl;
+	cout << "Producto      "
+		 << "Cantidad      "
+		 << "Precio        " << endl;
 	for (int i = 0; i < 50; i++)
 	{
 		if (venta[i].nombre_producto == "")
