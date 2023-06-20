@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <locale>
-#include <windows.h>// Para usar caracteres especiales
-#include <clocale> // Para usar caracteres especiales
+#include <windows.h> // Para usar caracteres especiales
+#include <clocale>	 // Para usar caracteres especiales
 #include <fstream>
 #include <filesystem> //agregado por problemas de rutas
 using namespace std;
@@ -16,7 +16,8 @@ struct Venta
 	float precio_producto;
 	int cantidad_producto;
 	float monto_producto;
-}compra[50]; int posicionDelProducto=0;
+} compra[50];
+int posicionDelProducto = 0;
 
 struct Boleta
 {
@@ -38,55 +39,14 @@ struct Productos
 	string tipo;
 	float precio;
 	int stock;
-}limpieza[10], tecnologia[10], hogar[10], verduras[10], frutas[10];
+} limpieza[10], tecnologia[10], hogar[10], verduras[10], frutas[10];
 
 // Prototipos
-
-string* obtenerStringsEnumerados(const string& nombreArchivo, int& cantidadStrings) {
-    ifstream archivo(nombreArchivo);
-    if (!archivo) {
-        cerr << "No se pudo abrir el archivo: " << nombreArchivo << endl;
-        cantidadStrings = 0;
-        return nullptr;
-    }
-
-    string linea;
-    int contador = 0;
-
-    while (getline(archivo, linea)) {
-        if (!linea.empty()) {
-            if (isdigit(linea[0]) && linea.find(".") != string::npos) {
-                contador++;
-            }
-        }
-    }
-
-    archivo.clear();
-    archivo.seekg(0);
-
-    string* stringsEnumerados = new string[contador];
-    int index = 0;
-
-    while (getline(archivo, linea)) {
-        if (!linea.empty()) {
-            if (isdigit(linea[0]) && linea.find(".") != string::npos) {
-                if (index < contador - 1) {  // Excluir la última línea
-                    string substring = linea.substr(linea.find(".") + 1);
-                    stringsEnumerados[index] = substring;
-                    index++;
-                }
-            }
-        }
-    }
-
-    archivo.close();
-    cantidadStrings = contador - 1;  // Actualizar la cantidad de strings
-    return stringsEnumerados;
-}
+string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrings);
 
 void cargarProductos();
-void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int& i);
-int mostrarMenu(const string& archivo);
+void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i);
+int mostrarMenu(const string &archivo);
 int solicitarCantidad();
 char menuMediosPago();
 void revisarCarritoDeCompras(Venta *venta);
@@ -94,8 +54,8 @@ void MnClntReg();
 void MnEscgrProd();
 
 // Prototipos Menu
-//int administracion(Global &G);
-//void mostrar_boleta(int b, Global G);
+// int administracion(Global &G);
+// void mostrar_boleta(int b, Global G);
 int menu_adm_1();
 // Funcion principal
 
@@ -103,16 +63,11 @@ int main()
 {
 
 	SetConsoleOutputCP(CP_UTF8);
-    locale::global(locale(""));
+	locale::global(locale(""));
 
-    wcout.imbue(locale());
+	wcout.imbue(locale());
 
 	cargarProductos();
-	for (int i = 0; i < 10; i++)
-	{
-		cout << limpieza[i].nombre << endl;
-	}
-	
 
 	int opc;
 	do
@@ -122,11 +77,15 @@ int main()
 		cout << "\n2.- Administracion\n";
 		cin >> opc;
 
-	}while(opc > 2 or opc < 1);
+	} while (opc > 2 or opc < 1);
 
 	if (opc == 1)
 	{
 		MnClntReg();
+	}
+	else
+	{
+		// administracion;
 	}
 }
 
@@ -134,7 +93,7 @@ int main()
 
 void MnClntReg()
 {
-
+	system("cls");
 	int Opc;
 
 	do
@@ -165,16 +124,15 @@ void MnClntReg()
 
 int solicitarCantidad()
 {
-    int cantidad;
-    cout << "\n Ingrese la cantidad que desea de este producto: ";
-    cin >> cantidad;
-    return cantidad;
+	int cantidad;
+	cout << "\n Ingrese la cantidad que desea de este producto: ";
+	cin >> cantidad;
+	return cantidad;
 }
-
 
 void MnEscgrProd()
 {
-
+	system("cls");
 	int Opc;
 
 	do
@@ -209,7 +167,7 @@ void MnEscgrProd()
 	} while (Opc != 6);
 }
 
-void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int& i)
+void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i)
 {
 	int opcion;
 	do
@@ -284,11 +242,8 @@ void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int& i)
 			break;
 		}
 
-
 	} while (opcion != 11);
-	
 }
-
 
 // Revisar carrito de compras
 
@@ -328,7 +283,7 @@ int menu_adm_1()
 		cout << "\n5.- Eliminar Producto";
 		cout << "\n6.- Retornar Menu Principal";
 		cout << "\n7.- Salir del programa\n";
-		cout <<"Digite una opcion:";
+		cout << "Digite una opcion:";
 
 		cin >> opc;
 
@@ -384,31 +339,31 @@ void mostrar_boleta(int b, Global G)
 }
 */
 
-//Muestra cualquier menu solo con pasarle archivos con ruta relativa
-int mostrarMenu(const string& archivo)
+// Muestra cualquier menu solo con pasarle archivos con ruta relativa
+int mostrarMenu(const string &archivo)
 {
-    int Opc;
-    ifstream menuFile(archivo);
+	int Opc;
+	ifstream menuFile(archivo);
 
-    if (menuFile.is_open())
-    {
-        string line;
-        while (getline(menuFile, line))
-        {
-            cout << line << endl;
-        }
+	if (menuFile.is_open())
+	{
+		string line;
+		while (getline(menuFile, line))
+		{
+			cout << line << endl;
+		}
 
-        menuFile.close();
-    }
-    else
-    {
-        cout << "Error al abrir el archivo!" << endl;
-    }
+		menuFile.close();
+	}
+	else
+	{
+		cout << "Error al abrir el archivo!" << endl;
+	}
 
-    cout << "\nDigite su elecci�n: ";
-    cin >> Opc;
+	cout << "\nDigite su elección: ";
+	cin >> Opc;
 
-    return Opc;
+	return Opc;
 }
 
 // Funcion de medios de pago
@@ -434,29 +389,34 @@ char menuMediosPago()
 	return opcion;
 }
 
-
-void cargarProductos(){
+void cargarProductos()
+{
 	int cantidadStringsLimpieza = 0, cantidadStringsTecnologia = 0, cantidadStringsHogar = 0, cantidadStringsVerduras = 0, cantidadStringsFrutas = 0;
-	
+
 	string *stringsEnumeradosLimpieza = obtenerStringsEnumerados("../archivos/menuLimpieza.txt", cantidadStringsLimpieza);
 	string *stringsEnumeradosTecnologia = obtenerStringsEnumerados("../archivos/menuTecnologia.txt", cantidadStringsTecnologia);
 	string *stringsEnumeradosHogar = obtenerStringsEnumerados("../archivos/menuHogar.txt", cantidadStringsHogar);
 	string *stringsEnumeradosVerduras = obtenerStringsEnumerados("../archivos/menuVerduras.txt", cantidadStringsVerduras);
 	string *stringsEnumeradosFrutas = obtenerStringsEnumerados("../archivos/menuFrutas.txt", cantidadStringsFrutas);
 
-	for (int i = 0; i < cantidadStringsLimpieza; i++) {
+	for (int i = 0; i < cantidadStringsLimpieza; i++)
+	{
 		limpieza[i].nombre = stringsEnumeradosLimpieza[i];
 	}
-	for (int i = 0; i < cantidadStringsTecnologia; i++) {
+	for (int i = 0; i < cantidadStringsTecnologia; i++)
+	{
 		tecnologia[i].nombre = stringsEnumeradosTecnologia[i];
 	}
-	for (int i = 0; i < cantidadStringsHogar; i++) {
+	for (int i = 0; i < cantidadStringsHogar; i++)
+	{
 		hogar[i].nombre = stringsEnumeradosHogar[i];
 	}
-	for (int i = 0; i < cantidadStringsVerduras; i++) {
+	for (int i = 0; i < cantidadStringsVerduras; i++)
+	{
 		verduras[i].nombre = stringsEnumeradosVerduras[i];
 	}
-	for (int i = 0; i < cantidadStringsFrutas; i++) {
+	for (int i = 0; i < cantidadStringsFrutas; i++)
+	{
 		frutas[i].nombre = stringsEnumeradosFrutas[i];
 	}
 
@@ -465,4 +425,56 @@ void cargarProductos(){
 	delete[] stringsEnumeradosHogar;
 	delete[] stringsEnumeradosVerduras;
 	delete[] stringsEnumeradosFrutas;
+}
+
+// Obtiene un arreglo de strings a partir de un archivo de texto y los armacena en una posicion contigua de memoria
+string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrings)
+{
+	ifstream archivo(nombreArchivo);
+	if (!archivo)
+	{
+		cerr << "No se pudo abrir el archivo: " << nombreArchivo << endl;
+		cantidadStrings = 0;
+		return nullptr;
+	}
+
+	string linea;
+	int contador = 0;
+
+	while (getline(archivo, linea))
+	{
+		if (!linea.empty())
+		{
+			if (isdigit(linea[0]) && linea.find(".") != string::npos)
+			{
+				contador++;
+			}
+		}
+	}
+
+	archivo.clear();
+	archivo.seekg(0);
+
+	string *stringsEnumerados = new string[contador];
+	int index = 0;
+
+	while (getline(archivo, linea))
+	{
+		if (!linea.empty())
+		{
+			if (isdigit(linea[0]) && linea.find(".") != string::npos)
+			{
+				if (index < contador - 1)
+				{ // Excluir la última línea
+					string substring = linea.substr(linea.find(".") + 1);
+					stringsEnumerados[index] = substring;
+					index++;
+				}
+			}
+		}
+	}
+
+	archivo.close();
+	cantidadStrings = contador - 1; // Excluir Salir
+	return stringsEnumerados;
 }
