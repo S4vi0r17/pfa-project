@@ -7,6 +7,7 @@
 #include <clocale>	 // Para usar caracteres especiales
 #include <fstream>
 #include <filesystem> //agregado por problemas de rutas
+#include <conio.h>
 using namespace std;
 
 // Estructuras
@@ -30,7 +31,8 @@ struct Clientes
 	string nombre;
 	string DNI;
 	Boleta historial[10];
-};
+}clientes[100];
+int posicionDelCliente = 0;
 
 struct Productos
 {
@@ -50,7 +52,7 @@ void cargarProductos();
 void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i);
 int mostrarMenu(const string &archivo);
 int solicitarCantidad();
-char menuMediosPago();
+void menuMediosPago();
 void revisarCarritoDeCompras(Venta *venta);
 void MnClntReg();
 void MnEscgrProd();
@@ -94,7 +96,7 @@ int main()
 
 	if (opc == 1)
 	{
-		MnClntReg();
+		usuario();
 	}
 	else
 	{
@@ -121,7 +123,7 @@ void MnClntReg()
 			revisarCarritoDeCompras(compra);
 			break;
 		case 3:
-
+			
 			break;
 		case 4:
 			Opc = 4;
@@ -263,11 +265,11 @@ void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i)
 
 void revisarCarritoDeCompras(Venta *venta)
 {
-	cout << "Carrito de compras" << endl;
-	cout << "------------------" << endl;
-	cout << "Producto      "
-		 << "Cantidad      "
-		 << "Precio        " << endl;
+	cout << "        Carrito de compras         " << endl;
+	cout << "        ------------------         " << endl;
+	cout << "Producto                     "
+		 << "Cantidad                     "
+		 << "Precio                       " << endl;
 	for (int i = 0; i < 50; i++)
 	{
 		if (venta[i].nombre_producto == "")
@@ -278,7 +280,32 @@ void revisarCarritoDeCompras(Venta *venta)
 	}
 }
 
-// Realizar compra
+// Generar boleta
+void generarBoletaVenta(const Venta* venta, int num_ventas, const string& cliente, double total, const string& archivo_salida)
+{
+    ofstream archivo(archivo_salida);
+    if (!archivo.is_open()) {
+        cout << "Error al abrir el archivo." << endl;
+        return;
+    }
+
+    archivo << "         Boleta de Venta          " << endl;
+    archivo << "        ------------------        " << endl;
+    archivo << "Cliente: " << cliente << endl;
+    archivo << "-------------------------------" << endl;
+    archivo << "Producto          Cantidad   Precio" << endl;
+    archivo << "-------------------------------" << endl;
+
+    for (int i = 0; i < num_ventas; i++)
+    {
+        archivo << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
+    }
+
+    archivo << "-------------------------------" << endl;
+    archivo << "Total:            " << total << endl;
+
+    archivo.close();
+}
 
 // Menu Administrador
 
@@ -382,26 +409,7 @@ int mostrarMenu(const string &archivo)
 
 // Funcion de medios de pago
 
-char menuMediosPago()
-{
-	cout << "Seleccione un medio de pago:" << endl;
-	cout << "1. Medios de pago en efectivo:" << endl;
-	cout << "   a. Efectivo (moneda nacional)" << endl;
-	cout << "   b. Moneda extranjera" << endl;
-	cout << "2. Tarjetas bancarias:" << endl;
-	cout << "   a. Tarjeta bancaria (cr�dito o d�bito)" << endl;
-	cout << "   b. Tarjeta online (pagos electr?nicos)" << endl;
-	cout << "3. Vales y tarjetas de beneficios:" << endl;
-	cout << "   a. Vale escolar" << endl;
-	cout << "   b. Vale de mercader?a" << endl;
-	cout << "   c. Vale de alimento" << endl;
 
-	char opcion;
-	cout << "Ingrese la opci?n deseada: ";
-	cin >> opcion;
-
-	return opcion;
-}
 
 void cargarProductos()
 {
@@ -526,6 +534,62 @@ string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrin
 	archivo.close();
 	cantidadStrings = contador - 1; // Excluir Salir
 	return stringsEnumerados;
+}
+
+// Menu clientes
+void usuario(){
+
+	string docDNI;
+	bool encontrado = false;
+	int posisicion = 0;
+	cout << "Bienvenido a la tienda" << endl;
+	cout << "Ingrese su DNI: ";
+	getline(cin, docDNI);
+	for (int i = 0; i < 100; i++)
+	{
+		if (clientes[i].DNI == docDNI)
+		{
+			encontrado = true;
+			posisicion = i;
+			cout << "Bienvenido " << clientes[i].nombre << endl;
+			getch();
+			MnClntReg();
+			break;
+		}
+	
+	}
+	if (encontrado == false)
+	{
+		cout << "No se encontro el DNI" << endl;
+		cout << "Ingrese su nombre: ";
+		getline(cin, clientes[posicionDelCliente].nombre);
+		clientes[posicionDelCliente].DNI = docDNI;
+		cout << "Bienvenido " << clientes[posicionDelCliente].nombre << endl;
+		getch();
+		MnClntReg();
+	}
+}
+
+//Realizar compra
+void menuMediosPago()
+{
+	char Opc;
+	cout << "Seleccione un medio de pago:" << endl;
+	cout << "Medios de pago en efectivo:" << endl;
+	cout << "   1. Efectivo (moneda nacional)" << endl;
+	cout << "   2. Moneda extranjera" << endl;
+	cout << "Tarjetas bancarias:" << endl;
+	cout << "   3. Tarjeta bancaria (crédito o débito)" << endl;
+	cout << "   4. Tarjeta online (pagos electrónicos)" << endl;
+	cout << "Vales y tarjetas de beneficios:" << endl;
+	cout << "   5. Vale escolar" << endl;
+	cout << "   6. Vale de mercader?a" << endl;
+	cout << "   7. Vale de alimento" << endl;
+
+	cin >> Opc;
+	
+	generarBoletaVenta(compra, posicionDelProducto, clientes[posicionDelCliente].nombre, 0, "../archivos/boleta.txt");
+	
 }
 
 //Obtendre un struct con la informacion de los productos
