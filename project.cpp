@@ -71,6 +71,17 @@ int main()
 
 	cargarProductos();
 
+	for (int i = 0; i < 10; i++)
+	{
+		cout << limpieza[i].nombre << endl;
+		cout << limpieza[i].codigo << endl;
+		cout << limpieza[i].tipo << endl;
+		cout << limpieza[i].precio << endl;
+		cout << limpieza[i].stock << endl;
+		cout << endl;
+	}
+
+	/*
 	int opc;
 	do
 	{
@@ -89,6 +100,7 @@ int main()
 	{
 		// administracion;
 	}
+	*/
 }
 
 // Menu cliente registrado
@@ -401,6 +413,7 @@ void cargarProductos()
 	string *stringsEnumeradosVerduras = obtenerStringsEnumerados("../archivos/menuVerduras.txt", cantidadStringsVerduras);
 	string *stringsEnumeradosFrutas = obtenerStringsEnumerados("../archivos/menuFrutas.txt", cantidadStringsFrutas);
 
+	//Obtengo el resto de la informacion de los productos usando la funcion infoProductos
 	Productos *productosLimpieza = infoProductos("../archivos/productosLimpieza.txt", cantidadStringsLimpieza);
 	Productos *productosTecnologia = infoProductos("../archivos/productosTecnologia.txt", cantidadStringsTecnologia);
 	Productos *productosHogar = infoProductos("../archivos/productosHogar.txt", cantidadStringsHogar);
@@ -418,18 +431,36 @@ void cargarProductos()
 	for (int i = 0; i < cantidadStringsTecnologia; i++)
 	{
 		tecnologia[i].nombre = stringsEnumeradosTecnologia[i];
+		tecnologia[i].codigo = productosTecnologia[i].codigo;
+		tecnologia[i].tipo = productosTecnologia[i].tipo;
+		tecnologia[i].precio = productosTecnologia[i].precio;
+		tecnologia[i].stock = productosTecnologia[i].stock;
+			
 	}
 	for (int i = 0; i < cantidadStringsHogar; i++)
 	{
 		hogar[i].nombre = stringsEnumeradosHogar[i];
+		hogar[i].codigo = productosHogar[i].codigo;
+		hogar[i].tipo = productosHogar[i].tipo;
+		hogar[i].precio = productosHogar[i].precio;
+		hogar[i].stock = productosHogar[i].stock;
+	
 	}
 	for (int i = 0; i < cantidadStringsVerduras; i++)
 	{
 		verduras[i].nombre = stringsEnumeradosVerduras[i];
+		verduras[i].codigo = productosVerduras[i].codigo;
+		verduras[i].tipo = productosVerduras[i].tipo;
+		verduras[i].precio = productosVerduras[i].precio;
+		verduras[i].stock = productosVerduras[i].stock;
 	}
 	for (int i = 0; i < cantidadStringsFrutas; i++)
 	{
 		frutas[i].nombre = stringsEnumeradosFrutas[i];
+		frutas[i].codigo = productosFrutas[i].codigo;
+		frutas[i].tipo = productosFrutas[i].tipo;
+		frutas[i].precio = productosFrutas[i].precio;
+		frutas[i].stock = productosFrutas[i].stock;
 	}
 
 	delete[] stringsEnumeradosLimpieza;
@@ -439,6 +470,10 @@ void cargarProductos()
 	delete[] stringsEnumeradosFrutas;
 
 	delete[] productosLimpieza;
+	delete[] productosTecnologia;
+	delete[] productosHogar;
+	delete[] productosVerduras;
+	delete[] productosFrutas;
 }
 
 // Obtiene un arreglo de strings a partir de un archivo de texto y los armacena en una posicion contigua de memoria
@@ -508,7 +543,7 @@ Productos *infoProductos(const string &nombreArchivo, int cantidadProductos){
 
 	Productos* listaProductos = new Productos[cantidadProductos]; 
 
-	int index = 0, int contador = 0 ; 
+	int index = 0, contador = 0 ; 
 
 	while (getline(archivo, linea))
 	{
@@ -529,10 +564,11 @@ Productos *infoProductos(const string &nombreArchivo, int cantidadProductos){
 
 		contador++;
 
-		if(contador % 4 == 0){
+		if(contador % 4 == 0 && contador > 0){
 			index++;
 		}
-	
+
+
 	}
 
 	archivo.close();
