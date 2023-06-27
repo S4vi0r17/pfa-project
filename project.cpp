@@ -48,6 +48,7 @@ string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrin
 //Prototipo del inventario productos
 Productos *infoProductos(const string &nombreArchivo, int cantidadProductos);
 
+void usuario();
 void cargarProductos();
 void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i);
 int mostrarMenu(const string &archivo);
@@ -329,44 +330,7 @@ int menu_adm_1()
 
 	return opc;
 }
-/*
-void mostrar_boleta(int b, Global G)
-{
 
-	for (int i = 0; i < 100; i++)
-	{
-		system("cls");
-		if (G.cliente[b - 1].historial[i].monto_total == 0)
-		{
-			system("cls");
-			cout << "-------------El cliente no tiene mas boletas-------------";
-			break;
-		}
-		cout << "----------------Boleta de Venta---------------" << endl;
-		cout << "-----------------------------------------------" << endl
-			 << "\n\n\n";
-		cout << "Nombre de Cliente  : " << G.cliente[b - 1].nombre << "      DNI: " << G.cliente[b - 1].DNI << "\n\n";
-		cout << "Producto              "
-			 << "Cantidad             "
-			 << "Precio               "
-			 << "            IMPORTE " << endl;
-		for (int j = 0; j < 100; j++)
-		{
-			if (G.cliente[b - 1].historial[i].productos[j].nombre_producto == "")
-			{
-
-				break;
-			}
-			cout << G.cliente[b - 1].historial[i].productos[j].nombre_producto << "                 " << G.cliente[b - 1].historial[i].productos[j].precio_producto << "                    " << G.cliente[b - 1].historial[i].productos[j].cantidad_producto << "                 " << G.cliente[b - 1].historial[i].productos[j].monto_producto << endl;
-		}
-		cout << "                      "
-			 << "                      "
-			 << "           TOTAL:    " << G.cliente[b - 1].historial[i].monto_total << endl;
-		system("pause");
-	}
-
-}
-*/
 
 // Muestra cualquier menu solo con pasarle archivos con ruta relativa
 int mostrarMenu(const string &archivo)
@@ -572,7 +536,7 @@ Productos *infoProductos(const string &nombreArchivo, int cantidadProductos){
 
 	Productos* listaProductos = new Productos[cantidadProductos]; 
 
-	int index = 0, int contador = 0 ; 
+	int index = 0, contador = 0 ; 
 
 	while (getline(archivo, linea))
 	{
