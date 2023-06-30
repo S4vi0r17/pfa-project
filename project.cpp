@@ -57,6 +57,7 @@ void menuMediosPago();
 void revisarCarritoDeCompras(Venta *venta);
 void MnClntReg();
 void MnEscgrProd();
+void modificarCarritoDeCompras();
 
 // Prototipos Menu
 // int administracion(Global &G);
@@ -112,7 +113,10 @@ void MnClntReg()
 			revisarCarritoDeCompras(compra);
 			break;
 		case 3:
-			Opc = 3;
+			//Compra
+			break;
+		case 4:
+			Opc = 4;
 			break;
 		default:
 			cout << "\n Opci�n inv�lida";
@@ -121,7 +125,7 @@ void MnClntReg()
 		}
 		system("pause");
 		system("cls");
-	} while (Opc != 3);
+	} while (Opc != 4);
 }
 
 int solicitarCantidad()
@@ -262,10 +266,10 @@ void revisarCarritoDeCompras(Venta *venta)
 			break;
 		}
 		//cout << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
-		cout<<"Producto:/t"<<venta[i].nombre_producto<<endl;
-		cout<<"Cantidad:/t"<<venta[i].cantidad_producto<<endl;
-		cout<<"Precio:/t"<<venta[i].precio_producto<<endl;
-		cout<<"Monto:/t"<<venta[i].monto_producto<<endl;
+		cout<<"Producto:\t"<<venta[i].nombre_producto<<endl;
+		cout<<"Cantidad:\t"<<venta[i].cantidad_producto<<endl;
+		cout<<"Precio:\t"<<venta[i].precio_producto<<endl;
+		cout<<"Monto:\t"<<venta[i].monto_producto<<endl;
 		cout<<"        ==================         "<<endl;
 	}
 	modificarCarritoDeCompras();
@@ -274,7 +278,7 @@ void revisarCarritoDeCompras(Venta *venta)
 int menuModifCompra(int Opc)
 {
 	cout<<"¿Que desea modificar de su carrito de compra?";
-	cout<<"1. Eliminar producto"<<endl;
+	cout<<"\n1. Eliminar producto"<<endl;
 	cout<<"2. Modificar cantidad de algun producto"<<endl;
 	cout<<"3. Nada (Salir)"<<endl;
 	cin>>Opc;
@@ -287,10 +291,10 @@ void mostrarCarritoDeCompras(Venta *venta)
 	cout << "        ==================         " << endl;
 	for (int i = 0; i < posicionDelProducto; i++)
 	{
-		cout<<"Producto:/t"<<venta[i].nombre_producto<<endl;
-		cout<<"Cantidad:/t"<<venta[i].cantidad_producto<<endl;
-		cout<<"Precio:/t"<<venta[i].precio_producto<<endl;
-		cout<<"Monto:/t"<<venta[i].monto_producto<<endl;
+		cout<<"Producto:\t"<<venta[i].nombre_producto<<endl;
+		cout<<"Cantidad:\t"<<venta[i].cantidad_producto<<endl;
+		cout<<"Precio:\t"<<venta[i].precio_producto<<endl;
+		cout<<"Monto:\t"<<venta[i].monto_producto<<endl;
 		cout<<"        ==================         "<<endl;
 	}
 }
@@ -554,8 +558,9 @@ void usuario(){
 
 	string docDNI;
 	bool encontrado = false;
-	int posisicion = 0;
+	int posisicion;
 	cout << "Bienvenido a la tienda" << endl;
+	fflush(stdin);
 	cout << "Ingrese su DNI: ";
 	getline(cin, docDNI);
 	for (int i = 0; i < 100; i++)
