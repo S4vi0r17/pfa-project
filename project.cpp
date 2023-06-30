@@ -47,6 +47,7 @@ struct Productos
 string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrings);
 //Prototipo del inventario productos
 Productos *infoProductos(const string &nombreArchivo, int cantidadProductos);
+
 void usuario();
 void cargarProductos();
 void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i);
@@ -57,9 +58,11 @@ void revisarCarritoDeCompras(Venta *venta);
 void MnClntReg();
 void MnEscgrProd();
 
-
+// Prototipos Menu
+// int administracion(Global &G);
+// void mostrar_boleta(int b, Global G);
 int menu_adm_1();
-
+// Funcion principal
 
 int main()
 {
@@ -109,10 +112,7 @@ void MnClntReg()
 			revisarCarritoDeCompras(compra);
 			break;
 		case 3:
-			
-			break;
-		case 4:
-			Opc = 4;
+			Opc = 3;
 			break;
 		default:
 			cout << "\n Opci�n inv�lida";
@@ -121,7 +121,7 @@ void MnClntReg()
 		}
 		system("pause");
 		system("cls");
-	} while (Opc != 4);
+	} while (Opc != 3);
 }
 
 int solicitarCantidad()
@@ -247,24 +247,111 @@ void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i)
 	} while (opcion != 11);
 }
 
-// Revisar carrito de compras
-
+// Revisar carrito de compras(Para elegir si modificar algo)
 void revisarCarritoDeCompras(Venta *venta)
 {
 	cout << "        Carrito de compras         " << endl;
-	cout << "        ------------------         " << endl;
-	cout << "Producto                     "
+	cout << "        ==================         " << endl;
+	/*cout << "Producto                     "
 		 << "Cantidad                     "
-		 << "Precio                       " << endl;
+		 << "Precio                       " << endl;*/
 	for (int i = 0; i < 50; i++)
 	{
 		if (venta[i].nombre_producto == "")
 		{
 			break;
 		}
-		cout << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
+		//cout << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
+		cout<<"Producto:/t"<<venta[i].nombre_producto<<endl;
+		cout<<"Cantidad:/t"<<venta[i].cantidad_producto<<endl;
+		cout<<"Precio:/t"<<venta[i].precio_producto<<endl;
+		cout<<"Monto:/t"<<venta[i].monto_producto<<endl;
+		cout<<"        ==================         "<<endl;
+	}
+	modificarCarritoDeCompras();
+}
+
+int menuModifCompra(int Opc)
+{
+	cout<<"¿Que desea modificar de su carrito de compra?";
+	cout<<"1. Eliminar producto"<<endl;
+	cout<<"2. Modificar cantidad de algun producto"<<endl;
+	cout<<"3. Nada (Salir)"<<endl;
+	cin>>Opc;
+	return Opc;
+}
+
+void mostrarCarritoDeCompras(Venta *venta)
+{
+	cout << "        CARRITO DE COMPRAS         " << endl;
+	cout << "        ==================         " << endl;
+	for (int i = 0; i < posicionDelProducto; i++)
+	{
+		cout<<"Producto:/t"<<venta[i].nombre_producto<<endl;
+		cout<<"Cantidad:/t"<<venta[i].cantidad_producto<<endl;
+		cout<<"Precio:/t"<<venta[i].precio_producto<<endl;
+		cout<<"Monto:/t"<<venta[i].monto_producto<<endl;
+		cout<<"        ==================         "<<endl;
 	}
 }
+
+void eliminarProductoCarCompra()
+{
+	int pos;
+	do{
+		mostrarCarritoDeCompras(compra);
+		cout<<"Digite el número del producto que desea elminar (Digite '0' para Salir): ";
+		cin>>pos;
+		if (pos != 0 && pos >= 1 && pos <= posicionDelProducto) {
+			for (int i = pos - 1; i < posicionDelProducto - 1; i++) {
+				compra[i] = compra[i + 1];
+			}
+			posicionDelProducto--;
+		}
+	}while(pos!=0);
+}
+
+void modificarCantCarCompra()
+{
+	int pos;
+	int cantidad;
+	do{
+		mostrarCarritoDeCompras(compra);
+		cout<<"Digite el número del producto que desee cambiar su cantidad (Digite '0' para salir): ";
+		cin>>pos;
+		cout<<"Digite la cantidad que desee del producto: ";
+		cin>>cantidad;
+		if(pos!=0){
+			compra[pos-1].cantidad_producto=cantidad;
+		}
+		system("cls");
+	}while(pos!=0);
+}
+
+//Modificar Carrito de Compra
+void modificarCarritoDeCompras()
+{
+	int Opc;
+	do{
+		Opc=menuModifCompra(Opc);
+		switch(Opc){
+			case 1:
+				eliminarProductoCarCompra();
+				break;
+			case 2:
+				modificarCantCarCompra();
+				break;
+			case 3:
+				break;
+			default:
+				cout<<"\n La opción digitada es inválida";
+				cout<<"\n Vuelva a intentarlo\n\n";
+				system("pause");
+				system("cls");
+				break;
+		}
+	}while(Opc!=3);
+} 
 
 // Generar boleta
 void generarBoletaVenta(const Venta* venta, int num_ventas, const string& cliente, double total, const string& archivo_salida)
@@ -328,6 +415,7 @@ int menu_adm_1()
 	return opc;
 }
 
+
 // Muestra cualquier menu solo con pasarle archivos con ruta relativa
 int mostrarMenu(const string &archivo)
 {
@@ -357,6 +445,8 @@ int mostrarMenu(const string &archivo)
 
 // Funcion de medios de pago
 
+
+
 void cargarProductos()
 {
 	int cantidadStringsLimpieza = 0, cantidadStringsTecnologia = 0, cantidadStringsHogar = 0, cantidadStringsVerduras = 0, cantidadStringsFrutas = 0;
@@ -367,7 +457,6 @@ void cargarProductos()
 	string *stringsEnumeradosVerduras = obtenerStringsEnumerados("../archivos/menuVerduras.txt", cantidadStringsVerduras);
 	string *stringsEnumeradosFrutas = obtenerStringsEnumerados("../archivos/menuFrutas.txt", cantidadStringsFrutas);
 
-	//Obtengo el resto de la informacion de los productos usando la funcion infoProductos
 	Productos *productosLimpieza = infoProductos("../archivos/productosLimpieza.txt", cantidadStringsLimpieza);
 	Productos *productosTecnologia = infoProductos("../archivos/productosTecnologia.txt", cantidadStringsTecnologia);
 	Productos *productosHogar = infoProductos("../archivos/productosHogar.txt", cantidadStringsHogar);
@@ -385,36 +474,18 @@ void cargarProductos()
 	for (int i = 0; i < cantidadStringsTecnologia; i++)
 	{
 		tecnologia[i].nombre = stringsEnumeradosTecnologia[i];
-		tecnologia[i].codigo = productosTecnologia[i].codigo;
-		tecnologia[i].tipo = productosTecnologia[i].tipo;
-		tecnologia[i].precio = productosTecnologia[i].precio;
-		tecnologia[i].stock = productosTecnologia[i].stock;
-			
 	}
 	for (int i = 0; i < cantidadStringsHogar; i++)
 	{
 		hogar[i].nombre = stringsEnumeradosHogar[i];
-		hogar[i].codigo = productosHogar[i].codigo;
-		hogar[i].tipo = productosHogar[i].tipo;
-		hogar[i].precio = productosHogar[i].precio;
-		hogar[i].stock = productosHogar[i].stock;
-	
 	}
 	for (int i = 0; i < cantidadStringsVerduras; i++)
 	{
 		verduras[i].nombre = stringsEnumeradosVerduras[i];
-		verduras[i].codigo = productosVerduras[i].codigo;
-		verduras[i].tipo = productosVerduras[i].tipo;
-		verduras[i].precio = productosVerduras[i].precio;
-		verduras[i].stock = productosVerduras[i].stock;
 	}
 	for (int i = 0; i < cantidadStringsFrutas; i++)
 	{
 		frutas[i].nombre = stringsEnumeradosFrutas[i];
-		frutas[i].codigo = productosFrutas[i].codigo;
-		frutas[i].tipo = productosFrutas[i].tipo;
-		frutas[i].precio = productosFrutas[i].precio;
-		frutas[i].stock = productosFrutas[i].stock;
 	}
 
 	delete[] stringsEnumeradosLimpieza;
@@ -424,13 +495,9 @@ void cargarProductos()
 	delete[] stringsEnumeradosFrutas;
 
 	delete[] productosLimpieza;
-	delete[] productosTecnologia;
-	delete[] productosHogar;
-	delete[] productosVerduras;
-	delete[] productosFrutas;
 }
 
-// Obtiene un arreglo de strings a partir de un archivo de texto y los armacena en una posicion contigua de memoria
+// Obtiene un arreglo de strings a partir de un archivo de texto y los almacena en una posicion contigua de memoria
 string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrings)
 {
 	ifstream archivo(nombreArchivo);
@@ -487,7 +554,7 @@ void usuario(){
 
 	string docDNI;
 	bool encontrado = false;
-	int posisicion;
+	int posisicion = 0;
 	cout << "Bienvenido a la tienda" << endl;
 	cout << "Ingrese su DNI: ";
 	getline(cin, docDNI);
@@ -574,11 +641,10 @@ Productos *infoProductos(const string &nombreArchivo, int cantidadProductos){
 
 		contador++;
 
-		if(contador % 4 == 0 && contador > 0){
+		if(contador % 4 == 0){
 			index++;
 		}
-
-
+	
 	}
 
 	archivo.close();
