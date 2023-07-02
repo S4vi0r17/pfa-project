@@ -260,10 +260,11 @@ void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i)
 // Revisar carrito de compras(Para elegir si modificar algo)
 void revisarCarritoDeCompras(Venta *venta)
 {
+	float total=0;
 	cout << "        Carrito de compras         " << endl;
 	cout << "        ==================         " << endl;
 
-	for (int i = 0; i < 50; i++)
+	for (int i = 0; i < posicionDelProducto; i++)
 	{
 		if (venta[i].nombre_producto == "")
 		{
@@ -273,15 +274,23 @@ void revisarCarritoDeCompras(Venta *venta)
 		cout << "Producto:\t" << venta[i].nombre_producto << endl;
 		cout << "Cantidad:\t" << venta[i].cantidad_producto << endl;
 		cout << "Precio:\t" << venta[i].precio_producto << endl;
-		cout << "Monto:\t" << venta[i].monto_producto << endl;
+		cout << "Monto:\t" << venta[i].cantidad_producto * venta[i].precio_producto << endl;
 		cout << "        ==================         " << endl;
+		venta[i].monto_producto = venta[i].cantidad_producto * venta[i].precio_producto;
 	}
+	for (Venta elemento : compra)
+	{
+		total += elemento.monto_producto;
+	}
+
+
+	cout << "Total: " << total << endl;
 	modificarCarritoDeCompras();
 }
 
 int menuModifCompra(int Opc)
 {
-	cout << "¿Que desea modificar de su carrito de compra?";
+	cout << "\n¿Que desea modificar de su carrito de compra?";
 	cout << "\n1. Eliminar producto" << endl;
 	cout << "2. Modificar cantidad de algun producto" << endl;
 	cout << "3. Nada (Salir)" << endl;
@@ -298,7 +307,7 @@ void mostrarCarritoDeCompras(Venta *venta)
 		cout << "Producto:\t" << venta[i].nombre_producto << endl;
 		cout << "Cantidad:\t" << venta[i].cantidad_producto << endl;
 		cout << "Precio:\t" << venta[i].precio_producto << endl;
-		cout << "Monto:\t" << venta[i].monto_producto << endl;
+		cout << "Monto:\t" << venta[i].cantidad_producto * venta[i].precio_producto << endl;
 		cout << "        ==================         " << endl;
 	}
 }
@@ -499,18 +508,34 @@ void cargarProductos()
 	for (int i = 0; i < cantidadStringsTecnologia; i++)
 	{
 		tecnologia[i].nombre = stringsEnumeradosTecnologia[i];
+		tecnologia[i].codigo = productosTecnologia[i].codigo;
+		tecnologia[i].tipo = productosTecnologia[i].tipo;
+		tecnologia[i].precio = productosTecnologia[i].precio;
+		tecnologia[i].stock = productosTecnologia[i].stock;
 	}
 	for (int i = 0; i < cantidadStringsHogar; i++)
 	{
 		hogar[i].nombre = stringsEnumeradosHogar[i];
+		hogar[i].codigo = productosHogar[i].codigo;
+		hogar[i].tipo = productosHogar[i].tipo;
+		hogar[i].precio = productosHogar[i].precio;
+		hogar[i].stock = productosHogar[i].stock;
 	}
 	for (int i = 0; i < cantidadStringsVerduras; i++)
 	{
 		verduras[i].nombre = stringsEnumeradosVerduras[i];
+		verduras[i].codigo = productosVerduras[i].codigo;
+		verduras[i].tipo = productosVerduras[i].tipo;
+		verduras[i].precio = productosVerduras[i].precio;
+		verduras[i].stock = productosVerduras[i].stock;
 	}
 	for (int i = 0; i < cantidadStringsFrutas; i++)
 	{
 		frutas[i].nombre = stringsEnumeradosFrutas[i];
+		frutas[i].codigo = productosFrutas[i].codigo;
+		frutas[i].tipo = productosFrutas[i].tipo;
+		frutas[i].precio = productosFrutas[i].precio;
+		frutas[i].stock = productosFrutas[i].stock;
 	}
 
 	delete[] stringsEnumeradosLimpieza;
