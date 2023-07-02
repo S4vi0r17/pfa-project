@@ -57,8 +57,13 @@ void revisarCarritoDeCompras(Venta *venta);
 void MnClntReg();
 void MnEscgrProd();
 
+//Prototipo Reporte de Stock
+void reporteStock();
+void traerReporte(const string &menuX, const string &infoProductosX);
+bool comprobarRepetido(int Opc, int vectorOpc[], int lista);
 
-int menu_adm_1();
+//Menu administrador
+void menu_adm_1();
 
 
 int main()
@@ -87,7 +92,7 @@ int main()
 	}
 	else
 	{
-		// administracion;
+		menu_adm_1();
 	}
 }
 
@@ -295,37 +300,51 @@ void generarBoletaVenta(const Venta* venta, int num_ventas, const string& client
 
 // Menu Administrador
 
-int menu_adm_1()
+void menu_adm_1()
 {
 
 	int opc;
+	cout << "---------------------Menu Administracion----------------------"<<endl;
 
 	do
 	{
 		cout << "-------------Digite la opcion----------";
 		cout << "\n\n1.- Reporte de Boletas";
-		cout << "\n2.- Reporte de Producto";
-		cout << "\n3.- Modifinar Producto";
-		cout << "\n4.- Agregar Producto";
-		cout << "\n5.- Eliminar Producto";
-		cout << "\n6.- Retornar Menu Principal";
-		cout << "\n7.- Salir del programa\n";
-		cout << "Digite una opcion:";
+		cout << "\n2.- Reporte de Stock";
+		cout << "\n3.- Actualizar Stock"<<endl;
+		cout << "\n4.- Salir"<<endl;
+		cout << "Opcion:\n";
 
 		cin >> opc;
 
-		if (opc > 7 or opc < 1)
+		
+		switch (opc)
 		{
-			cout << "\nOpcion Invalidad\n";
-		}
-		else
-		{
+			case 1:
+			//Reporte de boletas
 			break;
+
+			case 2:
+			//Reporte de Stock
+			reporteStock();
+			break;
+			
+			case 3:
+			//Actualizar stock
+			break;
+			
+			case 4:
+			//Salir
+			break;
+			
+			default:
+			cout<<"opcion invalida\n";
+			
 		}
+		
 
-	} while (true);
+	} while (opc != 4);
 
-	return opc;
 }
 
 // Muestra cualquier menu solo con pasarle archivos con ruta relativa
@@ -490,6 +509,7 @@ void usuario(){
 	int posisicion;
 	cout << "Bienvenido a la tienda" << endl;
 	cout << "Ingrese su DNI: ";
+	fflush(stdin);
 	getline(cin, docDNI);
 	for (int i = 0; i < 100; i++)
 	{
@@ -584,4 +604,221 @@ Productos *infoProductos(const string &nombreArchivo, int cantidadProductos){
 	archivo.close();
 
 	return listaProductos;
+}
+
+
+//Reporte de Stock
+void reporteStock(){
+
+	int opcReporte;
+	int vectorOpc[5];
+	int lista = 0;
+
+	do {
+		cout << "Seleccione las categorias a generar Reporte de Inventario" << endl;
+		cout << "1. Limpieza" << endl;
+		cout << "2. Tecnologia" << endl;
+		cout << "3. Hogar" << endl;
+		cout << "4. Verduras" << endl;
+		cout << "5. Frutas" << endl;
+		cout << "6. Todas las categorías"<<endl;
+		cout << "7. Terminar"<<endl;
+		cout << "Opcion: "<<endl;
+		cin >> opcReporte;
+
+		if (opcReporte ==  6){
+			//Si Escoge 6 que se llene el vector de opciones con todas las opciones
+			for (int i = 1; i < 6; i++){
+				vectorOpc[lista] = i;
+				lista++;
+			}
+			
+			cout << "\nUsted ha escogido todas las opciones"<<endl;
+			system("pause");
+			opcReporte = 7;
+		}
+		else if(comprobarRepetido(opcReporte, vectorOpc, lista)){
+			cout << "\nUsted ya ha escogido esta opcion"<<endl;
+		}
+		else if ( opcReporte != 7 && !comprobarRepetido(opcReporte, vectorOpc, lista))
+		{
+			vectorOpc[lista] = opcReporte;
+			lista++;
+		}
+
+	} while (opcReporte != 7);
+
+	
+	//traerReporte(string &nombreArchivo );
+	cout << "\n--------------------------------------------\n";
+	cout << "Gerando reportes de inventario...\n";
+
+	for (int i = 0; i < lista; i++){
+
+		switch (vectorOpc[i]){
+			
+			case 1:
+				traerReporte("../archivos/menuLimpieza.txt", "../archivos/productosLimpieza.txt");
+				break;
+			case 2:
+				traerReporte("../archivos/menuTecnologia.txt", "../archivos/productosTecnologia.txt");
+				break;
+			case 3:
+				traerReporte("../archivos/menuHogar.txt", "../archivos/productosHogar.txt");
+				break;
+			case 4:
+				traerReporte("../archivos/menuVerduras.txt", "../archivos/productosVerduras.txt");
+				break;
+			case 5:
+				traerReporte("../archivos/menuFrutas.txt", "../archivos/productosFrutas.txt");
+				break;
+
+		}
+
+	}
+
+	cout << "Desea guardar el reporte de inventario? (s/n)"<<endl;
+	char opcGuardar;
+	cin >> opcGuardar;
+
+	if(opcGuardar == 's' || opcGuardar == 'S'){
+		cout << "Guardando reporte de inventario...\n";
+		ofstream archivo("../archivos/reporteInventario.txt");
+
+		if(archivo.is_open()){
+
+			archivo << "Reporte de Inventario\n";
+			int cantidadStringsLimpieza = 0, cantidadStringsTecnologia = 0, cantidadStringsHogar = 0, cantidadStringsVerduras = 0, cantidadStringsFrutas = 0;
+			string *stringsEnumeradosLimpieza = obtenerStringsEnumerados("../archivos/menuLimpieza.txt", cantidadStringsLimpieza);
+			string *stringsEnumeradosTecnologia = obtenerStringsEnumerados("../archivos/menuTecnologia.txt", cantidadStringsTecnologia);
+			string *stringsEnumeradosHogar = obtenerStringsEnumerados("../archivos/menuHogar.txt", cantidadStringsHogar);
+			string *stringsEnumeradosVerduras = obtenerStringsEnumerados("../archivos/menuVerduras.txt", cantidadStringsVerduras);
+			string *stringsEnumeradosFrutas = obtenerStringsEnumerados("../archivos/menuFrutas.txt", cantidadStringsFrutas);
+
+			//Obtengo el resto de la informacion de los productos usando la funcion infoProductos
+			Productos *productosLimpieza = infoProductos("../archivos/productosLimpieza.txt", cantidadStringsLimpieza);
+			Productos *productosTecnologia = infoProductos("../archivos/productosTecnologia.txt", cantidadStringsTecnologia);
+			Productos *productosHogar = infoProductos("../archivos/productosHogar.txt", cantidadStringsHogar);
+			Productos *productosVerduras = infoProductos("../archivos/productosVerduras.txt", cantidadStringsVerduras);
+			Productos *productosFrutas = infoProductos("../archivos/productosFrutas.txt", cantidadStringsFrutas);
+
+			for (int i = 0; i < lista; i++){
+
+				switch (vectorOpc[i]){
+					
+					case 1:
+						archivo << "Limpieza\n";
+						archivo << "Nombre del producto - Cantidad\n";
+						for (int i = 0; i < cantidadStringsLimpieza; i++){
+							archivo << stringsEnumeradosLimpieza[i] << " " << productosLimpieza[i].stock << endl;
+						}
+						break;
+					case 2:
+						archivo << "Tecnologia\n";
+						archivo << "Nombre del producto - Cantidad\n";
+						for (int i = 0; i < cantidadStringsTecnologia; i++){
+							archivo << stringsEnumeradosTecnologia[i] << " " << productosTecnologia[i].stock << endl;
+						}
+						break;
+					case 3:
+						archivo << "Hogar\n";
+						archivo << "Nombre del producto - Cantidad\n";
+						for (int i = 0; i < cantidadStringsHogar; i++){
+							archivo << stringsEnumeradosHogar[i] << " " << productosHogar[i].stock << endl;
+						}
+						break;
+					case 4:
+						archivo << "Verduras\n";
+						archivo << "Nombre del producto - Cantidad\n";
+						for (int i = 0; i < cantidadStringsVerduras; i++){
+							archivo << stringsEnumeradosVerduras[i] << " " << productosVerduras[i].stock << endl;
+						}
+						break;
+					case 5:
+						archivo << "Frutas\n";
+						archivo << "Nombre del producto - Cantidad\n";
+						for (int i = 0; i < cantidadStringsFrutas; i++){
+							archivo << stringsEnumeradosFrutas[i] << " " << productosFrutas[i].stock << endl;
+						}
+						break;
+
+				}
+
+			}
+
+			
+			cout << "Reporte de inventario guardado con exito!\n";
+			delete[] stringsEnumeradosLimpieza;
+			delete[] stringsEnumeradosTecnologia;
+			delete[] stringsEnumeradosHogar;
+			delete[] stringsEnumeradosVerduras;
+			delete[] stringsEnumeradosFrutas;
+
+			delete[] productosLimpieza;
+			delete[] productosTecnologia;
+			delete[] productosHogar;
+			delete[] productosVerduras;
+			delete[] productosFrutas;
+		}
+		else{
+			cout << "No se pudo guardar el reporte de inventario\n";
+		}
+		archivo.close();
+	}
+	else{
+		cout << "Reporte de inventario no guardado\n";
+	}
+
+
+}
+
+
+void traerReporte(const string &menuX, const string &infoProductosX){
+
+	int cantidadStrings = 0;
+
+	string menu;
+
+	ifstream archivo(menuX);
+
+	if (!archivo)
+	{
+		cout << "\nno se pudo abrir el archivo: " << menuX << endl;
+
+	}
+	
+	string *stringsEnumeradosNombresProductos = obtenerStringsEnumerados(menuX, cantidadStrings); 
+
+	Productos *productos = infoProductos(infoProductosX, cantidadStrings);
+
+	getline(archivo, menu);
+
+	cout<<"Reporte de Inventario "<< menu<<endl;
+	cout<<"---------------------------"<<endl;
+
+	for (int i = 0; i < cantidadStrings; i++){
+
+		cout<<"Producto: "<<stringsEnumeradosNombresProductos[i]<<endl;
+		cout<<"Cantidad: "<<productos[i].stock << endl;
+			
+	}
+
+	delete[] stringsEnumeradosNombresProductos;
+	delete[] productos;
+	
+	archivo.close();
+
+}
+
+
+bool comprobarRepetido(int Opc, int vectorOpc[], int lista){
+
+	for (int i = 0; i < lista; i++){
+		if (vectorOpc[i] == Opc){
+			return true;
+		}
+	}
+
+	return false;
+
 }
