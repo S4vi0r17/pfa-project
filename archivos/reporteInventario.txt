@@ -1,0 +1,34 @@
+Reporte de Inventario
+Limpieza
+ Bayetas y paños de microfibra 5
+ Detergente líquido 6
+ Esponjas 7
+ Guantes de goma 8
+ Limpiador de vidrios 9
+ Limpiador multiusos 10
+ Papel Higiénico 11
+ Quitamanchas 12
+ Set escoba 13
+ Set trapeador 14
+Hogar
+ Aspiradora robotizada 5
+ Cama de 2 plazas 6
+ Cortinas o persianas 7
+ Espejo de cuerpo entero 8
+ Juego de comedor (4 sillas, 1 mesa) 9
+ Juego de sofás 10
+ Lámpara de mesa 11
+ Repisa de madera 12
+ Ropero 13
+ Silla de escritorio 14
+Frutas
+ 1 kg de manzanas 5
+ 1 kg de naranjas 6
+ Unidad de plátano 7
+ Unidad de fresas 8
+ 1 kg de piñas 9
+ 1 kg de sandías 10
+ Unidad de kiwi 11
+ Unidad de mango 12
+ Unidad de pera 13
+ 1 kg de uvas 14
