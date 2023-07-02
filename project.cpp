@@ -260,7 +260,7 @@ void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i)
 // Revisar carrito de compras(Para elegir si modificar algo)
 void revisarCarritoDeCompras(Venta *venta)
 {
-	float total=0;
+	float total = 0;
 	cout << "        Carrito de compras         " << endl;
 	cout << "        ==================         " << endl;
 
@@ -270,7 +270,6 @@ void revisarCarritoDeCompras(Venta *venta)
 		{
 			break;
 		}
-		// cout << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
 		cout << "Producto:\t" << venta[i].nombre_producto << endl;
 		cout << "Cantidad:\t" << venta[i].cantidad_producto << endl;
 		cout << "Precio:\t" << venta[i].precio_producto << endl;
@@ -282,7 +281,6 @@ void revisarCarritoDeCompras(Venta *venta)
 	{
 		total += elemento.monto_producto;
 	}
-
 
 	cout << "Total: " << total << endl;
 	modificarCarritoDeCompras();
@@ -543,8 +541,11 @@ void cargarProductos()
 	delete[] stringsEnumeradosHogar;
 	delete[] stringsEnumeradosVerduras;
 	delete[] stringsEnumeradosFrutas;
-
 	delete[] productosLimpieza;
+	delete[] productosTecnologia;
+	delete[] productosHogar;
+	delete[] productosVerduras;
+	delete[] productosFrutas;
 }
 
 // Obtiene un arreglo de strings a partir de un archivo de texto y los almacena en una posicion contigua de memoria
@@ -1006,7 +1007,7 @@ void actualizarStock(const string &nombreArchivo, const string &productName)
 			if (contador % 4 == 0)
 			{
 				fflush(stdin);
-				cout << "Ingresa la modificación para : " << lineas2[j] << endl;
+				cout << "Ingresa la modificación para " << lineas2[j] << endl;
 				getline(cin, linea);
 				lineas.push_back(linea);
 				j++;
