@@ -8,6 +8,7 @@
 #include <fstream>
 #include <filesystem> //agregado por problemas de rutas
 #include <conio.h>
+#include <vector>
 using namespace std;
 
 // Estructuras
@@ -31,7 +32,7 @@ struct Clientes
 	string nombre;
 	string DNI;
 	Boleta historial[10];
-}clientes[100];
+} clientes[100];
 int posicionDelCliente = 0;
 
 struct Productos
@@ -45,7 +46,7 @@ struct Productos
 
 // Prototipos
 string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrings);
-//Prototipo del inventario productos
+// Prototipo del inventario productos
 Productos *infoProductos(const string &nombreArchivo, int cantidadProductos);
 
 void usuario();
@@ -59,14 +60,16 @@ void MnClntReg();
 void MnEscgrProd();
 void modificarCarritoDeCompras();
 
-//Prototipo Reporte de Stock
+// Prototipo Reporte de Stock
 void reporteStock();
 void traerReporte(const string &menuX, const string &infoProductosX);
 bool comprobarRepetido(int Opc, int vectorOpc[], int lista);
 
-//Menu administrador
+// Prototipo Actualizar Stock
+void actualizarStock(const string &, const string &);
+void modificarStock();
+// Menu administrador
 void menu_adm_1();
-
 
 int main()
 {
@@ -116,7 +119,7 @@ void MnClntReg()
 			revisarCarritoDeCompras(compra);
 			break;
 		case 3:
-			//Compra
+			// Compra
 			break;
 		case 4:
 			Opc = 4;
@@ -259,32 +262,30 @@ void revisarCarritoDeCompras(Venta *venta)
 {
 	cout << "        Carrito de compras         " << endl;
 	cout << "        ==================         " << endl;
-	/*cout << "Producto                     "
-		 << "Cantidad                     "
-		 << "Precio                       " << endl;*/
+
 	for (int i = 0; i < 50; i++)
 	{
 		if (venta[i].nombre_producto == "")
 		{
 			break;
 		}
-		//cout << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
-		cout<<"Producto:\t"<<venta[i].nombre_producto<<endl;
-		cout<<"Cantidad:\t"<<venta[i].cantidad_producto<<endl;
-		cout<<"Precio:\t"<<venta[i].precio_producto<<endl;
-		cout<<"Monto:\t"<<venta[i].monto_producto<<endl;
-		cout<<"        ==================         "<<endl;
+		// cout << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
+		cout << "Producto:\t" << venta[i].nombre_producto << endl;
+		cout << "Cantidad:\t" << venta[i].cantidad_producto << endl;
+		cout << "Precio:\t" << venta[i].precio_producto << endl;
+		cout << "Monto:\t" << venta[i].monto_producto << endl;
+		cout << "        ==================         " << endl;
 	}
 	modificarCarritoDeCompras();
 }
 
 int menuModifCompra(int Opc)
 {
-	cout<<"¿Que desea modificar de su carrito de compra?";
-	cout<<"\n1. Eliminar producto"<<endl;
-	cout<<"2. Modificar cantidad de algun producto"<<endl;
-	cout<<"3. Nada (Salir)"<<endl;
-	cin>>Opc;
+	cout << "¿Que desea modificar de su carrito de compra?";
+	cout << "\n1. Eliminar producto" << endl;
+	cout << "2. Modificar cantidad de algun producto" << endl;
+	cout << "3. Nada (Salir)" << endl;
+	cin >> Opc;
 	return Opc;
 }
 
@@ -294,97 +295,105 @@ void mostrarCarritoDeCompras(Venta *venta)
 	cout << "        ==================         " << endl;
 	for (int i = 0; i < posicionDelProducto; i++)
 	{
-		cout<<"Producto:\t"<<venta[i].nombre_producto<<endl;
-		cout<<"Cantidad:\t"<<venta[i].cantidad_producto<<endl;
-		cout<<"Precio:\t"<<venta[i].precio_producto<<endl;
-		cout<<"Monto:\t"<<venta[i].monto_producto<<endl;
-		cout<<"        ==================         "<<endl;
+		cout << "Producto:\t" << venta[i].nombre_producto << endl;
+		cout << "Cantidad:\t" << venta[i].cantidad_producto << endl;
+		cout << "Precio:\t" << venta[i].precio_producto << endl;
+		cout << "Monto:\t" << venta[i].monto_producto << endl;
+		cout << "        ==================         " << endl;
 	}
 }
 
 void eliminarProductoCarCompra()
 {
 	int pos;
-	do{
+	do
+	{
 		mostrarCarritoDeCompras(compra);
-		cout<<"Digite el número del producto que desea elminar (Digite '0' para Salir): ";
-		cin>>pos;
-		if (pos != 0 && pos >= 1 && pos <= posicionDelProducto) {
-			for (int i = pos - 1; i < posicionDelProducto - 1; i++) {
+		cout << "Digite el número del producto que desea elminar (Digite '0' para Salir): ";
+		cin >> pos;
+		if (pos != 0 && pos >= 1 && pos <= posicionDelProducto)
+		{
+			for (int i = pos - 1; i < posicionDelProducto - 1; i++)
+			{
 				compra[i] = compra[i + 1];
 			}
 			posicionDelProducto--;
 		}
-	}while(pos!=0);
+	} while (pos != 0);
 }
 
 void modificarCantCarCompra()
 {
 	int pos;
 	int cantidad;
-	do{
+	do
+	{
 		mostrarCarritoDeCompras(compra);
-		cout<<"Digite el número del producto que desee cambiar su cantidad (Digite '0' para salir): ";
-		cin>>pos;
-		cout<<"Digite la cantidad que desee del producto: ";
-		cin>>cantidad;
-		if(pos!=0){
-			compra[pos-1].cantidad_producto=cantidad;
+		cout << "Digite el número del producto que desee cambiar su cantidad (Digite '0' para salir): ";
+		cin >> pos;
+		cout << "Digite la cantidad que desee del producto: ";
+		cin >> cantidad;
+		if (pos != 0)
+		{
+			compra[pos - 1].cantidad_producto = cantidad;
 		}
 		system("cls");
-	}while(pos!=0);
+	} while (pos != 0);
 }
 
-//Modificar Carrito de Compra
+// Modificar Carrito de Compra
 void modificarCarritoDeCompras()
 {
 	int Opc;
-	do{
-		Opc=menuModifCompra(Opc);
-		switch(Opc){
-			case 1:
-				eliminarProductoCarCompra();
-				break;
-			case 2:
-				modificarCantCarCompra();
-				break;
-			case 3:
-				break;
-			default:
-				cout<<"\n La opción digitada es inválida";
-				cout<<"\n Vuelva a intentarlo\n\n";
-				system("pause");
-				system("cls");
-				break;
+	do
+	{
+		Opc = menuModifCompra(Opc);
+		switch (Opc)
+		{
+		case 1:
+			eliminarProductoCarCompra();
+			break;
+		case 2:
+			modificarCantCarCompra();
+			break;
+		case 3:
+			break;
+		default:
+			cout << "\n La opción digitada es inválida";
+			cout << "\n Vuelva a intentarlo\n\n";
+			system("pause");
+			system("cls");
+			break;
 		}
-	}while(Opc!=3);
-} 
+	} while (Opc != 3);
+}
 
 // Generar boleta
-void generarBoletaVenta(const Venta* venta, int num_ventas, const string& cliente, double total, const string& archivo_salida)
+void generarBoletaVenta(const Venta *venta, int num_ventas, const string &cliente, double total, const string &archivo_salida)
 {
-    ofstream archivo(archivo_salida);
-    if (!archivo.is_open()) {
-        cout << "Error al abrir el archivo." << endl;
-        return;
-    }
+	ofstream archivo(archivo_salida);
+	if (!archivo.is_open())
+	{
+		cout << "Error al abrir el archivo." << endl;
+		return;
+	}
 
-    archivo << "         Boleta de Venta          " << endl;
-    archivo << "        ------------------        " << endl;
-    archivo << "Cliente: " << cliente << endl;
-    archivo << "-------------------------------" << endl;
-    archivo << "Producto          Cantidad   Precio" << endl;
-    archivo << "-------------------------------" << endl;
+	archivo << "         Boleta de Venta          " << endl;
+	archivo << "        ------------------        " << endl;
+	archivo << "Cliente: " << cliente << endl;
+	archivo << "-------------------------------" << endl;
+	archivo << "Producto          Cantidad   Precio" << endl;
+	archivo << "-------------------------------" << endl;
 
-    for (int i = 0; i < num_ventas; i++)
-    {
-        archivo << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
-    }
+	for (int i = 0; i < num_ventas; i++)
+	{
+		archivo << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
+	}
 
-    archivo << "-------------------------------" << endl;
-    archivo << "Total:            " << total << endl;
+	archivo << "-------------------------------" << endl;
+	archivo << "Total:            " << total << endl;
 
-    archivo.close();
+	archivo.close();
 }
 
 // Menu Administrador
@@ -393,49 +402,46 @@ void menu_adm_1()
 {
 
 	int opc;
-	cout << "---------------------Menu Administracion----------------------"<<endl;
+	cout << "---------------------Menu Administracion----------------------" << endl;
 
 	do
 	{
 		cout << "-------------Digite la opcion----------";
 		cout << "\n\n1.- Reporte de Boletas";
 		cout << "\n2.- Reporte de Stock";
-		cout << "\n3.- Actualizar Stock"<<endl;
-		cout << "\n4.- Salir"<<endl;
+		cout << "\n3.- Actualizar Stock" << endl;
+		cout << "\n4.- Salir" << endl;
 		cout << "Opcion:\n";
 
 		cin >> opc;
 
-		
 		switch (opc)
 		{
-			case 1:
-			//Reporte de boletas
+		case 1:
+			// Reporte de boletas
 			break;
 
-			case 2:
-			//Reporte de Stock
+		case 2:
+			// Reporte de Stock
 			reporteStock();
 			break;
-			
-			case 3:
-			//Actualizar stock
+
+		case 3:
+			// Actualizar stock
+			modificarStock();
+			getch();
 			break;
-			
-			case 4:
-			//Salir
+
+		case 4:
+			// Salir
 			break;
-			
-			default:
-			cout<<"opcion invalida\n";
-			
+
+		default:
+			cout << "opcion invalida\n";
 		}
-		
 
 	} while (opc != 4);
-
 }
-
 
 // Muestra cualquier menu solo con pasarle archivos con ruta relativa
 int mostrarMenu(const string &archivo)
@@ -465,8 +471,6 @@ int mostrarMenu(const string &archivo)
 }
 
 // Funcion de medios de pago
-
-
 
 void cargarProductos()
 {
@@ -571,7 +575,8 @@ string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrin
 }
 
 // Menu clientes
-void usuario(){
+void usuario()
+{
 
 	string docDNI;
 	bool encontrado = false;
@@ -592,7 +597,6 @@ void usuario(){
 			MnClntReg();
 			break;
 		}
-	
 	}
 	if (encontrado == false)
 	{
@@ -606,7 +610,7 @@ void usuario(){
 	}
 }
 
-//Realizar compra
+// Realizar compra
 void menuMediosPago()
 {
 	char Opc;
@@ -623,13 +627,13 @@ void menuMediosPago()
 	cout << "   7. Vale de alimento" << endl;
 
 	cin >> Opc;
-	
+
 	generarBoletaVenta(compra, posicionDelProducto, clientes[posicionDelCliente].nombre, 0, "../archivos/boleta.txt");
-	
 }
 
-//Obtendre un struct con la informacion de los productos
-Productos *infoProductos(const string &nombreArchivo, int cantidadProductos){
+// Obtendre un struct con la informacion de los productos
+Productos *infoProductos(const string &nombreArchivo, int cantidadProductos)
+{
 
 	ifstream archivo(nombreArchivo);
 
@@ -641,33 +645,34 @@ Productos *infoProductos(const string &nombreArchivo, int cantidadProductos){
 
 	string linea;
 
-	Productos* listaProductos = new Productos[cantidadProductos]; 
+	Productos *listaProductos = new Productos[cantidadProductos];
 
-	int index = 0, contador = 0 ; 
+	int index = 0, contador = 0;
 
 	while (getline(archivo, linea))
 	{
-		switch(contador % 4){
-			case 0:
-				listaProductos[index].codigo = linea;
-				break;
-			case 1:
-				listaProductos[index].tipo = linea;
-				break;
-			case 2:
-				listaProductos[index].precio = stof(linea);
-				break;
-			case 3:
-				listaProductos[index].stock = stoi(linea);
-				break;
+		switch (contador % 4)
+		{
+		case 0:
+			listaProductos[index].codigo = linea;
+			break;
+		case 1:
+			listaProductos[index].tipo = linea;
+			break;
+		case 2:
+			listaProductos[index].precio = stof(linea);
+			break;
+		case 3:
+			listaProductos[index].stock = stoi(linea);
+			break;
 		}
 
 		contador++;
 
-		if(contador % 4 == 0){
+		if (contador % 4 == 0)
+		{
 			index++;
 		}
-	
 	}
 
 	archivo.close();
@@ -675,41 +680,45 @@ Productos *infoProductos(const string &nombreArchivo, int cantidadProductos){
 	return listaProductos;
 }
 
-
-//Reporte de Stock
-void reporteStock(){
+// Reporte de Stock
+void reporteStock()
+{
 
 	int opcReporte;
 	int vectorOpc[5];
 	int lista = 0;
 
-	do {
+	do
+	{
 		cout << "Seleccione las categorias a generar Reporte de Inventario" << endl;
 		cout << "1. Limpieza" << endl;
 		cout << "2. Tecnologia" << endl;
 		cout << "3. Hogar" << endl;
 		cout << "4. Verduras" << endl;
 		cout << "5. Frutas" << endl;
-		cout << "6. Todas las categorías"<<endl;
-		cout << "7. Terminar"<<endl;
-		cout << "Opcion: "<<endl;
+		cout << "6. Todas las categorías" << endl;
+		cout << "7. Terminar" << endl;
+		cout << "Opcion: " << endl;
 		cin >> opcReporte;
 
-		if (opcReporte ==  6){
-			//Si Escoge 6 que se llene el vector de opciones con todas las opciones
-			for (int i = 1; i < 6; i++){
+		if (opcReporte == 6)
+		{
+			// Si Escoge 6 que se llene el vector de opciones con todas las opciones
+			for (int i = 1; i < 6; i++)
+			{
 				vectorOpc[lista] = i;
 				lista++;
 			}
-			
-			cout << "\nUsted ha escogido todas las opciones"<<endl;
+
+			cout << "\nUsted ha escogido todas las opciones" << endl;
 			system("pause");
 			opcReporte = 7;
 		}
-		else if(comprobarRepetido(opcReporte, vectorOpc, lista)){
-			cout << "\nUsted ya ha escogido esta opcion"<<endl;
+		else if (comprobarRepetido(opcReporte, vectorOpc, lista))
+		{
+			cout << "\nUsted ya ha escogido esta opcion" << endl;
 		}
-		else if ( opcReporte != 7 && !comprobarRepetido(opcReporte, vectorOpc, lista))
+		else if (opcReporte != 7 && !comprobarRepetido(opcReporte, vectorOpc, lista))
 		{
 			vectorOpc[lista] = opcReporte;
 			lista++;
@@ -717,44 +726,45 @@ void reporteStock(){
 
 	} while (opcReporte != 7);
 
-	
-	//traerReporte(string &nombreArchivo );
+	// traerReporte(string &nombreArchivo );
 	cout << "\n--------------------------------------------\n";
 	cout << "Gerando reportes de inventario...\n";
 
-	for (int i = 0; i < lista; i++){
+	for (int i = 0; i < lista; i++)
+	{
 
-		switch (vectorOpc[i]){
-			
-			case 1:
-				traerReporte("../archivos/menuLimpieza.txt", "../archivos/productosLimpieza.txt");
-				break;
-			case 2:
-				traerReporte("../archivos/menuTecnologia.txt", "../archivos/productosTecnologia.txt");
-				break;
-			case 3:
-				traerReporte("../archivos/menuHogar.txt", "../archivos/productosHogar.txt");
-				break;
-			case 4:
-				traerReporte("../archivos/menuVerduras.txt", "../archivos/productosVerduras.txt");
-				break;
-			case 5:
-				traerReporte("../archivos/menuFrutas.txt", "../archivos/productosFrutas.txt");
-				break;
+		switch (vectorOpc[i])
+		{
 
+		case 1:
+			traerReporte("../archivos/menuLimpieza.txt", "../archivos/productosLimpieza.txt");
+			break;
+		case 2:
+			traerReporte("../archivos/menuTecnologia.txt", "../archivos/productosTecnologia.txt");
+			break;
+		case 3:
+			traerReporte("../archivos/menuHogar.txt", "../archivos/productosHogar.txt");
+			break;
+		case 4:
+			traerReporte("../archivos/menuVerduras.txt", "../archivos/productosVerduras.txt");
+			break;
+		case 5:
+			traerReporte("../archivos/menuFrutas.txt", "../archivos/productosFrutas.txt");
+			break;
 		}
-
 	}
 
-	cout << "Desea guardar el reporte de inventario? (s/n)"<<endl;
+	cout << "Desea guardar el reporte de inventario? (s/n)" << endl;
 	char opcGuardar;
 	cin >> opcGuardar;
 
-	if(opcGuardar == 's' || opcGuardar == 'S'){
+	if (opcGuardar == 's' || opcGuardar == 'S')
+	{
 		cout << "Guardando reporte de inventario...\n";
 		ofstream archivo("../archivos/reporteInventario.txt");
 
-		if(archivo.is_open()){
+		if (archivo.is_open())
+		{
 
 			archivo << "Reporte de Inventario\n";
 			int cantidadStringsLimpieza = 0, cantidadStringsTecnologia = 0, cantidadStringsHogar = 0, cantidadStringsVerduras = 0, cantidadStringsFrutas = 0;
@@ -764,58 +774,62 @@ void reporteStock(){
 			string *stringsEnumeradosVerduras = obtenerStringsEnumerados("../archivos/menuVerduras.txt", cantidadStringsVerduras);
 			string *stringsEnumeradosFrutas = obtenerStringsEnumerados("../archivos/menuFrutas.txt", cantidadStringsFrutas);
 
-			//Obtengo el resto de la informacion de los productos usando la funcion infoProductos
+			// Obtengo el resto de la informacion de los productos usando la funcion infoProductos
 			Productos *productosLimpieza = infoProductos("../archivos/productosLimpieza.txt", cantidadStringsLimpieza);
 			Productos *productosTecnologia = infoProductos("../archivos/productosTecnologia.txt", cantidadStringsTecnologia);
 			Productos *productosHogar = infoProductos("../archivos/productosHogar.txt", cantidadStringsHogar);
 			Productos *productosVerduras = infoProductos("../archivos/productosVerduras.txt", cantidadStringsVerduras);
 			Productos *productosFrutas = infoProductos("../archivos/productosFrutas.txt", cantidadStringsFrutas);
 
-			for (int i = 0; i < lista; i++){
+			for (int i = 0; i < lista; i++)
+			{
 
-				switch (vectorOpc[i]){
-					
-					case 1:
-						archivo << "Limpieza\n";
-						archivo << "Nombre del producto - Cantidad\n";
-						for (int i = 0; i < cantidadStringsLimpieza; i++){
-							archivo << stringsEnumeradosLimpieza[i] << " " << productosLimpieza[i].stock << endl;
-						}
-						break;
-					case 2:
-						archivo << "Tecnologia\n";
-						archivo << "Nombre del producto - Cantidad\n";
-						for (int i = 0; i < cantidadStringsTecnologia; i++){
-							archivo << stringsEnumeradosTecnologia[i] << " " << productosTecnologia[i].stock << endl;
-						}
-						break;
-					case 3:
-						archivo << "Hogar\n";
-						archivo << "Nombre del producto - Cantidad\n";
-						for (int i = 0; i < cantidadStringsHogar; i++){
-							archivo << stringsEnumeradosHogar[i] << " " << productosHogar[i].stock << endl;
-						}
-						break;
-					case 4:
-						archivo << "Verduras\n";
-						archivo << "Nombre del producto - Cantidad\n";
-						for (int i = 0; i < cantidadStringsVerduras; i++){
-							archivo << stringsEnumeradosVerduras[i] << " " << productosVerduras[i].stock << endl;
-						}
-						break;
-					case 5:
-						archivo << "Frutas\n";
-						archivo << "Nombre del producto - Cantidad\n";
-						for (int i = 0; i < cantidadStringsFrutas; i++){
-							archivo << stringsEnumeradosFrutas[i] << " " << productosFrutas[i].stock << endl;
-						}
-						break;
+				switch (vectorOpc[i])
+				{
 
+				case 1:
+					archivo << "Limpieza\n";
+					archivo << "Nombre del producto - Cantidad\n";
+					for (int i = 0; i < cantidadStringsLimpieza; i++)
+					{
+						archivo << stringsEnumeradosLimpieza[i] << " " << productosLimpieza[i].stock << endl;
+					}
+					break;
+				case 2:
+					archivo << "Tecnologia\n";
+					archivo << "Nombre del producto - Cantidad\n";
+					for (int i = 0; i < cantidadStringsTecnologia; i++)
+					{
+						archivo << stringsEnumeradosTecnologia[i] << " " << productosTecnologia[i].stock << endl;
+					}
+					break;
+				case 3:
+					archivo << "Hogar\n";
+					archivo << "Nombre del producto - Cantidad\n";
+					for (int i = 0; i < cantidadStringsHogar; i++)
+					{
+						archivo << stringsEnumeradosHogar[i] << " " << productosHogar[i].stock << endl;
+					}
+					break;
+				case 4:
+					archivo << "Verduras\n";
+					archivo << "Nombre del producto - Cantidad\n";
+					for (int i = 0; i < cantidadStringsVerduras; i++)
+					{
+						archivo << stringsEnumeradosVerduras[i] << " " << productosVerduras[i].stock << endl;
+					}
+					break;
+				case 5:
+					archivo << "Frutas\n";
+					archivo << "Nombre del producto - Cantidad\n";
+					for (int i = 0; i < cantidadStringsFrutas; i++)
+					{
+						archivo << stringsEnumeradosFrutas[i] << " " << productosFrutas[i].stock << endl;
+					}
+					break;
 				}
-
 			}
 
-			
 			cout << "Reporte de inventario guardado con exito!\n";
 			delete[] stringsEnumeradosLimpieza;
 			delete[] stringsEnumeradosTecnologia;
@@ -829,20 +843,20 @@ void reporteStock(){
 			delete[] productosVerduras;
 			delete[] productosFrutas;
 		}
-		else{
+		else
+		{
 			cout << "No se pudo guardar el reporte de inventario\n";
 		}
 		archivo.close();
 	}
-	else{
+	else
+	{
 		cout << "Reporte de inventario no guardado\n";
 	}
-
-
 }
 
-
-void traerReporte(const string &menuX, const string &infoProductosX){
+void traerReporte(const string &menuX, const string &infoProductosX)
+{
 
 	int cantidadStrings = 0;
 
@@ -853,41 +867,150 @@ void traerReporte(const string &menuX, const string &infoProductosX){
 	if (!archivo)
 	{
 		cout << "\nno se pudo abrir el archivo: " << menuX << endl;
-
 	}
-	
-	string *stringsEnumeradosNombresProductos = obtenerStringsEnumerados(menuX, cantidadStrings); 
+
+	string *stringsEnumeradosNombresProductos = obtenerStringsEnumerados(menuX, cantidadStrings);
 
 	Productos *productos = infoProductos(infoProductosX, cantidadStrings);
 
 	getline(archivo, menu);
 
-	cout<<"Reporte de Inventario "<< menu<<endl;
-	cout<<"---------------------------"<<endl;
+	cout << "Reporte de Inventario " << menu << endl;
+	cout << "---------------------------" << endl;
 
-	for (int i = 0; i < cantidadStrings; i++){
+	for (int i = 0; i < cantidadStrings; i++)
+	{
 
-		cout<<"Producto: "<<stringsEnumeradosNombresProductos[i]<<endl;
-		cout<<"Cantidad: "<<productos[i].stock << endl;
-			
+		cout << "Producto: " << stringsEnumeradosNombresProductos[i] << endl;
+		cout << "Cantidad: " << productos[i].stock << endl;
 	}
 
 	delete[] stringsEnumeradosNombresProductos;
 	delete[] productos;
-	
-	archivo.close();
 
+	archivo.close();
 }
 
+bool comprobarRepetido(int Opc, int vectorOpc[], int lista)
+{
 
-bool comprobarRepetido(int Opc, int vectorOpc[], int lista){
-
-	for (int i = 0; i < lista; i++){
-		if (vectorOpc[i] == Opc){
+	for (int i = 0; i < lista; i++)
+	{
+		if (vectorOpc[i] == Opc)
+		{
 			return true;
 		}
 	}
 
 	return false;
+}
 
+void modificarStock()
+{
+
+	int opc1;
+	do
+	{
+		cout << "Menu de actualizacion de stock\n";
+		cout << "1. Limpieza\n";
+		cout << "2. Tecnologia\n";
+		cout << "3. Hogar\n";
+		cout << "4. Verduras\n";
+		cout << "5. Frutas\n";
+		cout << "6. Actualizacion completa(Salir)\n";
+		cin >> opc1;
+		switch (opc1)
+		{
+		case 1:
+			traerReporte("../archivos/menuLimpieza.txt", "../archivos/productosLimpieza.txt");
+			actualizarStock("../archivos/productosLimpieza.txt", "../archivos/menuLimpieza.txt");
+			getch();
+
+			break;
+		case 2:
+			traerReporte("../archivos/menuTecnologia.txt", "../archivos/productosTecnologia.txt");
+			actualizarStock("../archivos/productosTecnologia.txt", "../archivos/menuTecnologia.txt");
+			getch();
+			break;
+
+		case 3:
+			traerReporte("../archivos/menuHogar.txt", "../archivos/productosHogar.txt");
+			actualizarStock("../archivos/productosHogar.txt", "../archivos/menuHogar.txt");
+			getch();
+			break;
+
+		case 4:
+			traerReporte("../archivos/menuVerduras.txt", "../archivos/productosVerduras.txt");
+			actualizarStock("../archivos/productosVerduras.txt", "../archivos/menuVerduras.txt");
+			getch();
+			break;
+
+		case 5:
+			traerReporte("../archivos/menuFrutas.txt", "../archivos/productosFrutas.txt");
+			actualizarStock("../archivos/productosFrutas.txt", "../archivos/menuFrutas.txt");
+			getch();
+			break;
+		case 6:
+			break;
+		default:
+			cout << "Opcion invalida\n";
+			break;
+		}
+
+	} while (opc1 != 6);
+}
+
+void actualizarStock(const string &nombreArchivo, const string &productName)
+{
+	ifstream archivoEntrada(nombreArchivo);
+	vector<string> lineas;
+	vector<string> lineas2;
+	string linea;
+	int contador = 1, cantidadDeProductos = 0, j = 0;
+
+	string *nombres = obtenerStringsEnumerados(productName, cantidadDeProductos);
+	for (int i = 0; i < cantidadDeProductos; i++)
+	{
+		lineas2.push_back(nombres[i]);
+	}
+
+	if (archivoEntrada.is_open())
+	{
+		while (getline(archivoEntrada, linea))
+		{
+			if (contador % 4 == 0)
+			{
+				fflush(stdin);
+				cout << "Ingresa la modificación para : " << lineas2[j] << endl;
+				getline(cin, linea);
+				lineas.push_back(linea);
+				j++;
+			}
+			else
+			{
+				lineas.push_back(linea);
+			}
+			contador++;
+		}
+		archivoEntrada.close();
+
+		ofstream archivoSalida(nombreArchivo);
+		if (archivoSalida.is_open())
+		{
+			for (auto linea : lineas)
+			{
+				archivoSalida << linea << endl;
+			}
+			archivoSalida.close();
+			cout << "Actualizacion de stock exitosa" << endl;
+		}
+		else
+		{
+			cout << "No se pudo modificar stock." << endl;
+		}
+	}
+	else
+	{
+		cout << "No se pudo abrir el archivo de entrada." << endl;
+	}
 }
