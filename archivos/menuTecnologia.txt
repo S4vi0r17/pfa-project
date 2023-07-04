@@ -11,4 +11,4 @@
 8. Tablet Samsung
 9. Tarjeta grafica Nvidia GeForce
 10. Unidad de estado solido (SSD) Samsung
-11. Salir
+11. Atras

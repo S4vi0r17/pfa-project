@@ -11,4 +11,4 @@
 8. Quitamanchas
 9. Set escoba
 10. Set trapeador
-11. Salir
+11. Atras

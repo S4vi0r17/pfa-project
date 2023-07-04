@@ -161,18 +161,23 @@ void MnEscgrProd()
 		switch (mostrarMenu("../archivos/menuEscgrProd.txt"))
 		{
 		case 1:
+			system("cls");
 			menuTipo(compra, "../archivos/menuLimpieza.txt", limpieza, posicionDelProducto);
 			break;
 		case 2:
+			system("cls");
 			menuTipo(compra, "../archivos/menuTecnologia.txt", tecnologia, posicionDelProducto);
 			break;
 		case 3:
+			system("cls");
 			menuTipo(compra, "../archivos/menuHogar.txt", hogar, posicionDelProducto);
 			break;
 		case 4:
+			system("cls");
 			menuTipo(compra, "../archivos/menuVerduras.txt", verduras, posicionDelProducto);
 			break;
 		case 5:
+			system("cls");
 			menuTipo(compra, "../archivos/menuFrutas.txt", frutas, posicionDelProducto);
 			break;
 		case 6:
@@ -270,6 +275,7 @@ void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i)
 void revisarCarritoDeCompras(Venta *venta)
 {
 	float total = 0;
+	system("cls");
 	cout << "        Carrito de compras         " << endl;
 	cout << "        ==================         " << endl;
 
@@ -308,6 +314,7 @@ int menuModifCompra()
 
 void mostrarCarritoDeCompras(Venta *venta)
 {
+	system("cls");
 	cout << "        CARRITO DE COMPRAS         " << endl;
 	cout << "        ==================         " << endl;
 	for (int i = 0; i < posicionDelProducto; i++)
@@ -616,6 +623,7 @@ void usuario()
 	string docDNI;
 	bool encontrado = false;
 	int posisicion;
+	system("cls");
 	cout << "Bienvenido a la tienda" << endl;
 	fflush(stdin);
 	cout << "Ingrese su DNI: ";
@@ -636,10 +644,10 @@ void usuario()
 	if (encontrado == false)
 	{
 		cout << "No se encontro el DNI" << endl;
-		cout << "Ingrese su nombre: ";
+		cout << "Ingrese su nombre para registrarse: ";
 		getline(cin, clientes[posicionDelCliente].nombre);
 		clientes[posicionDelCliente].DNI = docDNI;
-		cout << "Bienvenido " << clientes[posicionDelCliente].nombre << endl;
+		cout << "\nBienvenido! " << clientes[posicionDelCliente].nombre << endl;
 		getch();
 		MnClntReg();
 	}
