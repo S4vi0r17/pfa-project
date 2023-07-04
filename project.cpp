@@ -816,41 +816,41 @@ void reporteStock()
 
 				case 1:
 					archivo << "Limpieza\n";
-                    archivo << setw(30) << left << "Nombre del producto" << setw(5) << right << "Cantidad\n";
+                    archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
                     for (int i = 0; i < cantidadStringsLimpieza; i++) {
-                        archivo << setw(32) << left << stringsEnumeradosLimpieza[i] << setw(5) << right << productosLimpieza[i].stock << std::endl;
+                        archivo << setw(34) << left << stringsEnumeradosLimpieza[i] << setw(4) << right <<productosLimpieza[i].stock << endl;
 					}
 					break;
 				case 2:
 					archivo << "Tecnologia\n";
-					archivo << "Nombre del producto - Cantidad\n";
+					archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
 					for (int i = 0; i < cantidadStringsTecnologia; i++)
 					{
-						archivo << stringsEnumeradosTecnologia[i] << " " << productosTecnologia[i].stock << endl;
+						archivo << setw(34) << left << stringsEnumeradosTecnologia[i] << setw(4) << right << productosTecnologia[i].stock << endl;
 					}
 					break;
 				case 3:
 					archivo << "Hogar\n";
-					archivo << "Nombre del producto - Cantidad\n";
+					archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
 					for (int i = 0; i < cantidadStringsHogar; i++)
 					{
-						archivo << stringsEnumeradosHogar[i] << " " << productosHogar[i].stock << endl;
+						archivo << setw(34) << left << stringsEnumeradosHogar[i] << setw(4) << right << productosHogar[i].stock << endl;
 					}
 					break;
 				case 4:
 					archivo << "Verduras\n";
-					archivo << "Nombre del producto - Cantidad\n";
+					archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
 					for (int i = 0; i < cantidadStringsVerduras; i++)
 					{
-						archivo << stringsEnumeradosVerduras[i] << " " << productosVerduras[i].stock << endl;
+						archivo << setw(34) << left << stringsEnumeradosVerduras[i] << setw(4) << right << productosVerduras[i].stock << endl;
 					}
 					break;
 				case 5:
 					archivo << "Frutas\n";
-					archivo << "Nombre del producto - Cantidad\n";
+					archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
 					for (int i = 0; i < cantidadStringsFrutas; i++)
 					{
-						archivo << stringsEnumeradosFrutas[i] << " " << productosFrutas[i].stock << endl;
+						archivo << setw(34) << left << stringsEnumeradosFrutas[i] << setw(4) << right << productosFrutas[i].stock << endl;
 					}
 					break;
 				}
