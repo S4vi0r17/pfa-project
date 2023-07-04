@@ -60,6 +60,7 @@ void revisarCarritoDeCompras(Venta *venta);
 void MnClntReg();
 void MnEscgrProd();
 void modificarCarritoDeCompras();
+bool login();
 
 // Prototipo Reporte de Stock
 void reporteStock();
@@ -98,7 +99,14 @@ int main()
 	}
 	else
 	{
-		menu_adm_1();
+		if (login())
+		{
+			menu_adm_1();
+		}
+		else
+		{
+			cout << "Credenciales incorrectas.\n" << endl;
+		}
 	}
 }
 
@@ -409,13 +417,12 @@ void generarBoletaVenta(const Venta *venta, int num_ventas, const string &client
 
 void menu_adm_1()
 {
-
+	system("cls");
 	int opc;
-	cout << "---------------------Menu Administracion----------------------" << endl;
-
+	
 	do
 	{
-		cout << "-------------Digite la opcion----------";
+		cout << "---------------------Menu Administracion----------------------" << endl;
 		cout << "\n\n1.- Reporte de Boletas";
 		cout << "\n2.- Reporte de Stock";
 		cout << "\n3.- Actualizar Stock" << endl;
@@ -934,10 +941,11 @@ bool comprobarRepetido(int Opc, int vectorOpc[], int lista)
 
 void modificarStock()
 {
-
+	
 	int opc1;
 	do
 	{
+		system("cls");
 		cout << "Menu de actualizacion de stock\n";
 		cout << "1. Limpieza\n";
 		cout << "2. Tecnologia\n";
@@ -950,30 +958,40 @@ void modificarStock()
 		{
 		case 1:
 			traerReporte("../archivos/menuLimpieza.txt", "../archivos/productosLimpieza.txt");
+			getch();
+			system("cls");
 			actualizarStock("../archivos/productosLimpieza.txt", "../archivos/menuLimpieza.txt");
 			getch();
 
 			break;
 		case 2:
 			traerReporte("../archivos/menuTecnologia.txt", "../archivos/productosTecnologia.txt");
+			getch();
+			system("cls");
 			actualizarStock("../archivos/productosTecnologia.txt", "../archivos/menuTecnologia.txt");
 			getch();
 			break;
 
 		case 3:
 			traerReporte("../archivos/menuHogar.txt", "../archivos/productosHogar.txt");
+			getch();
+			system("cls");
 			actualizarStock("../archivos/productosHogar.txt", "../archivos/menuHogar.txt");
 			getch();
 			break;
 
 		case 4:
 			traerReporte("../archivos/menuVerduras.txt", "../archivos/productosVerduras.txt");
+			getch();
+			system("cls");
 			actualizarStock("../archivos/productosVerduras.txt", "../archivos/menuVerduras.txt");
 			getch();
 			break;
 
 		case 5:
 			traerReporte("../archivos/menuFrutas.txt", "../archivos/productosFrutas.txt");
+			getch();
+			system("cls");
 			actualizarStock("../archivos/productosFrutas.txt", "../archivos/menuFrutas.txt");
 			getch();
 			break;
@@ -1040,4 +1058,22 @@ void actualizarStock(const string &nombreArchivo, const string &productName)
 	{
 		cout << "No se pudo abrir el archivo de entrada." << endl;
 	}
+}
+
+//Login para el administrador
+
+bool login() {
+    string username, password;
+    system("cls");
+    cout << "Ingrese el nombre de usuario: ";
+    cin >> username;
+    
+    cout << "Ingrese la contraseña: ";
+    cin >> password;
+    
+    if (username == "kali" && password == "kali") {
+        return true;
+    } else {
+        return false;
+    }
 }
