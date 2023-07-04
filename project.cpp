@@ -59,6 +59,7 @@ void menuMediosPago();
 void revisarCarritoDeCompras(Venta *venta);
 void MnClntReg();
 void MnEscgrProd();
+void ReporteBoletas(const string &archivo_entrada);
 void modificarCarritoDeCompras();
 bool login();
 
@@ -442,6 +443,7 @@ void menu_adm_1()
 		{
 		case 1:
 			// Reporte de boletas
+			ReporteBoletas("../archivos/boleta.txt");
 			break;
 
 		case 2:
@@ -1011,6 +1013,22 @@ void modificarStock()
 		}
 
 	} while (opc1 != 6);
+}
+
+void ReporteBoletas(const string& archivo_entrada){
+    ifstream archivo(archivo_entrada);
+    if (!archivo.is_open()) {
+        cout << "Error al abrir el archivo." << endl;
+        return;
+    }
+    cout<<"\t\t\t\t****REPORTE DE BOLETAS****\t\t\t\t\n\n";
+    string linea;
+    while (!archivo.eof()) 
+	{
+		getline(archivo, linea);
+        cout << linea << endl;
+    }
+    archivo.close();
 }
 
 void actualizarStock(const string &nombreArchivo, const string &productName)
