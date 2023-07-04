@@ -334,7 +334,7 @@ void eliminarProductoCarCompra()
 	do
 	{
 		mostrarCarritoDeCompras(compra);
-		cout << "Digite el número del producto que desea elminar (Digite '0' para Salir): ";
+		cout << "Digite el número del producto que desea eliminar (Digite '0' para Salir): ";
 		cin >> pos;
 		if (pos != 0 && pos >= 1 && pos <= posicionDelProducto)
 		{
