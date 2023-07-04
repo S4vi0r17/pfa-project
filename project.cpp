@@ -72,7 +72,7 @@ int menuMediosPago();
 void tiempo();
 int Pago(float total);
 void realizar_pago(const Venta* venta, int num_ventas, const string& cliente, int i);
-void e_producto(Productos vector[], int lugar);
+void e_producto(Productos vector[], int lugar, int p);
 void generarBoletaVenta(const Venta *venta, int num_ventas, const string &cliente, double total, const string &archivo_salida);
 
 
@@ -250,28 +250,30 @@ void realizar_pago(const Venta* venta, int num_ventas, const string& cliente, in
 				{
 				clientes[i-1].historial[k].productos[t]=compra[t];
 				clientes[i-1].historial[k].monto_total=total;
-				e_producto(limpieza,t);
-				e_producto(tecnologia,t);
-				e_producto(hogar,t);
-				e_producto(verduras,t);
-				e_producto(frutas,t);
+				e_producto(limpieza,t,0);
+				e_producto(tecnologia,t,0);
+				e_producto(hogar,t,0);
+				e_producto(verduras,t,0);
+				e_producto(frutas,t,0);
 				compra[t]=compra[11];
 				}
 			}
 	}while(cond==1);
 }
 
-
-void e_producto(Productos vector[], int lugar)
+void e_producto(Productos vector[], int lugar, int p)
 {
-	int i=0;
-	for (i;i<10;i++)
-	{
-		if(compra[lugar].nombre_producto==vector[i].nombre)
-		{
-			vector[i].stock=vector[i].stock-compra[lugar].cantidad_producto;
-		}	
+	if (p >= 10) {
+		// Salida de la función recursiva
+		return;
 	}
+
+	if (compra[lugar].nombre_producto == vector[p].nombre) {
+		vector[p].stock = vector[p].stock - compra[lugar].cantidad_producto;
+	}
+
+	// Llamada recursiva para el siguiente índice
+	e_producto(vector, lugar, p + 1);
 }
 
 
