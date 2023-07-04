@@ -287,8 +287,9 @@ void revisarCarritoDeCompras(Venta *venta)
 	modificarCarritoDeCompras();
 }
 
-int menuModifCompra(int Opc)
+int menuModifCompra()
 {
+	int Opc;
 	cout << "\n¿Que desea modificar de su carrito de compra?";
 	cout << "\n1. Eliminar producto" << endl;
 	cout << "2. Modificar cantidad de algun producto" << endl;
@@ -355,7 +356,7 @@ void modificarCarritoDeCompras()
 	int Opc;
 	do
 	{
-		Opc = menuModifCompra(Opc);
+		Opc = menuModifCompra();
 		switch (Opc)
 		{
 		case 1:
