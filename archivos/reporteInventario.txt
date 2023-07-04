@@ -1,16 +1,30 @@
 Reporte de Inventario
 Limpieza
- Bayetas y paños de microfibra 5
- Detergente líquido 6
- Esponjas 7
- Guantes de goma 8
- Limpiador de vidrios 9
- Limpiador multiusos 10
- Papel Higiénico 11
- Quitamanchas 12
- Set escoba 13
- Set trapeador 14
+Nombre del producto           Cantidad
+ Bayetas y paños de microfibra     5
+ Detergente líquido                6
+ Esponjas                           7
+ Guantes de goma                    8
+ Limpiador de vidrios               9
+ Limpiador multiusos               10
+ Papel Higiénico                  11
+ Quitamanchas                      12
+ Set escoba                        13
+ Set trapeador                     14
+Tecnologia
+Nombre del producto - Cantidad
+ Auriculares inalámbricos Sony 5
+ Cámara réflex Nikon 6
+ Celular Android LG 7
+ Laptop Gamer Asus 8
+ Monitor de alta definición Dell 9
+ Set Gamer (Teclado, mouse y mousepad) 10
+ SmartTV Samsung 11
+ Tablet Samsung 12
+ Tarjeta gráfica Nvidia GeForce 13
+ Unidad de estado sólido (SSD) Samsung 14
 Hogar
+Nombre del producto - Cantidad
  Aspiradora robotizada 5
  Cama de 2 plazas 6
  Cortinas o persianas 7
@@ -21,7 +35,20 @@ Hogar
  Repisa de madera 12
  Ropero 13
  Silla de escritorio 14
+Verduras
+Nombre del producto - Cantidad
+ 1 kg de cebolla 5
+ Unidad de aguacate 6
+ Unidad de calabaza 7
+ Unidad de lechuga 8
+ 1 kg de limón 9
+ Unidad de pepino 10
+ Unidad de pimiento 11
+ 1 kg de papa 12
+ 1 kg de tomate 13
+ 1 kg de zanahoria 14
 Frutas
+Nombre del producto - Cantidad
  1 kg de manzanas 5
  1 kg de naranjas 6
  Unidad de plátano 7

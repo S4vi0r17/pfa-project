@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <stdlib.h>
+#include <iomanip> //formato a los archivos
 #include <locale.h>
 #include <locale>
 #include <windows.h> // Para usar caracteres especiales
@@ -815,10 +816,9 @@ void reporteStock()
 
 				case 1:
 					archivo << "Limpieza\n";
-					archivo << "Nombre del producto - Cantidad\n";
-					for (int i = 0; i < cantidadStringsLimpieza; i++)
-					{
-						archivo << stringsEnumeradosLimpieza[i] << " " << productosLimpieza[i].stock << endl;
+                    archivo << setw(30) << left << "Nombre del producto" << setw(5) << right << "Cantidad\n";
+                    for (int i = 0; i < cantidadStringsLimpieza; i++) {
+                        archivo << setw(32) << left << stringsEnumeradosLimpieza[i] << setw(5) << right << productosLimpieza[i].stock << std::endl;
 					}
 					break;
 				case 2:
