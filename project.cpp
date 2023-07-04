@@ -55,17 +55,26 @@ void cargarProductos();
 void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i);
 int mostrarMenu(const string &archivo);
 int solicitarCantidad();
-void menuMediosPago();
 void revisarCarritoDeCompras(Venta *venta);
 void MnClntReg();
 void MnEscgrProd();
 void modificarCarritoDeCompras();
 bool login();
+void mostrarCarritoDeCompras(Venta *venta);
 
 // Prototipo Reporte de Stock
 void reporteStock();
 void traerReporte(const string &menuX, const string &infoProductosX);
 bool comprobarRepetido(int Opc, int vectorOpc[], int lista);
+
+// Prototipo compra
+int menuMediosPago();
+void tiempo();
+int Pago(float total);
+void realizar_pago(const Venta* venta, int num_ventas, const string& cliente, int i);
+void e_producto(Productos vector[], int lugar);
+void generarBoletaVenta(const Venta *venta, int num_ventas, const string &cliente, double total, const string &archivo_salida);
+
 
 // Prototipo Actualizar Stock
 void actualizarStock(const string &, const string &);
@@ -110,6 +119,162 @@ int main()
 	}
 }
 
+
+// Realizar compra
+int menuMediosPago()
+{
+	int opc;
+	do{
+	cout << "Seleccione un medio de pago:" << endl;
+	cout << "Medios de pago en efectivo:" << endl;
+	cout << "   1. Efectivo (moneda nacional)" << endl;
+	cout << "   2. Moneda extranjera" << endl;
+	cout << "Tarjetas bancarias:" << endl;
+	cout << "   3. Tarjeta bancaria (crédito o débito)" << endl;
+	cout << "4.-Usar vales" << endl;
+	cin >> opc;
+	if(opc>4 or opc<1){system("cls");cout<<"\nerror\n";}
+	
+	}while(opc>4 or opc<1);
+	system("cls");
+	return opc;		
+}
+
+void tiempo()
+{
+
+	cout<<"\n...............\n...............\n...............";Beep(200,300);
+	cout<<"\n...............";Beep(300,400);
+	cout<<"\n...............";Beep(400,500);
+	cout<<"\n...............";Beep(500,600);
+	cout<<"\n...............";Beep(600,700);
+	cout<<"\n...............";Beep(700,800);cout<<"\n...............\n";
+	system("cls");
+}
+
+int Pago(float total)
+{
+	int monto;
+			cout<<"\n\n\nIngrese el monto a abonar: ";cin>>monto;
+			cout<<"\n\nProcesando\n";
+			tiempo();
+			if(monto>=total)
+			{
+			cout<<"\nCompra satisfactoria";
+			return 0;
+			}
+			else
+			{
+				cout<<"\n--Error monto insuficiente--\n\n";
+				mostrarCarritoDeCompras(compra);
+				return 1;
+			}	
+}
+
+void realizar_pago(const Venta* venta, int num_ventas, const string& cliente, int i)
+{
+	int y,cond=0,vale,k;
+	float total=0.00,monto;
+	
+	for (int h = 0; h < 10; h++)
+	{
+		total=total+compra[h].monto_producto;		
+	}
+	y=menuMediosPago();
+	if(y==4)
+	{
+		cout << "\n   1. Vale de 30%" << endl;
+		cout << "   2. Vale de 20%" << endl;
+		cout << "   3. Vale de 10%" << endl;
+		cout << "   OPCION:       "; cin>>vale;
+	}
+	system("cls");
+	mostrarCarritoDeCompras(compra);
+	
+	do
+	{
+		cond=0;
+	    switch(y)
+	    {
+	    	case 1:
+	    		cout <<"\n\nTotal:      "<< total<<"\n";
+				cond=Pago(total);
+				break;
+			case 2:
+				cout <<"\n\nTotal:      "<< total<<"\n";
+				cout<<"\n\n------------Compra dolar 3.60--------------\n\n\n\n";
+				cout<<"\nAplicando el cambio de dolar: $"<<total/3.6;
+				cond=Pago(total/3.6);
+				break;
+			case 3:
+				cout <<"\n\nTotal:      "<< total<<"\n";
+				cout<<"\nInserte la tarjeta\n";Beep(0,1500);
+				cout<<"\nTarjeta Recibida\n";
+				tiempo();
+				cout<<"\nCompra satisfactoria";			
+				break;
+			case 4:
+				switch(vale)
+	    		{
+	    			case 1:
+	    				cout <<"\n\nTotal:      "<< total<<"\n";
+	    				cout<<"\nTotal con Vale: "<<total*0.7;
+						cond=Pago(total*0.7);
+	    				break;
+					case 2:
+						cout <<"\n\nTotal:      "<< total<<"\n";
+	    				cout<<"\nTotal con Vale: "<<total*0.8;
+						cond=Pago(total*0.8);
+	    				break;
+	    			case 3:
+	    				cout <<"\n\nTotal:      "<< total<<"\n";
+	    				cout<<"\nTotal con Vale: "<<total*0.9;
+						cond=Pago(total*0.9);
+	    				break;
+	    		}
+				break;	
+		}
+	
+		if(cond==0){
+			cout<<"\nGenerando Boleta....\n\n";Beep(0,1200);
+			generarBoletaVenta(compra, posicionDelProducto, clientes[posicionDelCliente].nombre, total, "../archivos/boleta.txt");
+			k=0;
+			for(k; k<10;k++)
+				{
+					if(clientes[i-1].historial[k].monto_total==0)
+					{
+						break;
+					}
+				}
+			for (int t = 0; t < 10; t++)
+				{
+				clientes[i-1].historial[k].productos[t]=compra[t];
+				clientes[i-1].historial[k].monto_total=total;
+				e_producto(limpieza,t);
+				e_producto(tecnologia,t);
+				e_producto(hogar,t);
+				e_producto(verduras,t);
+				e_producto(frutas,t);
+				compra[t]=compra[11];
+				}
+			}
+	}while(cond==1);
+}
+
+
+void e_producto(Productos vector[], int lugar)
+{
+	int i=0;
+	for (i;i<10;i++)
+	{
+		if(compra[lugar].nombre_producto==vector[i].nombre)
+		{
+			vector[i].stock=vector[i].stock-compra[lugar].cantidad_producto;
+		}	
+	}
+}
+
+
 // Menu cliente registrado
 
 void MnClntReg()
@@ -129,12 +294,13 @@ void MnClntReg()
 			break;
 		case 3:
 			// Compra
+			realizar_pago(compra, posicionDelProducto, clientes[posicionDelCliente].nombre,posicionDelCliente);
 			break;
 		case 4:
 			Opc = 4;
 			break;
 		default:
-			cout << "\n Opciï¿½n invï¿½lida";
+			cout << "\n Opci?n inv?lida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -304,7 +470,7 @@ void revisarCarritoDeCompras(Venta *venta)
 int menuModifCompra()
 {
 	int Opc;
-	cout << "\nÂ¿Que desea modificar de su carrito de compra?";
+	cout << "\n¿Que desea modificar de su carrito de compra?";
 	cout << "\n1. Eliminar producto" << endl;
 	cout << "2. Modificar cantidad de algun producto" << endl;
 	cout << "3. Nada (Salir)" << endl;
@@ -333,7 +499,7 @@ void eliminarProductoCarCompra()
 	do
 	{
 		mostrarCarritoDeCompras(compra);
-		cout << "Digite el nÃºmero del producto que desea elminar (Digite '0' para Salir): ";
+		cout << "Digite el número del producto que desea elminar (Digite '0' para Salir): ";
 		cin >> pos;
 		if (pos != 0 && pos >= 1 && pos <= posicionDelProducto)
 		{
@@ -353,7 +519,7 @@ void modificarCantCarCompra()
 	do
 	{
 		mostrarCarritoDeCompras(compra);
-		cout << "Digite el nÃºmero del producto que desee cambiar su cantidad (Digite '0' para salir): ";
+		cout << "Digite el número del producto que desee cambiar su cantidad (Digite '0' para salir): ";
 		cin >> pos;
 		cout << "Digite la cantidad que desee del producto: ";
 		cin >> cantidad;
@@ -383,7 +549,7 @@ void modificarCarritoDeCompras()
 		case 3:
 			break;
 		default:
-			cout << "\n La opciÃ³n digitada es invÃ¡lida";
+			cout << "\n La opción digitada es inválida";
 			cout << "\n Vuelva a intentarlo\n\n";
 			system("pause");
 			system("cls");
@@ -487,7 +653,7 @@ int mostrarMenu(const string &archivo)
 		cout << "Error al abrir el archivo!" << endl;
 	}
 
-	cout << "\nDigite su elecciÃ³n: ";
+	cout << "\nDigite su elección: ";
 	cin >> Opc;
 
 	return Opc;
@@ -602,7 +768,7 @@ string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrin
 			if (isdigit(linea[0]) && linea.find(".") != string::npos)
 			{
 				if (index < contador - 1)
-				{ // Excluir la Ãºltima lÃ­nea
+				{ // Excluir la última línea
 					string substring = linea.substr(linea.find(".") + 1);
 					stringsEnumerados[index] = substring;
 					index++;
@@ -653,26 +819,6 @@ void usuario()
 	}
 }
 
-// Realizar compra
-void menuMediosPago()
-{
-	char Opc;
-	cout << "Seleccione un medio de pago:" << endl;
-	cout << "Medios de pago en efectivo:" << endl;
-	cout << "   1. Efectivo (moneda nacional)" << endl;
-	cout << "   2. Moneda extranjera" << endl;
-	cout << "Tarjetas bancarias:" << endl;
-	cout << "   3. Tarjeta bancaria (crÃ©dito o dÃ©bito)" << endl;
-	cout << "   4. Tarjeta online (pagos electrÃ³nicos)" << endl;
-	cout << "Vales y tarjetas de beneficios:" << endl;
-	cout << "   5. Vale escolar" << endl;
-	cout << "   6. Vale de mercader?a" << endl;
-	cout << "   7. Vale de alimento" << endl;
-
-	cin >> Opc;
-
-	generarBoletaVenta(compra, posicionDelProducto, clientes[posicionDelCliente].nombre, 0, "../archivos/boleta.txt");
-}
 
 // Obtendre un struct con la informacion de los productos
 Productos *infoProductos(const string &nombreArchivo, int cantidadProductos)
@@ -739,7 +885,7 @@ void reporteStock()
 		cout << "3. Hogar" << endl;
 		cout << "4. Verduras" << endl;
 		cout << "5. Frutas" << endl;
-		cout << "6. Todas las categorÃ­as" << endl;
+		cout << "6. Todas las categorías" << endl;
 		cout << "7. Terminar" << endl;
 		cout << "Opcion: " << endl;
 		cin >> opcReporte;
@@ -1034,7 +1180,7 @@ void actualizarStock(const string &nombreArchivo, const string &productName)
 			if (contador % 4 == 0)
 			{
 				fflush(stdin);
-				cout << "Ingresa la modificaciÃ³n para " << lineas2[j] << endl;
+				cout << "Ingresa la modificación para " << lineas2[j] << endl;
 				getline(cin, linea);
 				lineas.push_back(linea);
 				j++;
@@ -1076,7 +1222,7 @@ bool login() {
     cout << "Ingrese el nombre de usuario: ";
     cin >> username;
     
-    cout << "Ingrese la contraseÃ±a: ";
+    cout << "Ingrese la contraseña: ";
     cin >> password;
     
     if (username == "kali" && password == "kali") {
