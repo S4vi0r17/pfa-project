@@ -1,0 +1,120 @@
+         Boleta de Venta          
+        ------------------        
+Cliente: eder
+-------------------------------
+Producto          Cantidad   Precio
+-------------------------------
+ Bayetas y panios de microfibra      12         1.01
+ Esponjas      5         1.03
+-------------------------------
+Total:            0
+         Boleta de Venta          
+        ------------------        
+Cliente: eder
+-------------------------------
+Producto          Cantidad   Precio
+-------------------------------
+ Bayetas y panios de microfibra      2         1.01
+ Esponjas      3         1.03
+-------------------------------
+Total:            5.11
+
+         Boleta de Venta          
+        ------------------        
+Cliente: Zavaleta
+-------------------------------
+Producto          Cantidad   Precio
+-------------------------------
+ Cama de 2 plazas      2         1.02
+ Juego de sofas      2         1.06
+-------------------------------
+Total:            4.16
+
+         Boleta de Venta          
+        ------------------        
+Cliente: Alexo Lujan
+-------------------------------
+Producto          Cantidad   Precio
+-------------------------------
+ Cortinas o persianas      1         1.03
+ Silla de escritorio      2         1.1
+-------------------------------
+Total:            3.23
+
+         Boleta de Venta          
+        ------------------        
+Cliente: Leonardo Lujan
+-------------------------------
+Producto                             Cantidad     Precio
+-------------------------------
+ Cama de 2 plazas                       2   1.02
+ Juego de comedor (4 sillas, 1 mesa)    1   1.05
+-------------------------------
+Total:            3.09
+
+         Boleta de Venta          
+        ------------------        
+Cliente: Damaris
+-------------------------------
+Producto                             Cantidad     Precio
+-------------------------------
+ Unidad de aguacate                     3   1.02     
+ Unidad de pepino                       1   1.06
+-------------------------------
+Total:            4.12
+
+         Boleta de Venta          
+        ------------------        
+Cliente: Yayir Carrion
+-------------------------------
+Producto                             Cantidad     Precio
+-------------------------------
+ Auriculares inalambricos Sony          3          1.01
+ Laptop Gamer Asus                      2          1.04
+-------------------------------
+Total:            5.11
+
+         Boleta de Venta          
+        ------------------        
+Cliente: Sebastian Castillo
+-------------------------------
+Producto                             Cantidad     Precio
+-------------------------------
+ 1 kg de naranjas                       5          1.02
+ Unidad de pera                         3          1.09
+-------------------------------
+Total:            8.37
+
+         Boleta de Venta          
+        ------------------        
+Cliente: Damaris 
+-------------------------------
+Producto                             Cantidad     Precio
+-------------------------------
+ Juego de sofas                         2          1.06
+ Repisa de madera                       3          1.08
+-------------------------------
+Total:                                             5.36
+
+         Boleta de Venta          
+        ------------------        
+Cliente: Alex Rose
+-------------------------------
+Producto                             Cantidad     Precio
+-------------------------------
+ Unidad de platano                      2          1.03
+ Unidad de fresas                       21         1.04
+---------------------------------------------------------------
+Total:                                             23.9
+
+         Boleta de Venta          
+        ------------------        
+Cliente: Ozuna
+-------------------------------
+Producto                             Cantidad     Precio
+-------------------------------
+ Cortinas o persianas                   3          3.09
+ Espejo de cuerpo entero                2          2.08
+ 1 kg de uvas                           23         25.3
+---------------------------------------------------------------
+Total:                                             30.47

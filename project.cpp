@@ -49,24 +49,31 @@ struct Productos
 string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrings);
 // Prototipo del inventario productos
 Productos *infoProductos(const string &nombreArchivo, int cantidadProductos);
-
 void usuario();
 void cargarProductos();
 void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i);
 int mostrarMenu(const string &archivo);
 int solicitarCantidad();
-void menuMediosPago();
 void revisarCarritoDeCompras(Venta *venta);
 void MnClntReg();
 void MnEscgrProd();
-void ReporteBoletas(const string &archivo_entrada);
 void modificarCarritoDeCompras();
 bool login();
+void mostrarCarritoDeCompras(Venta *venta);
 
 // Prototipo Reporte de Stock
+void ReporteBoletas(const string &);
 void reporteStock();
 void traerReporte(const string &menuX, const string &infoProductosX);
 bool comprobarRepetido(int Opc, int vectorOpc[], int lista);
+
+// Prototipo compra
+int menuMediosPago();
+void tiempo();
+int Pago(float total);
+void realizar_pago(const Venta *venta, int num_ventas, const string &cliente, int i);
+void e_producto(Productos vector[], int lugar, int p);
+void generarBoletaVenta(const Venta *venta, int num_ventas, const string &cliente, double total, const string &archivo_salida);
 
 // Prototipo Actualizar Stock
 void actualizarStock(const string &, const string &);
@@ -106,9 +113,188 @@ int main()
 		}
 		else
 		{
-			cout << "Credenciales incorrectas.\n" << endl;
+			cout << "Credenciales incorrectas.\n"
+				 << endl;
 		}
 	}
+}
+
+// Realizar compra
+int menuMediosPago()
+{
+	int opc;
+	system("cls");
+	do
+	{
+		cout << "Seleccione un medio de pago:\n"
+			 << endl;
+		cout << "Medios de pago en efectivo:" << endl;
+		cout << "   1. Efectivo (moneda nacional)" << endl;
+		cout << "   2. Moneda extranjera" << endl;
+		cout << "Tarjetas bancarias:" << endl;
+		cout << "   3. Tarjeta bancaria (cr�dito o d�bito)" << endl;
+		cout << "Vales:" << endl;
+		cout << "   4.-Usar vales" << endl;
+		cin >> opc;
+		if (opc > 4 or opc < 1)
+		{
+			system("cls");
+			cout << "\nerror\n";
+		}
+
+	} while (opc > 4 or opc < 1);
+	system("cls");
+	return opc;
+}
+
+void tiempo()
+{
+
+	cout << "\n...............\n...............\n...............";
+	Beep(200, 300);
+	cout << "\n...............";
+	Beep(300, 400);
+	cout << "\n...............";
+	Beep(400, 500);
+	cout << "\n...............";
+	Beep(500, 600);
+	cout << "\n...............";
+	Beep(600, 700);
+	cout << "\n...............";
+	Beep(700, 800);
+	cout << "\n...............\n";
+	system("cls");
+}
+
+int Pago(float total)
+{
+	int monto;
+	cout << "\n\n\nIngrese el monto a abonar: ";
+	cin >> monto;
+	cout << "\n\nProcesando\n";
+	tiempo();
+	if (monto >= total)
+	{
+		cout << "\nCompra satisfactoria";
+		return 0;
+	}
+	else
+	{
+		cout << "\n--Error monto insuficiente--\n\n";
+		mostrarCarritoDeCompras(compra);
+		return 1;
+	}
+}
+
+void realizar_pago(const Venta *venta, int num_ventas, const string &cliente, int i)
+{
+	int y, cond = 0, vale, k;
+	float total = 0;
+
+	y = menuMediosPago();
+	if (y == 4)
+	{
+		cout << "\n   1. Vale de 30%" << endl;
+		cout << "   2. Vale de 20%" << endl;
+		cout << "   3. Vale de 10%" << endl;
+		cout << "   OPCION:       ";
+		cin >> vale;
+	}
+	system("cls");
+	mostrarCarritoDeCompras(compra);
+
+	for (Venta elemento : compra)
+	{
+		total += elemento.monto_producto;
+	}
+
+	do
+	{
+		cond = 0;
+		switch (y)
+		{
+		case 1:
+			cout << "\n\nTotal:      " << total << "\n";
+			cond = Pago(total);
+			break;
+		case 2:
+			cout << "\n\nTotal:      " << total << "\n";
+			cout << "\n\n------------Compra dolar 3.60--------------\n\n\n\n";
+			cout << "\nAplicando el cambio de dolar: $" << total / 3.6;
+			cond = Pago(total / 3.6);
+			break;
+		case 3:
+			cout << "\n\nTotal:      " << total << "\n";
+			cout << "\nInserte la tarjeta\n";
+			Beep(0, 1500);
+			cout << "\nTarjeta Recibida\n";
+			tiempo();
+			cout << "\nCompra satisfactoria";
+			break;
+		case 4:
+			switch (vale)
+			{
+			case 1:
+				cout << "\n\nTotal:      " << total << "\n";
+				cout << "\nTotal con Vale: " << total * 0.7;
+				cond = Pago(total * 0.7);
+				break;
+			case 2:
+				cout << "\n\nTotal:      " << total << "\n";
+				cout << "\nTotal con Vale: " << total * 0.8;
+				cond = Pago(total * 0.8);
+				break;
+			case 3:
+				cout << "\n\nTotal:      " << total << "\n";
+				cout << "\nTotal con Vale: " << total * 0.9;
+				cond = Pago(total * 0.9);
+				break;
+			}
+			break;
+		}
+
+		if (cond == 0)
+		{
+			cout << "\nGenerando Boleta....\n\n";
+			Beep(0, 1200);
+			generarBoletaVenta(compra, posicionDelProducto, clientes[posicionDelCliente].nombre, total, "../archivos/boleta.txt");
+			for (int k = 0; k < 10; k++)
+			{
+				if (clientes[i - 1].historial[k].monto_total == 0)
+				{
+					break;
+				}
+			}
+			for (int t = 0; t < 10; t++)
+			{
+				clientes[i - 1].historial[k].productos[t] = compra[t];
+				clientes[i - 1].historial[k].monto_total = total;
+				e_producto(limpieza, t, 0);
+				e_producto(tecnologia, t, 0);
+				e_producto(hogar, t, 0);
+				e_producto(verduras, t, 0);
+				e_producto(frutas, t, 0);
+				compra[t] = compra[11];
+			}
+		}
+	} while (cond == 1);
+}
+
+void e_producto(Productos vector[], int lugar, int p)
+{
+	if (p >= 10)
+	{
+		// Salida de la funci�n recursiva
+		return;
+	}
+
+	if (compra[lugar].nombre_producto == vector[p].nombre)
+	{
+		vector[p].stock = vector[p].stock - compra[lugar].cantidad_producto;
+	}
+
+	// Llamada recursiva para el siguiente �ndice
+	e_producto(vector, lugar, p + 1);
 }
 
 // Menu cliente registrado
@@ -130,12 +316,13 @@ void MnClntReg()
 			break;
 		case 3:
 			// Compra
+			realizar_pago(compra, posicionDelProducto, clientes[posicionDelCliente].nombre, posicionDelCliente);
 			break;
 		case 4:
 			Opc = 4;
 			break;
 		default:
-			cout << "\n Opci�n inv�lida";
+			cout << "\n Opci?n inv?lida";
 			cout << "\n Vuelva a intentarlo\n\n ";
 			break;
 		}
@@ -268,6 +455,8 @@ void menuTipo(Venta producto[], string archivoMenu, Productos vector[], int &i)
 			cout << "\n Opcion invalida, vuelva a intentarlo\n\n ";
 			break;
 		}
+		getch();
+		system("cls");
 
 	} while (opcion != 11);
 }
@@ -286,10 +475,10 @@ void revisarCarritoDeCompras(Venta *venta)
 		{
 			break;
 		}
-		cout << "Producto:\t" << venta[i].nombre_producto << endl;
-		cout << "Cantidad:\t" << venta[i].cantidad_producto << endl;
-		cout << "Precio:\t" << venta[i].precio_producto << endl;
-		cout << "Monto:\t" << venta[i].cantidad_producto * venta[i].precio_producto << endl;
+		cout << "Producto:    " << venta[i].nombre_producto << endl;
+		cout << "Cantidad:     " << venta[i].cantidad_producto << endl;
+		cout << "Precio:       " << venta[i].precio_producto << endl;
+		cout << "Monto:        " << venta[i].cantidad_producto * venta[i].precio_producto << endl;
 		cout << "        ==================         " << endl;
 		venta[i].monto_producto = venta[i].cantidad_producto * venta[i].precio_producto;
 	}
@@ -298,14 +487,14 @@ void revisarCarritoDeCompras(Venta *venta)
 		total += elemento.monto_producto;
 	}
 
-	cout << "Total: " << total << endl;
+	cout << "Total:        " << total << endl;
 	modificarCarritoDeCompras();
 }
 
 int menuModifCompra()
 {
 	int Opc;
-	cout << "\n¿Que desea modificar de su carrito de compra?";
+	cout << "\n�Que desea modificar de su carrito de compra?";
 	cout << "\n1. Eliminar producto" << endl;
 	cout << "2. Modificar cantidad de algun producto" << endl;
 	cout << "3. Nada (Salir)" << endl;
@@ -315,16 +504,21 @@ int menuModifCompra()
 
 void mostrarCarritoDeCompras(Venta *venta)
 {
+	float total = 0;
 	system("cls");
 	cout << "        CARRITO DE COMPRAS         " << endl;
 	cout << "        ==================         " << endl;
 	for (int i = 0; i < posicionDelProducto; i++)
 	{
-		cout << "Producto:\t" << venta[i].nombre_producto << endl;
-		cout << "Cantidad:\t" << venta[i].cantidad_producto << endl;
-		cout << "Precio:\t" << venta[i].precio_producto << endl;
-		cout << "Monto:\t" << venta[i].cantidad_producto * venta[i].precio_producto << endl;
+		cout << "Producto:    " << venta[i].nombre_producto << endl;
+		cout << "Cantidad:     " << venta[i].cantidad_producto << endl;
+		cout << "Precio:       " << venta[i].precio_producto << endl;
+		cout << "Monto:        " << venta[i].cantidad_producto * venta[i].precio_producto << endl;
 		cout << "        ==================         " << endl;
+	}
+	for (Venta elemento : compra)
+	{
+		total += elemento.monto_producto;
 	}
 }
 
@@ -334,7 +528,7 @@ void eliminarProductoCarCompra()
 	do
 	{
 		mostrarCarritoDeCompras(compra);
-		cout << "Digite el número del producto que desea eliminar (Digite '0' para Salir): ";
+		cout << "Digite el n�mero del producto que desea elminar (Digite '0' para Salir): ";
 		cin >> pos;
 		if (pos != 0 && pos >= 1 && pos <= posicionDelProducto)
 		{
@@ -354,7 +548,7 @@ void modificarCantCarCompra()
 	do
 	{
 		mostrarCarritoDeCompras(compra);
-		cout << "Digite el número del producto que desee cambiar su cantidad (Digite '0' para salir): ";
+		cout << "Digite el n�mero del producto que desee cambiar su cantidad (Digite '0' para salir): ";
 		cin >> pos;
 		cout << "Digite la cantidad que desee del producto: ";
 		cin >> cantidad;
@@ -384,7 +578,7 @@ void modificarCarritoDeCompras()
 		case 3:
 			break;
 		default:
-			cout << "\n La opción digitada es inválida";
+			cout << "\n La opci�n digitada es inv�lida";
 			cout << "\n Vuelva a intentarlo\n\n";
 			system("pause");
 			system("cls");
@@ -396,27 +590,27 @@ void modificarCarritoDeCompras()
 // Generar boleta
 void generarBoletaVenta(const Venta *venta, int num_ventas, const string &cliente, double total, const string &archivo_salida)
 {
-	ofstream archivo(archivo_salida);
+	ofstream archivo(archivo_salida, ios::app);
 	if (!archivo.is_open())
 	{
 		cout << "Error al abrir el archivo." << endl;
 		return;
 	}
-
+	archivo << endl;
 	archivo << "         Boleta de Venta          " << endl;
 	archivo << "        ------------------        " << endl;
 	archivo << "Cliente: " << cliente << endl;
 	archivo << "-------------------------------" << endl;
-	archivo << "Producto          Cantidad   Precio" << endl;
+	archivo << "Producto                             Cantidad     Precio" << endl;
 	archivo << "-------------------------------" << endl;
 
 	for (int i = 0; i < num_ventas; i++)
 	{
-		archivo << venta[i].nombre_producto << "      " << venta[i].cantidad_producto << "         " << venta[i].precio_producto << endl;
+		archivo << setw(40) << left << venta[i].nombre_producto << setw(4) << left << venta[i].cantidad_producto << setw(11) << right << venta[i].precio_producto * venta[i].cantidad_producto << endl;
 	}
 
-	archivo << "-------------------------------" << endl;
-	archivo << "Total:            " << total << endl;
+	archivo << "---------------------------------------------------------------" << endl;
+	archivo << "Total:                                             " << total << endl;
 
 	archivo.close();
 }
@@ -427,7 +621,7 @@ void menu_adm_1()
 {
 	system("cls");
 	int opc;
-	
+
 	do
 	{
 		cout << "---------------------Menu Administracion----------------------" << endl;
@@ -489,7 +683,7 @@ int mostrarMenu(const string &archivo)
 		cout << "Error al abrir el archivo!" << endl;
 	}
 
-	cout << "\nDigite su elección: ";
+	cout << "\nDigite su elecci�n: ";
 	cin >> Opc;
 
 	return Opc;
@@ -604,7 +798,7 @@ string *obtenerStringsEnumerados(const string &nombreArchivo, int &cantidadStrin
 			if (isdigit(linea[0]) && linea.find(".") != string::npos)
 			{
 				if (index < contador - 1)
-				{ // Excluir la última línea
+				{ // Excluir la �ltima l�nea
 					string substring = linea.substr(linea.find(".") + 1);
 					stringsEnumerados[index] = substring;
 					index++;
@@ -653,27 +847,6 @@ void usuario()
 		getch();
 		MnClntReg();
 	}
-}
-
-// Realizar compra
-void menuMediosPago()
-{
-	char Opc;
-	cout << "Seleccione un medio de pago:" << endl;
-	cout << "Medios de pago en efectivo:" << endl;
-	cout << "   1. Efectivo (moneda nacional)" << endl;
-	cout << "   2. Moneda extranjera" << endl;
-	cout << "Tarjetas bancarias:" << endl;
-	cout << "   3. Tarjeta bancaria (crédito o débito)" << endl;
-	cout << "   4. Tarjeta online (pagos electrónicos)" << endl;
-	cout << "Vales y tarjetas de beneficios:" << endl;
-	cout << "   5. Vale escolar" << endl;
-	cout << "   6. Vale de mercader?a" << endl;
-	cout << "   7. Vale de alimento" << endl;
-
-	cin >> Opc;
-
-	generarBoletaVenta(compra, posicionDelProducto, clientes[posicionDelCliente].nombre, 0, "../archivos/boleta.txt");
 }
 
 // Obtendre un struct con la informacion de los productos
@@ -741,7 +914,7 @@ void reporteStock()
 		cout << "3. Hogar" << endl;
 		cout << "4. Verduras" << endl;
 		cout << "5. Frutas" << endl;
-		cout << "6. Todas las categorías" << endl;
+		cout << "6. Todas las categor�as" << endl;
 		cout << "7. Terminar" << endl;
 		cout << "Opcion: " << endl;
 		cin >> opcReporte;
@@ -833,39 +1006,45 @@ void reporteStock()
 				{
 
 				case 1:
-					archivo << "\nLimpieza\n"<<endl;
-                    archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
-                    for (int i = 0; i < cantidadStringsLimpieza; i++) {
-                        archivo << setw(40) << left << stringsEnumeradosLimpieza[i] << setw(4) << right <<productosLimpieza[i].stock << endl;
+					archivo << "\nLimpieza\n"
+							<< endl;
+					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad" << endl;
+					for (int i = 0; i < cantidadStringsLimpieza; i++)
+					{
+						archivo << setw(40) << left << stringsEnumeradosLimpieza[i] << setw(4) << right << productosLimpieza[i].stock << endl;
 					}
 					break;
 				case 2:
-					archivo << "\nTecnologia\n"<<endl;
-					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
+					archivo << "\nTecnologia\n"
+							<< endl;
+					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad" << endl;
 					for (int i = 0; i < cantidadStringsTecnologia; i++)
 					{
 						archivo << setw(40) << left << stringsEnumeradosTecnologia[i] << setw(4) << right << productosTecnologia[i].stock << endl;
 					}
 					break;
 				case 3:
-					archivo << "\nHogar\n"<<endl;
-					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
+					archivo << "\nHogar\n"
+							<< endl;
+					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad" << endl;
 					for (int i = 0; i < cantidadStringsHogar; i++)
 					{
 						archivo << setw(40) << left << stringsEnumeradosHogar[i] << setw(4) << right << productosHogar[i].stock << endl;
 					}
 					break;
 				case 4:
-					archivo << "\nVerduras\n"<<endl;
-					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
+					archivo << "\nVerduras\n"
+							<< endl;
+					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad" << endl;
 					for (int i = 0; i < cantidadStringsVerduras; i++)
 					{
 						archivo << setw(40) << left << stringsEnumeradosVerduras[i] << setw(4) << right << productosVerduras[i].stock << endl;
 					}
 					break;
 				case 5:
-					archivo << "\nFrutas\n"<<endl;
-					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
+					archivo << "\nFrutas\n"
+							<< endl;
+					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad" << endl;
 					for (int i = 0; i < cantidadStringsFrutas; i++)
 					{
 						archivo << setw(40) << left << stringsEnumeradosFrutas[i] << setw(4) << right << productosFrutas[i].stock << endl;
@@ -951,7 +1130,7 @@ bool comprobarRepetido(int Opc, int vectorOpc[], int lista)
 
 void modificarStock()
 {
-	
+
 	int opc1;
 	do
 	{
@@ -1015,22 +1194,6 @@ void modificarStock()
 	} while (opc1 != 6);
 }
 
-void ReporteBoletas(const string& archivo_entrada){
-    ifstream archivo(archivo_entrada);
-    if (!archivo.is_open()) {
-        cout << "Error al abrir el archivo." << endl;
-        return;
-    }
-    cout<<"\t\t\t\t****REPORTE DE BOLETAS****\t\t\t\t\n\n";
-    string linea;
-    while (!archivo.eof()) 
-	{
-		getline(archivo, linea);
-        cout << linea << endl;
-    }
-    archivo.close();
-}
-
 void actualizarStock(const string &nombreArchivo, const string &productName)
 {
 	ifstream archivoEntrada(nombreArchivo);
@@ -1052,7 +1215,7 @@ void actualizarStock(const string &nombreArchivo, const string &productName)
 			if (contador % 4 == 0)
 			{
 				fflush(stdin);
-				cout << "Ingresa la modificación para " << lineas2[j] << endl;
+				cout << "Ingresa la modificaci�n para " << lineas2[j] << endl;
 				getline(cin, linea);
 				lineas.push_back(linea);
 				j++;
@@ -1086,20 +1249,42 @@ void actualizarStock(const string &nombreArchivo, const string &productName)
 	}
 }
 
-//Login para el administrador
+// Login para el administrador
 
-bool login() {
-    string username, password;
-    system("cls");
-    cout << "Ingrese el nombre de usuario: ";
-    cin >> username;
-    
-    cout << "Ingrese la contraseña: ";
-    cin >> password;
-    
-    if (username == "kali" && password == "kali") {
-        return true;
-    } else {
-        return false;
-    }
+bool login()
+{
+	string username, password;
+	system("cls");
+	cout << "Ingrese el nombre de usuario: ";
+	cin >> username;
+
+	cout << "Ingrese la contrase�a: ";
+	cin >> password;
+
+	if (username == "kali" && password == "kali")
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void ReporteBoletas(const string &archivo_entrada)
+{
+	ifstream archivo(archivo_entrada);
+	if (!archivo.is_open())
+	{
+		cout << "Error al abrir el archivo." << endl;
+		return;
+	}
+	cout << "\t\t\t\t****REPORTE DE BOLETAS****\t\t\t\t\n\n";
+	string linea;
+	while (!archivo.eof())
+	{
+		getline(archivo, linea);
+		cout << linea << endl;
+	}
+	archivo.close();
 }
