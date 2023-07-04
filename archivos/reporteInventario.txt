@@ -1,61 +1,71 @@
 Reporte de Inventario
+
 Limpieza
-Nombre del producto              Cantidad
- Bayetas y panios de microfibra      5
- Detergente liquido                  6
- Esponjas                            7
- Guantes de goma                     8
- Limpiador de vidrios                9
- Limpiador multiusos                10
- Papel Higienico                    11
- Quitamanchas                       12
- Set escoba                         13
- Set trapeador                      14
+
+Nombre del producto                    Cantidad
+ Bayetas y panios de microfibra            5
+ Detergente liquido                        6
+ Esponjas                                  7
+ Guantes de goma                           8
+ Limpiador de vidrios                      9
+ Limpiador multiusos                      10
+ Papel Higienico                          11
+ Quitamanchas                             12
+ Set escoba                               13
+ Set trapeador                            14
+
 Tecnologia
-Nombre del producto              Cantidad
- Auriculares inalámbricos Sony      5
- Cámara réflex Nikon               6
- Celular Android LG                  7
- Laptop Gamer Asus                   8
- Monitor de alta definición Dell    9
- Set Gamer (Teclado, mouse y mousepad)  10
- SmartTV Samsung                    11
- Tablet Samsung                     12
- Tarjeta gráfica Nvidia GeForce    13
- Unidad de estado sólido (SSD) Samsung  14
+
+Nombre del producto                    Cantidad
+ Auriculares inalambricos Sony             5
+ Camara reflex Nikon                       6
+ Celular Android LG                        7
+ Laptop Gamer Asus                         8
+ Monitor de alta definicion Dell           9
+ Set Gamer (Teclado, mouse y mousepad)    10
+ SmartTV Samsung                          11
+ Tablet Samsung                           12
+ Tarjeta grafica Nvidia GeForce           13
+ Unidad de estado solido (SSD) Samsung    14
+
 Hogar
-Nombre del producto              Cantidad
- Aspiradora robotizada               5
- Cama de 2 plazas                    6
- Cortinas o persianas                7
- Espejo de cuerpo entero             8
- Juego de comedor (4 sillas, 1 mesa)   9
- Juego de sofás                    10
- Lámpara de mesa                   11
- Repisa de madera                   12
- Ropero                             13
- Silla de escritorio                14
+
+Nombre del producto                    Cantidad
+ Aspiradora robotizada                     5
+ Cama de 2 plazas                          6
+ Cortinas o persianas                      7
+ Espejo de cuerpo entero                   8
+ Juego de comedor (4 sillas, 1 mesa)       9
+ Juego de sofas                           10
+ Lampara de mesa                          11
+ Repisa de madera                         12
+ Ropero                                   13
+ Silla de escritorio                      14
+
 Verduras
-Nombre del producto              Cantidad
- 1 kg de cebolla                     5
- Unidad de aguacate                  6
- Unidad de calabaza                  7
- Unidad de lechuga                   8
- 1 kg de limón                      9
- Unidad de pepino                   10
- Unidad de pimiento                 11
- 1 kg de papa                       12
- 1 kg de tomate                     13
- 1 kg de zanahoria                  14
+
+Nombre del producto                    Cantidad
+ 1 kg de cebolla                           5
+ Unidad de aguacate                        6
+ Unidad de calabaza                        7
+ Unidad de lechuga                         8
+ 1 kg de limon                             9
+ Unidad de pepino                         10
+ Unidad de pimiento                       11
+ 1 kg de papa                             12
+ 1 kg de tomate                           13
+ 1 kg de zanahoria                        14
+
 Frutas
-Nombre del producto              Cantidad
- 1 kg de manzanas                    5
- 1 kg de naranjas                    6
- Unidad de plátano                  7
- Unidad de fresas                    8
- 1 kg de piñas                      9
- 1 kg de sandías                   10
- Unidad de kiwi                     11
- Unidad de mango                    12
- Unidad de pera                     13
- 1 kg de uvas                       14
+
+Nombre del producto                    Cantidad
+ 1 kg de manzanas                          5
+ 1 kg de naranjas                          6
+ Unidad de platano                         7
+ Unidad de fresas                          8
+ 1 kg de pinias                            9
+ 1 kg de sandias                          10
+ Unidad de kiwi                           11
+ Unidad de mango                          12
+ Unidad de pera                           13
+ 1 kg de uvas                             14

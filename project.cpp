@@ -815,42 +815,42 @@ void reporteStock()
 				{
 
 				case 1:
-					archivo << "Limpieza\n";
-                    archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
+					archivo << "\nLimpieza\n"<<endl;
+                    archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
                     for (int i = 0; i < cantidadStringsLimpieza; i++) {
-                        archivo << setw(34) << left << stringsEnumeradosLimpieza[i] << setw(4) << right <<productosLimpieza[i].stock << endl;
+                        archivo << setw(40) << left << stringsEnumeradosLimpieza[i] << setw(4) << right <<productosLimpieza[i].stock << endl;
 					}
 					break;
 				case 2:
-					archivo << "Tecnologia\n";
-					archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
+					archivo << "\nTecnologia\n"<<endl;
+					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
 					for (int i = 0; i < cantidadStringsTecnologia; i++)
 					{
-						archivo << setw(34) << left << stringsEnumeradosTecnologia[i] << setw(4) << right << productosTecnologia[i].stock << endl;
+						archivo << setw(40) << left << stringsEnumeradosTecnologia[i] << setw(4) << right << productosTecnologia[i].stock << endl;
 					}
 					break;
 				case 3:
-					archivo << "Hogar\n";
-					archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
+					archivo << "\nHogar\n"<<endl;
+					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
 					for (int i = 0; i < cantidadStringsHogar; i++)
 					{
-						archivo << setw(34) << left << stringsEnumeradosHogar[i] << setw(4) << right << productosHogar[i].stock << endl;
+						archivo << setw(40) << left << stringsEnumeradosHogar[i] << setw(4) << right << productosHogar[i].stock << endl;
 					}
 					break;
 				case 4:
-					archivo << "Verduras\n";
-					archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
+					archivo << "\nVerduras\n"<<endl;
+					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
 					for (int i = 0; i < cantidadStringsVerduras; i++)
 					{
-						archivo << setw(34) << left << stringsEnumeradosVerduras[i] << setw(4) << right << productosVerduras[i].stock << endl;
+						archivo << setw(40) << left << stringsEnumeradosVerduras[i] << setw(4) << right << productosVerduras[i].stock << endl;
 					}
 					break;
 				case 5:
-					archivo << "Frutas\n";
-					archivo << setw(32) << left << "Nombre del producto" << setw(9) << right << "Cantidad"<<endl;
+					archivo << "\nFrutas\n"<<endl;
+					archivo << setw(32) << left << "Nombre del producto" << setw(15) << right << "Cantidad"<<endl;
 					for (int i = 0; i < cantidadStringsFrutas; i++)
 					{
-						archivo << setw(34) << left << stringsEnumeradosFrutas[i] << setw(4) << right << productosFrutas[i].stock << endl;
+						archivo << setw(40) << left << stringsEnumeradosFrutas[i] << setw(4) << right << productosFrutas[i].stock << endl;
 					}
 					break;
 				}

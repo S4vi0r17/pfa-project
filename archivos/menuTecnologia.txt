@@ -1,14 +1,14 @@
 ÁREA DE TECNOLOGÍA
 ¿Qué desea comprar?
 
-1. Auriculares inalámbricos Sony
-2. Cámara réflex Nikon
+1. Auriculares inalambricos Sony
+2. Camara reflex Nikon
 3. Celular Android LG
 4. Laptop Gamer Asus
-5. Monitor de alta definición Dell
+5. Monitor de alta definicion Dell
 6. Set Gamer (Teclado, mouse y mousepad)
 7. SmartTV Samsung
 8. Tablet Samsung
-9. Tarjeta gráfica Nvidia GeForce
-10. Unidad de estado sólido (SSD) Samsung
+9. Tarjeta grafica Nvidia GeForce
+10. Unidad de estado solido (SSD) Samsung
 11. Salir
